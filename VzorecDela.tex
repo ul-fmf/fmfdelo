@@ -1,0 +1,220 @@
+\documentclass[mat1]{fmfdelo}
+% \documentclass[fin1]{fmfdelo}
+% \documentclass[isrm1]{fmfdelo}
+% \documentclass[mat2]{fmfdelo}
+% \documentclass[fin2]{fmfdelo}
+% \documentclass[isrm2]{fmfdelo}
+
+% aktivirajte pakete, ki jih potrebujete
+% \usepackage{tikz}
+
+% za številske množice uporabite naslednje simbole
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Q}{\mathbb Q}
+
+% matematične operatorje deklarirajte kot take, da jih bo Latex pravilno stavil
+% \DeclareMathOperator{\conv}{conv}
+
+% na razpolago so naslednja matematična okolja, ki jih kličemo s parom 
+% \begin{imeokolja}[morebitni komentar v oklepaju] ... \end{imeokolja}
+%
+% definicija, opomba, primer, zgled, lema, trditev, izrek, posledica, dokaz
+% 
+
+
+% vstavite svoje definicije ...
+%  \newcommand{}{}
+
+
+% naslednje ukaze ustrezno napolnite
+\avtor{Ime Priimek} 
+
+\naslov{Naslov dela}
+\title{Angleški prevod slovenskega naslova dela}
+
+% navedite ime mentorja s polnim nazivom: doc.~dr.~Ime Priimek, 
+% izr.~prof.~dr.~Ime Priimek, prof.~dr.~Ime Priimek
+% uporabite le tisti ukaz/ukaze, ki je/so za vas ustrezni 
+% \mentor{izr.~prof.~dr.~Ime Priimek}
+\mentorica{izr.~prof.~dr.~Ime Priimek}
+\somentor{doc.~dr.~Ime Priimek}
+%\somentorica{doc.~dr.~Ime Priimek}
+% \mentorja{}{}
+% \mentorici{}{}
+
+\letnica{2016} % leto diplome
+
+%  V povzetku na kratko opišite vsebinske rezultate dela. Sem ne sodi razlaga organizacije dela --
+%  v katerem poglavju/razdelku je kaj, pač pa le opis vsebine.
+\povzetek{V povzetku na kratko opišemo vsebinske rezultate dela. Sem ne sodi razlaga organizacije dela -- v katerem poglavju/razdelku je kaj, pač pa le opis vsebine.
+}
+
+%  Prevod slovenskega povzetka v angleščino. 
+\abstract{Prevod slovenskega povzetka v angleščino.}
+
+% navedite vsaj eno klasifikacijsko oznako --
+% dostopne so na www.ams.org/mathscinet/msc/msc2010.html
+\klasifikacija{navedite vsaj eno klasifikacijsko oznako -- dostopne so na \url{www.ams.org/mathscinet/msc/msc2010.html}}
+\kljucnebesede{ navedite nekaj ključnih pojmov, ki nastopajo v delu} % navedite nekaj ključnih pojmov, ki nastopajo v delu
+\keywords{ angleški prevod ključnih besed} % angleški prevod ključnih besed
+
+
+\begin{document}
+
+\section{Uvod}
+
+Na začetku prvega poglavja/razdelka (ali v samostojnem razdelku z naslovom Uvod) napišite kratek zgodovinski in matematični uvod. Pojasnite motivacijo za problem, kje nastopa, kje vse je bil obravnavan. Na koncu opišite tudi organizacijo dela -- kaj je v kakšnem razdelku.
+
+Če se uvod naravno nadaljuje v besedilo prvega poglavja, lahko nadaljujete z besedilom v istem razdelku, sicer začnete novega. Na začetku vsakega razdelka/podraz\-delka poveste, čemu se bomo posvetili v nadaljevanju. Pri pisanju uporabljajte ukaze za matematična okolja, med formalnimi enotami dodajte vezno razlagalno besedilo.
+
+\section{Zveznost}
+
+V tem poglavju bomo ponovili osnovne pojme, povezane z zveznostjo funkcij. Pri tem bomo sledili \cite{glob}.
+
+\begin{definicija}
+Funkcija $f\colon [a,b]\to\R$ je {\em zvezna}, če \ldots
+\end{definicija}
+
+Podrobneje si poglejmo naslednji rezultat. Ker se bomo kasneje nanj sklicevali, si pripravimo oznako z ukazom \verb|\label{oznaka}|. Seveda morajo biti oznake različnih trditev različne. Enako označujemo tudi druga okolja oziroma enote besedila.
+
+\begin{izrek}\label{izr:enakomerno}
+Zvezna funkcija na zaprtem intervalu je enakomerno zvezna.
+\end{izrek}
+
+\begin{dokaz}
+Na začetku dokaza, če je to le mogoče in smiselno, razložite idejo dokaza. 
+
+Dokazovali bomo s protislovjem. Pomagali si bomo z definicijo zveznosti in s kompaktnostjo intervala.
+Izberimo $\varepsilon>0$. Če $f$ ni enakomerno zvezna, potem za vsak $\delta>0$ obstajata $x, y$, ki zadoščata
+\begin{equation}\label{eq:razlika}
+|x-y|<\delta\quad \text{in}\quad |f(x)-f(y)| \ge \varepsilon. \qedhere
+\end{equation}
+\end{dokaz}
+
+V zgornjem primeru smo kvadratek za konec dokaza postavili v zadnjo vrstico besedila, ki je vrstična formula, s pomočjo ukaza \verb|\qedhere|.  Ta ukaz ustrezno deluje znotraj okolij \emph{equation, align*} in podobnih, ne pa znotraj \verb|$$ ... $$|.
+
+Oglejmo si še enkrat neenačbi \eqref{eq:razlika}. Na formule se sklicujemo z ukazom \verb|\eqref{oznaka}|, ki postavi zaporedno številko enačbe v oklepaje, na trditve in ostale enote pa z ukazom \verb|\ref{oznaka}|. Črni pravokotnik ob robu strani označuje predolgo vrstico, kjer \LaTeX ni uspel pravilno postaviti besedila, zato mu morate pomagati, npr.\ tako, da stavek nekoliko preoblikujete, sami razdelite nedeljivo enoto (npr. razdelite matematično formulo na dva dela) ali pa ponudite možnosti za deljenje težavne besede s pomočjo znakov\verb|\-|, ki jih postavite na mesto, kjer se besedo sme deliti, npr.\  \verb|te\-žav\-nost\-ni\-ca|. Zgoraj bi tako lahko zapisali:
+
+Oglejmo si še enkrat neenačbi \eqref{eq:razlika}. Za sklicevanje na označene enote besedila imamo na razpolago dva ukaza; na formule se sklicujemo z ukazom \verb|\eqref{oznaka}|, \dots
+
+V predzadnjem odstavku je v oklepaju za okrajšavo npr.\ nastal predolg presledek sredi stavka, saj je \LaTeX zaradi pike sklepal, da je na tem mestu stavka konec. Tak predolg presledek preprečimo tako, da za piko sredi stavka postavimo poševnico in za njo presledek, torej \verb|\ |.\\
+
+Če dokaz trditve ne sledi neposredno formulaciji trditve, moramo povedati, kaj bomo dokazovali. To naredimo tako, da ob ukazu za okolje dokaz dodamo neobvezni parameter,  v katerem napišemo besedilo, ki se bo izpisalo namesto besede \emph{Dokaz}, npr.\ \verb|\begin{Dokaz}[Dokaz izreka \ref{izr:enakomerno}]|.
+
+\begin{dokaz}[Dokaz izreka \ref{izr:enakomerno}]
+Dokazovanja te trditve se lahko lotimo tudi takole \ldots
+\end{dokaz}
+
+\subsection{Naslov morebitnega (pod)razdelka} Besedilo naj se nadaljuje v vrstici naslova, torej za ukazom \verb|\subsection{}| ne smete izpustiti prazne vrstice.
+
+Podobno kot lahko spremenimo ime dokaza, lahko dodamo komentar v ime trditve, torej s pomočjo neobveznega parametra; prvega od spodnjih izpisov dosežemo z ukazom
+\verb|\begin{posledica}[izrek o vmesni vrednosti]|. Če želimo v parametru navesti vir, pri katerem bomo navedli podatek o tem, kje v viru to trditev najdemo, pa uporabimo ukaz \verb|\begin{posledica}[\protect{\cite[izrek 3.14]{glob}}]|. Seveda lahko obe možnosti kombiniramo. 
+
+
+\begin{posledica}[izrek o vmesni vrednosti]
+Naj bo $f$ zvezna in \ldots
+\end{posledica}
+
+Ali pa
+
+\begin{posledica}[izrek o vmesni vrednosti \protect{\cite[izrek 3.14]{glob}}]
+Naj bo $f$ zvezna in \ldots
+\end{posledica}
+
+Podobno lahko napovemo tudi vsebino primera.
+
+\begin{primer}[nezvezna funkcija nima nujno lastnosti povprečne vrednosti]
+Naj bo $f \colon \R \to \R$ dana s predpisom \dots
+\end{primer}
+
+\section{Konec dela}
+
+Na konec dela sodita angleško-slovenski slovarček strokovnih izrazov in seznam uporabljene literature, morebitne priloge (programska koda, daljša ponovitev dela snovi, ki je bil obravnavan med študijem \dots) pa neposredno pred ti enoti. Slovar naj vsebuje vse pojme, ki ste jih spoznali ob pripravi dela, pa tudi že znane pojme, ki ste jih spoznali pri izbirnih predmetih. Najprej navedite angleški pojem (ti naj bodo urejeni po abecedi) in potem ustrezni slovenski prevod; zaželeno je, da temu sledi tudi opis pojma, lahko komentar ali pojasnilo. Slovarska gesla navajajte z ukazom \verb|\geslo{}{}|, npr.\ \verb|\geslo{continuous}{zvezen}|.
+
+Pri navajanju literature si pomagajte s spodnjimi primeri; najprej je opisano pravilo za vsak tip vira, nato so podani primeri. Člen literature napišete z ukazom \verb|\bibitem{oznaka} podatki o viru|, kjer mora \emph{ozmaka} enolično določati vir.  Posebej opozarjam, da spletni viri uporabljajo paket url, ki je vključen v~.cls datoteki. Polje ``ogled'' pri spletnih virih je obvezno; če je kak podatek neznan, ustrezno ``polje'' seveda izpustimo. Literaturo je potrebno urediti po abecednem vrstnem redu; najprej navedemo vse vire z znanimi avtorji (tiskane in spletne)  po abecednem redu avtorjev (po priimkih, nato imenih), nato pa spletne vire brez avtorjev, urejene po naslovih strani. Če isti vir navajamo v dveh oblikah, kot tiskani in spletni vir, najprej navedemo tiskani vir, nato pa še podatek o tem, kje je dostopen v elektronski obliki.
+
+
+\section*{Slovar strokovnih izrazov}
+
+\geslo{continuous}{zvezen}
+\geslo{uniformly continuous}{enakomerno zvezen}
+
+\geslo{compact}{kompakten -- metrični prostor je kompakten, če ima v njem vsako zaporedje stekališče; podmnožica evklidskega prostora je kompaktna natanko tedaj, ko je omejena in zaprta  }
+
+\geslo{glide reflection}{zrcalni zdrs ali zrcalni pomik -- tip ravninske evklidske izometrije, ki je kompozitum zrcaljenja in translacije vzdolž iste premice}
+
+\geslo{lattice}{mreža}
+
+\geslo{link}{splet}
+
+\geslo{partition}{\textbf{$\sim$ of a set} razdelitev množice; \textbf{$\sim$ of a number} razčlenitev števila}
+
+
+
+% seznam uporabljene literature
+\begin{thebibliography}{99}
+
+%\bibitem{}
+
+\bibitem{referenca-clanek}
+I.~Priimek, \emph{Naslov članka}, okrajšano ime revije \textbf{letnik revije} (leto izida) strani od--do.
+
+\bibitem{navodilaOMF}
+C.~Velkovrh, \emph{Nekaj navodil avtorjem za pripravo rokopisa}, Obzornik mat.\ fiz.\ \textbf{21} (1974) 62--64.
+
+\bibitem{vec-avtorjev}
+P.~Angelini, F.~Frati in M.~Kaufmann, \emph{Straight-line rectangular drawings of clustered graphs}, Discrete Comput.\ Geom.\ \textbf{45} (2011) 88--140.
+
+
+
+\bibitem{referenca-knjiga}
+I.~Priimek, \emph{Naslov knjige}, morebitni naslov zbirke  \textbf{zaporedna številka}, založba, kraj, leto izdaje.
+
+\bibitem{glob}
+J.~Globevnik in M.~Brojan, \emph{Analiza I}, Matematični rokopisi \textbf{25}, DMFA -- založništvo, Ljubljana, 2010.
+
+\bibitem{glob-vse}
+J.~Globevnik in M.~Brojan, \emph{Analiza I}, Matematični rokopisi \textbf{25}, DMFA -- založništvo, Ljubljana, 2010; dostopno tudi na
+\url{http://www.fmf.uni-lj.si/~globevnik/skripta.pdf}.
+
+\bibitem{lang}
+S.~Lang, \emph{Fundamentals of differential geometry}, Graduate Texts in Mathematics {\bf 191}, Springer-Verlag, New York, 1999.
+
+
+
+\bibitem{referenca-clanek-v-zborniku}
+I.~Priimek, \emph{Naslov članka}, v: naslov zbornika (ur.\ ime urednika), morebitni naslov zbirke  \textbf{zaporedna številka}, založba, kraj, leto izdaje, str.\ od--do.
+
+\bibitem{zbornik}
+S.~Cappell in J.~Shaneson, \emph{An introduction to embeddings, immersions and singularities in codimension two}, v: Algebraic and geometric topology, Part 2 (ur.\ R.~Milgram), Proc.\ Sympos.\ Pure Math.\ \textbf{XXXII}, Amer.\ Math.\ Soc., Providence, 1978, str.\ 129--149.
+
+
+
+\bibitem{diploma-magisterij}
+I.~Priimek, \emph{Naslov dela}, diplomsko/magistrsko delo, ime fakultete, ime univerze, leto.
+
+\bibitem{kalisnik}
+J.~Kališnik, \emph{Upodobitev orbiterosti}, diplomsko delo, Fakulteta za matematiko in fiziko, Univerza v Ljubljani, 2004.
+
+
+
+\bibitem{referenca-spletni-vir}
+I.~Priimek, \emph{Naslov spletnega vira}, v: ime morebitne zbirke/zbornika, ki vsebuje vir, verzija številka/datum, [ogled datum], dostopno na \url{spletni.naslov}.
+
+\bibitem{glob-splet}
+J.~Globevnik in M.~Brojan, \emph{Analiza 1}, verzija 15.~9.~2010, [ogled 12.~5.~2011], dostopno na \url{http://www.fmf.uni-lj.si/~globevnik/skripta.pdf}.
+
+\bibitem{wiki}
+\emph{Matrix (mathematics)}, v: Wikipedia: The Free Encyclopedia, [ogled 12.~5.~2011], dostopno na \url{http://en.wikipedia.org/wiki/Matrix_(mathematics)}.
+
+
+
+
+
+\end{thebibliography}
+
+\end{document}
+
