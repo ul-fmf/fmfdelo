@@ -1,0 +1,50 @@
+Uredi stil.dbj datoteko, ki določa stil.
+Poženi `latex stil.dbj', ki sproducira
+datoteko `fmf-en-generated.bst`, kot piše na dnu stila.
+Nato ročno popravi v fmf-en-generated:
+- bbl.volume naj ne bo "vol." ampak ""
+- funkcijo format.bvolume zamenjaj s to spodaj (dodaj bolden, odstrani emphasize in ',')
+
+FUNCTION {format.bvolume}
+{ volume empty$
+    { "" }
+    { bbl.volume volume bolden tie.or.space.prefix
+      "volume" bibinfo.check * *
+      series "series" bibinfo.check
+      duplicate$ empty$ 'pop$
+        { " " * swap$ * }
+      if$
+      "volume and number" number either.or.check
+    }
+  if$
+}
+
+- funkcijo format.vol.num.pages zamenjaj s to spodaj (stevilka clanka brez presledka in pred letom)
+
+FUNCTION {format.vol.num.pages}
+{ volume field.or.null
+  duplicate$ empty$ 'skip$
+    {
+      "volume" bibinfo.check
+    }
+  if$
+  bolden
+  number "number" bibinfo.check duplicate$ empty$ 'skip$
+    {
+      swap$ duplicate$ empty$
+        { "there's a number but no volume in " cite$ * warning$ }
+        'skip$
+      if$
+      swap$
+      "(" swap$ * ")" *
+    }
+  if$ *
+  format.year *
+}
+
+- pri format.booktitle izbriši emphasize, ker to predstavlja naslov proceedingov konference in ne naslovov knjige.
+- skopiraj master thesis in spremeni v bachelor thesis (dodaj nov tip bachelorsthesis)
+
+Potem skoraj celo stvar in prevedi izraze v slovenščino.
+
+Shrani datoteko pod drugim imenom, da si je naslednjič ne povoziš.
