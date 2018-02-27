@@ -65,9 +65,10 @@
 \LoadClass[12pt, a4paper]{amsart}
 \@unless{\boolean{@brezpaketov}}{
   \RequirePackage{amsfonts,amsmath,amssymb}
-  \RequirePackage{hyperref,url}
   \RequirePackage[slovene]{babel}
   \RequirePackage[utf8]{inputenc}
+  \RequirePackage[a-1b]{pdfx}
+  \let\C\undefined
 }
 
 %-----------------------------------------------------------------------------
