@@ -42,6 +42,34 @@ FUNCTION {format.vol.num.pages}
   format.year *
 }
 
+- pri `inproceedings` zamenjaj vrstni red založbe in serije ter dodaj leto. Funckija mora biti:
+
+FUNCTION {inproceedings}
+{ output.bibitem
+  format.authors "author" output.check
+  format.title "title" output.check
+  crossref missing$
+    { format.in.ed.booktitle "booktitle" output.check
+      format.bvolume output
+      format.number.series output
+      publisher empty$
+        { format.organization.address output }
+        { organization "organization" bibinfo.check output
+          format.publisher.address output
+        }
+      if$
+    }
+    { format.incoll.inproc.crossref output.nonnull
+    }
+  if$
+  format.date "year" output.check
+  date.block
+  format.pages "pages" output.check
+  format.doi output
+  format.note output
+  fin.entry
+}
+
 - pri format.booktitle izbriši emphasize, ker to predstavlja naslov proceedingov konference in ne naslovov knjige.
 - skopiraj master thesis in spremeni v bachelor thesis (dodaj nov tip bachelorsthesis)
 

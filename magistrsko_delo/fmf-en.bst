@@ -1036,18 +1036,20 @@ FUNCTION {inproceedings}
   format.title "title" output.check
   crossref missing$
     { format.in.ed.booktitle "booktitle" output.check
+      format.bvolume output
+      format.number.series output
       publisher empty$
         { format.organization.address output }
         { organization "organization" bibinfo.check output
           format.publisher.address output
         }
       if$
-      format.bvolume output
-      format.number.series output
     }
     { format.incoll.inproc.crossref output.nonnull
     }
   if$
+  format.date "year" output.check
+  date.block
   format.pages "pages" output.check
   format.doi output
   format.note output
