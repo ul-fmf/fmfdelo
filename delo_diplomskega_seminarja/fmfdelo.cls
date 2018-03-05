@@ -36,13 +36,23 @@
 %-----------------------------------------------------------------------------
 %                             Nalaganje paketov
 %-----------------------------------------------------------------------------
-
 % Za osnovo si vzamemo amsart ter nalozimo pakete.
 \LoadClass[12pt, a4paper]{amsart}
 \@unless{\boolean{@brezpaketov}}{
   \RequirePackage{amsfonts,amsmath,amssymb}
   \RequirePackage[slovene]{babel}
   \RequirePackage[utf8]{inputenc}
+  \RequirePackage[T1]{fontenc}
+  \RequirePackage{hyperxmp}
+  \RequirePackage[pdfa,pdfapart=1,pdfaconformance=B]{hyperref}
+}
+\newcommand{\zapisiMetaPodatke}{
+  \hypersetup{pdfencoding=auto, psdextra,
+    bookmarksopen, bookmarksdepth=3,
+    pdfauthor=\@avtor,
+    pdftitle=\@naslov,
+    pdfsubject=\@povzetek,
+    pdfkeywords=\@kljucnebesede}
   \RequirePackage[a-1b]{pdfx}
   \let\C\undefined
 }
@@ -112,7 +122,7 @@
 
 % Ukaz za izpis začetnih strani.
 \AtBeginDocument{%
-  
+
 % od tod do povzetka ne spreminjaj nicesar
 \thispagestyle{empty}
 \noindent{\large
