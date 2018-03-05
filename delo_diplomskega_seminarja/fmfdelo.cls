@@ -43,6 +43,8 @@
   \RequirePackage[slovene]{babel}
   \RequirePackage[utf8]{inputenc}
   \RequirePackage[T1]{fontenc}
+  \RequirePackage{silence}
+  \WarningFilter{hyperref}{Option}
   \RequirePackage{hyperxmp}
   \RequirePackage[pdfa,pdfapart=1,pdfaconformance=B]{hyperref}
 }
