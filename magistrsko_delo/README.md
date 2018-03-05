@@ -11,7 +11,7 @@ somentorja, naslov dela in ostalo. Ti ukazi se uporabijo v generiranju naslovnic
 izjave, povzetka in PDF metapodatkov. Če želite, lahko odkomentirate kazalo slik. Dopolnite program
 dela in povzetek ter ključne besede.  Nato nadaljujte z uvodom. Uporabljajte LaTeXovo sklicevanje,
 ki ga vedno povežite s prejšnjo besedo z nedeljivim presledkom kot npr. `na sliki~\ref{fig:label}
-vidimo`. Pazite na predolge presledke po pikah za kraticami, kot so "npr., t.i., tj." ipd. Tam
+vidimo`. Pazite na predolge presledke po pikah za kraticami, kot so "npr., t. i., tj." ipd. Tam
 uporabite `\ ` ali `~`. Za pisanje enačb uporabljajte `\[ \]`, `equation`, `align` ali `align*`
 okolja in ne `eqnarray` ipd.
 
