@@ -76,13 +76,13 @@ preverjanje črkovanja neodvisno od uporabljenega urejevalnika lahko uporabite
 [aspell](http://aspell.net/).
 
 ## PDF/A-1b format
-Knjižnica zahteva shranjevanje PDF datotek magisterijev in diplom v PDF/A-1b formatu, primernem za
+Knjižnica zahteva shranjevanje PDF datotek magisterijev in diplom v [PDF/A-1b
+formatu](https://en.wikipedia.org/wiki/PDF/A), primernem za
 arhiviranje. V tem formatu boste morali tudi oddati svoje zaključno delo.
 Ta PDF format je bolj restriktiven od običajnega in med drugim zahteva obstoj PDF
 metapodatkov, vse uporabljene pisave morajo biti vdelane v dokument in slike ne smejo vsebovati
-prosojnih elementov. PDF, generiran s to predlogo, naj bi že ustrezal standardu PDF/A-1b, če
-niste vključili slik s prosojnostjo. Za to poskrbi paket `\usepackage[a-1b]{pdfx}`,
-ki iz datoteke `.xmpdata` v isti mapi, kot vaš dokument, prebere potrebne metapodatke.
+prosojnih elementov. PDF, generiran s to predlogo, naj bi že ustrezal standardu PDF/A-1b,
+saj za to poskrbi že vključen paket `\usepackage[a-1b]{pdfx}`, če le niste vlkjučili slik s prosojnostjo.
 
 Vaš PDF pred oddajo (ali pa že kdaj prej) vseeno preverite z uporabo [kakšnega
 validatorja](https://www.pdf-online.com/osa/validate.aspx).  Napaki `The value of the key SMask is
