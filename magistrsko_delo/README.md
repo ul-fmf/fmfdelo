@@ -12,7 +12,7 @@ izjave, povzetka in PDF metapodatkov. Če želite, lahko odkomentirate kazalo sl
 dela in povzetek ter ključne besede.  Nato nadaljujte z uvodom. Uporabljajte LaTeXovo sklicevanje,
 ki ga vedno povežite s prejšnjo besedo z nedeljivim presledkom kot npr. `na sliki~\ref{fig:label}
 vidimo`. Pazite na predolge presledke po pikah za kraticami, kot so "npr., t. i., tj." ipd. Tam
-uporabite `\ ` ali `~`. Za pisanje enačb uporabljajte `\[ \]`, `equation`, `align` ali `align*`
+uporabite `\ ` ali `~`, kot npr. `t.~i.\ ` ali `t.~i.~`. Za pisanje enačb uporabljajte `\[ \]`, `equation`, `align` ali `align*`
 okolja in ne `eqnarray` ipd.
 
 ## PDF metapodatki
