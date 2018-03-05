@@ -40,7 +40,7 @@ običajno LaTeX kodo, tako da se lahko v njej uporablja tudi matematiko `$...$` 
 escapati vse posebne znake (npr. `#`, `%`, ...). Vnose za BibTeX datoteko pogosto dobite kar na
 strani, kjer ste članek dobili. Če pa ne, ga najverjetneje lahko [poiščete na Google
 Scholar-ju](https://scholar.google.si/scholar?hl=en&as_sdt=0%2C5&q=Linearly+independent+sets+of+isotropic+Cartesian+tensors+of+ranks+up+to+eight&btnG=),
-kliknete na ikono `''`, izberete BibTeX in skopirate podatke. **Podatke o članki ali knjigi je
+kliknete na ikono `''`, izberete BibTeX in skopirate podatke. **Podatke o članku ali knjigi je
 potrebno vedno ročno preveriti, saj so lahko narobe.**
 Članki so avtomatko abecedno urejeni po priimku in nato imenu prvega avtorja. Člankom brez avtorja
 je potrebno dodati polje `key={kljuc}`, ki pove kljuc, glede na katerega se urejajo. Da bi bili ti
