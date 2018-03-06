@@ -22,3 +22,10 @@ PDF (vidni na levi strani kot drevesna struktura).  Tu so lahko težave z matema
 nadlovih naloge ali poglavjih, ki jih PDF reader ne prebavi. V tem primeru se avtomatsko izpustijo,
 če pa jih želimo zamenjati s plain-text/UTF-8 znaki pa lahko to storigmo z `\texorpdfstring`, kot
 prikazano na primeru v predlogi.
+
+## Pisanje algoritmov in vključevanje izvorne kode
+Za vključevanje izvorne kode inpisanje algoritmov v psevdokodi so v predlogi že zakomentirani
+primerni ukazi za vključevajne paketov. Za vključevanje izvorne kode priporočamo paket
+[minted](https://github.com/gpoore/minted), za pisanje algoritmov pa
+[algoritmx](http://tug.ctan.org/macros/latex/contrib/algorithmicx/algorithmicx.pdf).  Za primer
+uporabe glej predlogo za [diplomski seminar](../delo_diplomskega_seminarja/README.md).

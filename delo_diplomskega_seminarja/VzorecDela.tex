@@ -128,13 +128,60 @@ Podobno lahko napovemo tudi vsebino primera.
 Naj bo $f \colon \R \to \R$ dana s predpisom \dots
 \end{primer}
 
+\subsection{Pisanje algoritmov}
+Za pisanje algoritmov sta na voljo okolji \texttt{algorithm} in \texttt{algorithmic} iz paketov
+\texttt{algorithm} in \texttt{algorithmix}, ki sodelujeta
+podobno kot \texttt{table} in \texttt{tabular}. Algoritmi plavajo med tekstom, enako kot slike in
+tabele, nanje se lahko tudi sklicujemo, kot prikazano v izvorni kodi in v
+algoritmu~\ref{alg:metoda}. Sklicujemo se lahko tudi na pomembne vrstice, npr.\ na
+vrstico~\ref{alg:pomembna-vrstica}, ki predstavlja glavni del algoritma. Za primer pisanja algoritma
+se posvetujte s primerom v tem dokumentu, za bolj napredne primere uporabe, kot na primer razbijanje
+algoritma na več kosov, pa z (precej razumljivo) uradno
+dokumentacijo\footnote{\url{http://tug.ctan.org/macros/latex/contrib/algorithmicx/algorithmicx.pdf}}.
+Če želite vključiti izvorno kodo nekega programa, priporočamo paket
+\texttt{minted}\footnote{\url{https://github.com/gpoore/minted}}.
+
+\begin{algorithm}[ht]
+  \caption{Opis, ki ima enako funkcionalnost kot opis pod sliko.}
+  \label{alg:metoda}
+  \raggedright
+  \textbf{Vhod:} Števili $n, m \in \N, n > m$. \\
+  \textbf{Izhod:} Decimalno število $x$, ki aproksimira rešitev enačbe $n x = m$.
+  \begin{algorithmic}[1]
+    \Function{reši}{$n$, $m$} \Comment{Vsi vhodni parametri morajo biti opisani.}
+    \State $a \gets [\,]$ \Comment{Spremenljivka $a$ naj postane prazna kopica.}
+    \For{$i$}{$1$}{$n$}
+      \If{$i \operatorname{mod} 7 = 5$}
+        \State \Call{heapop}{$a$}
+      \ElsIf{$i < 5$}
+      \State \Call{heappush}{$a, \frac{i+12}{7} + \pi$} \Comment{Lahko uporabljamo matematiko.}
+      \Else
+        \State \Call{heappush}{$a, i$}
+      \EndIf
+    \EndFor
+    \Statex  \Comment{Prazna vrstica}
+    \State $x \gets 0$  \Comment{To je primer komentarja.}
+    \ForEach{e}{a}
+      \State $x \gets 1 + \sqrt[e]{x}$
+    \EndFor
+    \While{$|x| > \varepsilon$}
+      \State $x \gets x / 2$
+    \EndWhile
+    \State $x \gets m / n$ \label{alg:pomembna-vrstica}
+    \State \Return $x$  \Comment{Vsi izhodni parametri morajo biti opisani nad algoritmom.}
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}
+
 \section{Konec dela}
 
 Na konec dela sodita angleško-slovenski slovarček strokovnih izrazov in seznam uporabljene literature, morebitne priloge (programska koda, daljša ponovitev dela snovi, ki je bil obravnavan med študijem \dots) pa neposredno pred ti enoti. Slovar naj vsebuje vse pojme, ki ste jih spoznali ob pripravi dela, pa tudi že znane pojme, ki ste jih spoznali pri izbirnih predmetih. Najprej navedite angleški pojem (ti naj bodo urejeni po abecedi) in potem ustrezni slovenski prevod; zaželeno je, da temu sledi tudi opis pojma, lahko komentar ali pojasnilo. Slovarska gesla navajajte z ukazom \verb|\geslo{}{}|, npr.\ \verb|\geslo{continuous}{zvezen}|.
 
 Pri navajanju literature si pomagajte s spodnjimi primeri, ki povzemajo različne tipe del. Dela so opisana v \verb|.bib| datoteki.
 Posebej opozarjam, da spletni viri uporabljajo paket url, ki je vključen v \verb|.cls| datoteki. Polje ``ogled'' pri spletnih virih je obvezno; če je kak podatek neznan, ustrezno ``polje'' seveda izpustimo. Literatura se avtomatsko uredi po abecednem vrstnem redu; najprej so navedeni vsi viri z znanimi avtorji (tiskani in spletni)  po abecednem redu avtorjev (po priimkih, nato imenih). Za spletne vire brez avtorjev moramo za pravilno urejanje podati ključ z ukazom \verb|key={kljuc}|. Da bodo vsi na koncu besedila in urejeni po naslovih strani, je ključ lahko npr.~oblike ``žžž-spletni.naslov''.
-Vsako navedbo literature je potrebno v besedilu citirati vsaj enkrat, zato jih v tem primeru citiramo tukaj:~\cite{angelini2011straight,globevniSkriptaWeb,lang2012fundamentals,lindic2007igra,spletMatrika,penttila2005flocks,spletSample,diplomaSample,conferenceSample,bookSample,clanekSample,velkovrh1974nekaj}.
+Vsako navedbo literature je potrebno v besedilu citirati vsaj enkrat, zato jih v tem primeru
+citiramo
+tukaj:~\cite{angelini2011straight,globevniSkriptaWeb,lang2012fundamentals,lindic2007igra,penttila2005flocks,spletSample,diplomaSample,conferenceSample,bookSample,clanekSample,velkovrh1974nekaj,spletMatrika}.
 
 
 \section*{Slovar strokovnih izrazov}
