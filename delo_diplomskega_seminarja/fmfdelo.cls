@@ -47,6 +47,17 @@
   \WarningFilter{hyperref}{Option}
   \RequirePackage{hyperxmp}
   \RequirePackage[pdfa,pdfapart=1,pdfaconformance=B]{hyperref}
+
+  % algorithms
+  \RequirePackage{algpseudocode}  % za psevdokodo
+  \RequirePackage{algorithm}      % za
+  \floatname{algorithm}{Algoritem}
+  \renewcommand{\listalgorithmname}{Kazalo algoritmov}
+  \algnewcommand\algorithmicto{\textbf{to}}
+  \algnewcommand\algorithmicin{\textbf{in}}
+  \algnewcommand\algorithmicforeach{\textbf{for each}}
+  \algrenewtext{For}[3]{\algorithmicfor\ #1 $\gets$ #2\ \algorithmicto\ #3\ \algorithmicdo}
+  \algdef{S}[FOR]{ForEach}[2]{\algorithmicforeach\ #1\ \algorithmicin\ #2\ \algorithmicdo}
 }
 \newcommand{\zapisiMetaPodatke}{
   \hypersetup{pdfencoding=auto, psdextra,
@@ -121,17 +132,6 @@
 
 % ukaz za slovarsko geslo
 \newcommand{\geslo}[2]{\noindent\textbf{#1}\hspace*{3mm}\hangindent=\parindent\hangafter=1 #2\par}
-
-% algorithms
-\usepackage{algpseudocode}  % za psevdokodo
-\usepackage{algorithm}      % za
-\floatname{algorithm}{Algoritem}
-\renewcommand{\listalgorithmname}{Kazalo algoritmov}
-\algnewcommand\algorithmicto{\textbf{to}}
-\algnewcommand\algorithmicin{\textbf{in}}
-\algnewcommand\algorithmicforeach{\textbf{for each}}
-\algrenewtext{For}[3]{\algorithmicfor\ #1 $\gets$ #2\ \algorithmicto\ #3\ \algorithmicdo}
-\algdef{S}[FOR]{ForEach}[2]{\algorithmicforeach\ #1\ \algorithmicin\ #2\ \algorithmicdo}
 
 % Ukaz za izpis začetnih strani.
 \AtBeginDocument{%
