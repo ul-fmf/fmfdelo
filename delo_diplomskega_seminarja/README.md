@@ -9,10 +9,17 @@ somentorja, naslov dela in ostalo. Ti ukazi se uporabijo kasneje v generiranju p
 dokumenta.  Več navodil o tem, kako pisati, je na spletni učilnici. Za bolj napredne vsebine
 si lahko ogledate predlogo za magistrska dela.
 
+## Prevajanje dokumenta
+Dokument bi se moral prevesti brez posebnosti, če imate `.cls` in `.tex` datoteki v isti mapi.  Če
+dobite pri prevajanju napako podobno `! Package keyval Error: pdfapart undefined.`, priporočamo, da
+posodobite svojo distribucijo LaTeXa na najnovejšo verzijo.
+
+
 ## Citiranje literature
 Sledite navodilom in primerom citiranja literature v dokumentu. Na voljo imate tudi možnost
 avtomatskega navajanja literature s sistemom [BibTeX](http://www.bibtex.org/), ki avtomatsko
-pravilno uredi in oblikuje vnoste literature. Navodila za uporabo so opisana pri [predlogi za magisterije](../magistrsko_delo/).
+pravilno uredi in oblikuje vnoste literature. Navodila za uporabo so opisana pri [predlogi za
+magisterije](../magistrsko_delo/).
 
 ## Pisanje algoritmov
 Za pisanje algoritmov je v paketu že vključen paket

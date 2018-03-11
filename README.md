@@ -20,9 +20,6 @@ txs:///makeindex | txs:///pdflatex | txs:///pdflatex | txs:///view-pdf`.  (vsebo
 počistiti dodatnih datotek** (`.log`, `.aux` ipd.), da se stare napake ne zadržuejo notri. V TexStudiu
 je za to navoljo ukaz `Tools > Clean Auxiliary Files`, na Linuxu pa tudi ukaz `latexmk -c`.
 
-Če dobite pri prevajanju napako podobno `! Package keyval Error: pdfapart undefined.`, priporočamo,
-da posodobite svojo distribucijo LaTeXa na najnovejšo verzijo.
-
 ## Preverjanje črkovanja
 Uporabljajte urejevalnik, ki preverja črkovanje, npr. TeXStudio ali [vim](http://www.vim.org/). Za
 preverjanje črkovanja neodvisno od uporabljenega urejevalnika lahko uporabite
