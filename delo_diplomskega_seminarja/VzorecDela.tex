@@ -25,8 +25,9 @@
 
 %  V povzetku na kratko opišite vsebinske rezultate dela. Sem ne sodi razlaga organizacije dela --
 %  v katerem poglavju/razdelku je kaj, pač pa le opis vsebine.
-\povzetek{V povzetku na kratko opišemo vsebinske rezultate dela. Sem ne sodi razlaga organizacije dela -- v katerem poglavju/razdelku je kaj, pač pa le opis vsebine.
-}
+\povzetek{V povzetku na kratko opišemo vsebinske rezultate dela. Sem ne sodi
+razlaga organizacije dela -- v katerem poglavju/razdelku je kaj, pač pa le opis
+vsebine.}
 
 %  Prevod slovenskega povzetka v angleščino.
 \abstract{Prevod slovenskega povzetka v angleščino.}
@@ -64,19 +65,30 @@
 
 \section{Uvod}
 
-Na začetku prvega poglavja/razdelka (ali v samostojnem razdelku z naslovom Uvod) napišite kratek zgodovinski in matematični uvod. Pojasnite motivacijo za problem, kje nastopa, kje vse je bil obravnavan. Na koncu opišite tudi organizacijo dela -- kaj je v kakšnem razdelku.
+Na začetku prvega poglavja/razdelka (ali v samostojnem razdelku z naslovom
+Uvod) napišite kratek zgodovinski in matematični uvod. Pojasnite motivacijo za
+problem, kje nastopa, kje vse je bil obravnavan. Na koncu opišite tudi
+organizacijo dela -- kaj je v kakšnem razdelku.
 
-Če se uvod naravno nadaljuje v besedilo prvega poglavja, lahko nadaljujete z besedilom v istem razdelku, sicer začnete novega. Na začetku vsakega razdelka/podraz\-delka poveste, čemu se bomo posvetili v nadaljevanju. Pri pisanju uporabljajte ukaze za matematična okolja, med formalnimi enotami dodajte vezno razlagalno besedilo.
+Če se uvod naravno nadaljuje v besedilo prvega poglavja, lahko nadaljujete z
+besedilom v istem razdelku, sicer začnete novega. Na začetku vsakega
+razdelka/podraz\-delka poveste, čemu se bomo posvetili v nadaljevanju. Pri
+pisanju uporabljajte ukaze za matematična okolja, med formalnimi enotami
+dodajte vezno razlagalno besedilo.
 
 \section{Zveznost}
 
-V tem poglavju bomo ponovili osnovne pojme, povezane z zveznostjo funkcij. Pri tem bomo sledili~\cite{globevnik2010analiza}.
+V tem poglavju bomo ponovili osnovne pojme, povezane z zveznostjo funkcij. Pri
+tem bomo sledili~\cite{glob}.
 
 \begin{definicija}
 Funkcija $f\colon [a,b]\to\R$ je \emph{zvezna}, če \ldots
 \end{definicija}
 
-Podrobneje si poglejmo naslednji rezultat. Ker se bomo kasneje nanj sklicevali, si pripravimo oznako z ukazom \verb|\label{oznaka}|. Seveda morajo biti oznake različnih trditev različne. Enako označujemo tudi druga okolja oziroma enote besedila.
+Podrobneje si poglejmo naslednji rezultat. Ker se bomo kasneje nanj sklicevali,
+si pripravimo oznako z ukazom \verb|\label{oznaka}|. Seveda morajo biti oznake
+različnih trditev različne. Enako označujemo tudi druga okolja oziroma enote
+besedila.
 
 \begin{izrek}\label{izr:enakomerno}
 Zvezna funkcija na zaprtem intervalu je enakomerno zvezna.
@@ -85,58 +97,84 @@ Zvezna funkcija na zaprtem intervalu je enakomerno zvezna.
 \begin{dokaz}
 Na začetku dokaza, če je to le mogoče in smiselno, razložite idejo dokaza.
 
-Dokazovali bomo s protislovjem. Pomagali si bomo z definicijo zveznosti in s kompaktnostjo intervala.
-Izberimo $\varepsilon>0$. Če $f$ ni enakomerno zvezna, potem za vsak $\delta>0$ obstajata $x, y$, ki zadoščata
+Dokazovali bomo s protislovjem. Pomagali si bomo z definicijo zveznosti in s
+kompaktnostjo intervala.  Izberimo $\varepsilon>0$. Če $f$ ni enakomerno
+zvezna, potem za vsak $\delta>0$ obstajata $x, y$, ki zadoščata
 \begin{equation}\label{eq:razlika}
   |x-y|<\delta\quad \text{in}\quad |f(x)-f(y)| \ge \varepsilon. \qedhere
 \end{equation}
 \end{dokaz}
 
-V zgornjem primeru smo kvadratek za konec dokaza postavili v zadnjo vrstico besedila, ki je vrstična formula, s pomočjo ukaza \verb|\qedhere|.  Ta ukaz ustrezno deluje znotraj okolij \emph{equation, align*} in podobnih, ne pa znotraj \verb|$$ ... $$|.
+V zgornjem primeru smo kvadratek za konec dokaza postavili v zadnjo vrstico
+besedila, ki je vrstična formula, s pomočjo ukaza \verb|\qedhere|.  Ta ukaz
+ustrezno deluje znotraj okolij \emph{equation, align*} in podobnih, ne pa
+znotraj \verb|$$ ... $$|.
 
-Oglejmo si še enkrat neenačbi~\eqref{eq:razlika}. Na formule se sklicujemo z \LaTeX ovim ukazom \verb|\eqref{oznaka}|, ki postavi zaporedno številko enačbe v oklepaje, na trditve in ostale enote pa z ukazom \verb|\ref{oznaka}|. Črni pravokotnik ob robu strani označuje predolgo vrstico, kjer \LaTeX ni uspel pravilno postaviti besedila, zato mu morate pomagati, npr.\ tako, da stavek nekoliko preoblikujete, sami razdelite nedeljivo enoto (npr.\ razdelite matematično formulo na dva dela) ali pa ponudite možnosti za deljenje težavne besede s pomočjo znakov\verb|\-|, ki jih postavite na mesto, kjer se besedo sme deliti, npr.\  \verb|te\-žav\-nost\-ni\-ca|. Zgoraj bi tako lahko zapisali:
+Oglejmo si še enkrat neenačbi~\eqref{eq:razlika}. Na formule se sklicujemo z
+\LaTeX ovim ukazom \verb|\eqref{oznaka}|, ki postavi zaporedno številko enačbe
+v oklepaje, na trditve in ostale enote pa z ukazom \verb|\ref{oznaka}|. Črni
+pravokotnik ob robu strani označuje predolgo vrstico, kjer \LaTeX ni uspel
+pravilno postaviti besedila, zato mu morate pomagati, npr.\ tako, da stavek
+nekoliko preoblikujete, sami razdelite nedeljivo enoto (npr.\ razdelite
+matematično formulo na dva dela) ali pa ponudite možnosti za deljenje težavne
+besede s pomočjo znakov\verb|\-|, ki jih postavite na mesto, kjer se besedo sme
+deliti, npr.\  \verb|te\-žav\-nost\-ni\-ca|. Zgoraj bi tako lahko zapisali:
 
-Oglejmo si še enkrat neenačbi~\eqref{eq:razlika}. Za sklicevanje na označene enote besedila imamo na razpolago dva ukaza; na formule se sklicujemo z ukazom \verb|\eqref{oznaka}|, \dots
+Oglejmo si še enkrat neenačbi~\eqref{eq:razlika}. Za sklicevanje na označene
+enote besedila imamo na razpolago dva ukaza; na formule se sklicujemo z ukazom
+\verb|\eqref{oznaka}|, \dots
 
-V predzadnjem odstavku je v oklepaju za okrajšavo npr.\ nastal predolg presledek sredi stavka, saj je \LaTeX zaradi pike sklepal, da je na tem mestu stavka konec. Tak predolg presledek preprečimo tako, da za piko sredi stavka postavimo poševnico in za njo presledek, torej \verb|\ |.\\
+V predzadnjem odstavku je v oklepaju za okrajšavo npr.\ nastal predolg
+presledek sredi stavka, saj je \LaTeX zaradi pike sklepal, da je na tem mestu
+stavka konec. Tak predolg presledek preprečimo tako, da za piko sredi stavka
+postavimo poševnico in za njo presledek, torej \verb|\ |.\\
 
-Če dokaz trditve ne sledi neposredno formulaciji trditve, moramo povedati, kaj bomo dokazovali. To naredimo tako, da ob ukazu za okolje dokaz dodamo neobvezni parameter,  v katerem napišemo besedilo, ki se bo izpisalo namesto besede \emph{Dokaz}, npr.\ \verb|\begin{Dokaz}[Dokaz izreka \ref{izr:enakomerno}]|.
+Če dokaz trditve ne sledi neposredno formulaciji trditve, moramo povedati, kaj
+bomo dokazovali. To naredimo tako, da ob ukazu za okolje dokaz dodamo neobvezni
+parameter,  v katerem napišemo besedilo, ki se bo izpisalo namesto besede
+\emph{Dokaz}, npr.\ \verb|\begin{Dokaz}[Dokaz izreka \ref{izr:enakomerno}]|.
 
 \begin{dokaz}[Dokaz izreka \ref{izr:enakomerno}]
-Dokazovanja te trditve se lahko lotimo tudi takole \ldots
+  Dokazovanja te trditve se lahko lotimo tudi takole \ldots
 \end{dokaz}
 
 \subsection{Naslov morebitnega (pod)razdelka} Besedilo naj se nadaljuje v vrstici naslova, torej za ukazom \verb|\subsection{}| ne smete izpustiti prazne vrstice.
 
-Podobno kot lahko spremenimo ime dokaza, lahko dodamo komentar v ime trditve, torej s pomočjo neobveznega parametra; prvega od spodnjih izpisov dosežemo z ukazom
-\verb|\begin{posledica}[izrek o vmesni vrednosti]|. Če želimo v parametru navesti vir, pri katerem bomo navedli podatek o tem, kje v viru to trditev najdemo, pa uporabimo ukaz \verb|\begin{posledica}[\protect{\cite[izrek 3.14]{glob}}]|. Seveda lahko obe možnosti kombiniramo.
+Podobno kot lahko spremenimo ime dokaza, lahko dodamo komentar v ime trditve,
+torej s pomočjo neobveznega parametra; prvega od spodnjih izpisov dosežemo z
+ukazom \verb|\begin{posledica}[izrek o vmesni vrednosti]|. Če želimo v
+parametru navesti vir, pri katerem bomo navedli podatek o tem, kje v viru to
+trditev najdemo, pa uporabimo ukaz
+\verb|\begin{posledica}[\protect{\cite[izrek 3.14]{glob}}]|. Seveda lahko obe
+možnosti kombiniramo.
 
 
 \begin{posledica}[izrek o vmesni vrednosti]
-Naj bo $f$ zvezna in \ldots
+  Naj bo $f$ zvezna in \ldots
 \end{posledica}
 
 Ali pa
 
-\begin{posledica}[izrek o vmesni vrednosti \protect{\cite[izrek 3.14]{globevnik2010analiza}}]
-Naj bo $f$ zvezna in \ldots
+\begin{posledica}[izrek o vmesni vrednosti \protect{\cite[izrek 3.14]{glob}}]
+  Naj bo $f$ zvezna in \ldots
 \end{posledica}
 
 Podobno lahko napovemo tudi vsebino primera.
 
 \begin{primer}[nezvezna funkcija nima nujno lastnosti povprečne vrednosti]
-Naj bo $f \colon \R \to \R$ dana s predpisom \dots
+  Naj bo $f \colon \R \to \R$ dana s predpisom \dots
 \end{primer}
 
 \subsection{Pisanje algoritmov}
-Za pisanje algoritmov sta na voljo okolji \texttt{algorithm} in \texttt{algorithmic} iz paketov
-\texttt{algorithm} in \texttt{algorithmix}, ki sodelujeta
-podobno kot \texttt{table} in \texttt{tabular}. Algoritmi plavajo med tekstom, enako kot slike in
-tabele, nanje se lahko tudi sklicujemo, kot prikazano v izvorni kodi in v
-algoritmu~\ref{alg:metoda}. Sklicujemo se lahko tudi na pomembne vrstice, npr.\ na
-vrstico~\ref{alg:pomembna-vrstica}, ki predstavlja glavni del algoritma. Za primer pisanja algoritma
-se posvetujte s primerom v tem dokumentu, za bolj napredne primere uporabe, kot na primer razbijanje
-algoritma na več kosov, pa z (precej razumljivo) uradno
+Za pisanje algoritmov sta na voljo okolji \texttt{algorithm} in
+\texttt{algorithmic} iz paketov \texttt{algorithm} in \texttt{algorithmix}, ki
+sodelujeta podobno kot \texttt{table} in \texttt{tabular}. Algoritmi plavajo
+med tekstom, enako kot slike in tabele, nanje se lahko tudi sklicujemo, kot
+prikazano v izvorni kodi in v algoritmu~\ref{alg:metoda}. Sklicujemo se lahko
+tudi na pomembne vrstice, npr.\ na vrstico~\ref{alg:pomembna-vrstica}, ki
+predstavlja glavni del algoritma. Za primer pisanja algoritma se posvetujte s
+primerom v tem dokumentu, za bolj napredne primere uporabe, kot na primer
+razbijanje algoritma na več kosov, pa z (precej razumljivo) uradno
 dokumentacijo\footnote{\url{http://tug.ctan.org/macros/latex/contrib/algorithmicx/algorithmicx.pdf}}.
 Če želite vključiti izvorno kodo nekega programa, priporočamo paket
 \texttt{minted}\footnote{\url{https://github.com/gpoore/minted}}.
@@ -175,14 +213,27 @@ dokumentacijo\footnote{\url{http://tug.ctan.org/macros/latex/contrib/algorithmic
 
 \section{Konec dela}
 
-Na konec dela sodita angleško-slovenski slovarček strokovnih izrazov in seznam uporabljene literature, morebitne priloge (programska koda, daljša ponovitev dela snovi, ki je bil obravnavan med študijem \dots) pa neposredno pred ti enoti. Slovar naj vsebuje vse pojme, ki ste jih spoznali ob pripravi dela, pa tudi že znane pojme, ki ste jih spoznali pri izbirnih predmetih. Najprej navedite angleški pojem (ti naj bodo urejeni po abecedi) in potem ustrezni slovenski prevod; zaželeno je, da temu sledi tudi opis pojma, lahko komentar ali pojasnilo. Slovarska gesla navajajte z ukazom \verb|\geslo{}{}|, npr.\ \verb|\geslo{continuous}{zvezen}|.
+Na konec dela sodita angleško-slovenski slovarček strokovnih izrazov in seznam
+uporabljene literature, morebitne priloge (programska koda, daljša ponovitev
+dela snovi, ki je bil obravnavan med študijem \dots) pa neposredno pred ti
+enoti. Slovar naj vsebuje vse pojme, ki ste jih spoznali ob pripravi dela, pa
+tudi že znane pojme, ki ste jih spoznali pri izbirnih predmetih. Najprej
+navedite angleški pojem (ti naj bodo urejeni po abecedi) in potem ustrezni
+slovenski prevod; zaželeno je, da temu sledi tudi opis pojma, lahko komentar
+ali pojasnilo. Slovarska gesla navajajte z ukazom \verb|\geslo{}{}|, npr.\
+\verb|\geslo{continuous}{zvezen}|.
 
-Pri navajanju literature si pomagajte s spodnjimi primeri, ki povzemajo različne tipe del. Dela so opisana v \verb|.bib| datoteki.
-Posebej opozarjam, da spletni viri uporabljajo paket url, ki je vključen v \verb|.cls| datoteki. Polje ``ogled'' pri spletnih virih je obvezno; če je kak podatek neznan, ustrezno ``polje'' seveda izpustimo. Literatura se avtomatsko uredi po abecednem vrstnem redu; najprej so navedeni vsi viri z znanimi avtorji (tiskani in spletni)  po abecednem redu avtorjev (po priimkih, nato imenih). Za spletne vire brez avtorjev moramo za pravilno urejanje podati ključ z ukazom \verb|key={kljuc}|. Da bodo vsi na koncu besedila in urejeni po naslovih strani, je ključ lahko npr.~oblike ``žžž-spletni.naslov''.
-Vsako navedbo literature je potrebno v besedilu citirati vsaj enkrat, zato jih v tem primeru
-citiramo
-tukaj:~\cite{angelini2011straight,globevniSkriptaWeb,lang2012fundamentals,lindic2007igra,penttila2005flocks,spletSample,diplomaSample,conferenceSample,bookSample,clanekSample,velkovrh1974nekaj,spletMatrika}.
-
+Pri navajanju literature si pomagajte s spodnjimi primeri; najprej je opisano
+pravilo za vsak tip vira, nato so podani primeri. Člen literature napišete z
+ukazom \verb|\bibitem{oznaka} podatki o viru|, kjer mora \emph{ozmaka} enolično
+določati vir.  Posebej opozarjam, da spletni viri uporabljajo paket url, ki je
+vključen v~.cls datoteki. Polje ``ogled'' pri spletnih virih je obvezno; če je
+kak podatek neznan, ustrezno ``polje'' seveda izpustimo. Literaturo je potrebno
+urediti po abecednem vrstnem redu; najprej navedemo vse vire z znanimi avtorji
+(tiskane in spletne) po abecednem redu avtorjev (po priimkih, nato imenih),
+nato pa spletne vire brez avtorjev, urejene po naslovih strani. Če isti vir
+navajamo v dveh oblikah, kot tiskani in spletni vir, najprej navedemo tiskani
+vir, nato pa še podatek o tem, kje je dostopen v elektronski obliki.
 
 \section*{Slovar strokovnih izrazov}
 
@@ -200,9 +251,53 @@ tukaj:~\cite{angelini2011straight,globevniSkriptaWeb,lang2012fundamentals,lindic
 \geslo{partition}{\textbf{$\sim$ of a set} razdelitev množice; \textbf{$\sim$ of a number} razčlenitev števila}
 
 % seznam uporabljene literature
-\bibliographystyle{fmf-sl}
-\bibliography{literatura}
+\begin{thebibliography}{99}
 
+\bibitem{referenca-clanek}
+I.~Priimek, \emph{Naslov članka}, okrajšano ime revije \textbf{letnik revije} (leto izida) strani od--do.
+
+\bibitem{navodilaOMF}
+C.~Velkovrh, \emph{Nekaj navodil avtorjem za pripravo rokopisa}, Obzornik mat.\ fiz.\ \textbf{21} (1974) 62--64.
+
+\bibitem{vec-avtorjev}
+P.~Angelini, F.~Frati in M.~Kaufmann, \emph{Straight-line rectangular drawings of clustered graphs}, Discrete Comput.\ Geom.\ \textbf{45} (2011) 88--140.
+
+
+\bibitem{referenca-knjiga}
+I.~Priimek, \emph{Naslov knjige}, morebitni naslov zbirke  \textbf{zaporedna številka}, založba, kraj, leto izdaje.
+
+\bibitem{glob}
+J.~Globevnik in M.~Brojan, \emph{Analiza I}, Matematični rokopisi \textbf{25}, DMFA -- založništvo, Ljubljana, 2010.
+
+\bibitem{glob-vse}
+J.~Globevnik in M.~Brojan, \emph{Analiza I}, Matematični rokopisi \textbf{25}, DMFA -- založništvo, Ljubljana, 2010; dostopno tudi na
+\url{http://www.fmf.uni-lj.si/~globevnik/skripta.pdf}.
+
+\bibitem{lang}
+S.~Lang, \emph{Fundamentals of differential geometry}, Graduate Texts in Mathematics \textbf{191}, Springer-Verlag, New York, 1999.
+
+\bibitem{referenca-clanek-v-zborniku}
+I.~Priimek, \emph{Naslov članka}, v: naslov zbornika (ur.\ ime urednika), morebitni naslov zbirke  \textbf{zaporedna številka}, založba, kraj, leto izdaje, str.\ od--do.
+
+\bibitem{zbornik}
+S.~Cappell in J.~Shaneson, \emph{An introduction to embeddings, immersions and singularities in codimension two}, v: Algebraic and geometric topology, Part 2 (ur.\ R.~Milgram), Proc.\ Sympos.\ Pure Math.\ \textbf{XXXII}, Amer.\ Math.\ Soc., Providence, 1978, str.\ 129--149.
+
+\bibitem{diploma-magisterij}
+I.~Priimek, \emph{Naslov dela}, diplomsko/magistrsko delo, ime fakultete, ime univerze, leto.
+
+\bibitem{kalisnik}
+J.~Kališnik, \emph{Upodobitev orbiterosti}, diplomsko delo, Fakulteta za matematiko in fiziko, Univerza v Ljubljani, 2004.
+
+\bibitem{referenca-spletni-vir}
+I.~Priimek, \emph{Naslov spletnega vira}, v: ime morebitne zbirke/zbornika, ki vsebuje vir, verzija številka/datum, [ogled datum], dostopno na \url{spletni.naslov}.
+
+\bibitem{glob-splet}
+J.~Globevnik in M.~Brojan, \emph{Analiza 1}, verzija 15.~9.~2010, [ogled 12.~5.~2011], dostopno na \url{http://www.fmf.uni-lj.si/~globevnik/skripta.pdf}.
+
+\bibitem{wiki}
+\emph{Matrix (mathematics)}, v: Wikipedia: The Free Encyclopedia, [ogled 12.~5.~2011], dostopno na \url{http://en.wikipedia.org/wiki/Matrix_(mathematics)}.
+
+\end{thebibliography}
 
 \end{document}
 
