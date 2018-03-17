@@ -1,4 +1,4 @@
-# Predloga za magisterij
+# Predloga za delo diplomskega seminarja
 
 Za pisanje dela diplomskega seminarja, prenesite [template.zip](template.zip), preimenujte datoteko
 `PredlogaDela.tex` in jo odprite.
