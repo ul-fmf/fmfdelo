@@ -22,7 +22,7 @@ posodobite svojo distribucijo LaTeXa na najnovejšo verzijo.
                                                   \cf@encoding \@use@text@en...
 l.2 ...fmfdelo}[2016/10/13 Zaključna dela na FMF]
 ```
-morate posodobiti `.cls` datoteko na najnovejšo verzijo. V `fmfdelo.cls` je v vrstici `2`
+morate posodobiti `.cls` datoteko na najnovejšo verzijo. V `fmfdelo.cls` v vrstici `2`
 dela težave `č`, ki ga je potrebno zamenjati s `c`.
 
 ## Citiranje literature
