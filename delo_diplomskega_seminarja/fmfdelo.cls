@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{fmfdelo}[2016/10/13 Zaključna dela na FMF]
+\ProvidesClass{fmfdelo}[2016/10/13 Zakljucna dela na FMF]
 
 %-----------------------------------------------------------------------------
 %                       Pomozni ukazi in spremenljivke

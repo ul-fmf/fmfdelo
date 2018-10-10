@@ -14,6 +14,16 @@ Dokument bi se moral prevesti brez posebnosti, če imate `.cls` in `.tex` datote
 dobite pri prevajanju napako podobno `! Package keyval Error: pdfapart undefined.`, priporočamo, da
 posodobite svojo distribucijo LaTeXa na najnovejšo verzijo.
 
+Če dobite napako oblike
+```
+(./fmfdelo.cls
+! Undefined control sequence.
+\UseTextAccent ...up \@firstofone \let \@curr@enc
+                                                  \cf@encoding \@use@text@en...
+l.2 ...fmfdelo}[2016/10/13 Zaključna dela na FMF]
+```
+morate posodobiti `.cls` datoteko na najnovejšo verzijo. V `fmfdelo.cls` je v vrstici `2`
+dela težave `č`, ki ga je potrebno zamenjati s `c`.
 
 ## Citiranje literature
 Sledite navodilom in primerom citiranja literature v dokumentu. Na voljo imate tudi možnost
