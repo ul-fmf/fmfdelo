@@ -64,6 +64,7 @@
     bookmarksopen, bookmarksdepth=3,
     pdfauthor=\@avtor,
     pdftitle=\@naslov,
+    pdfproducer={pdfTeX},
     pdfsubject=\@povzetek,
     pdfkeywords=\@kljucnebesede}
   \RequirePackage[a-1b]{pdfx}
