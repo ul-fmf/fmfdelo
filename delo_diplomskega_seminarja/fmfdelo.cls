@@ -65,7 +65,7 @@
     pdfauthor=\@avtor,
     pdftitle=\@naslov,
     pdfproducer={pdfTeX},
-    pdfsubject=\@povzetek,
+    pdfsubject={matematika},
     pdfkeywords=\@kljucnebesede}
   \RequirePackage[a-1b]{pdfx}
   \let\C\undefined
