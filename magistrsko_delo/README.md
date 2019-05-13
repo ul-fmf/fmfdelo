@@ -3,7 +3,8 @@
 To je primer predloge za magisterij, ki ustreza
 [navodilom za pisanje magisterija](https://www.fmf.uni-lj.si/si/knjiznica-matematicna/navodila-bol-mag/).
 Prenesite si [template.zip](template.zip), odzipajte, izpolnite in začnite pisati. Lahko prenesete tudi
-[angleško verzijo](template_english.zip).
+[angleško verzijo](template_english.zip). Študentje IŠRM uporabite predlogo, ki jo
+[ponuja FRI](https://github.com/UL-FRI/thesis-BMA-ISRM).
 
 ## Uporaba predloge
 Pod napisom "Naslednje ukaze ustrezno popravi" izpolni ime avtorja, mentorja, morebitnega
