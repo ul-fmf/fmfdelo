@@ -16,6 +16,11 @@ Show Advanced Options > Build > PDF Chain` nastaviti na `txs:///pdflatex | txs:/
 txs:///makeindex | txs:///pdflatex | txs:///pdflatex | txs:///view-pdf`.  (vsebovati mora
 `makeindex`). Literatura se prevede avtomatsko brez dodatnih nastavitev.
 
+Pri ukazih `\ref` in `\cite`, bi moral TeXStudio tudi sam ponuditi obstoječe oznake, ki ste jih naredili.
+Če pri ukazu `\cite` ne ponudi možnih bibliografskih ključev, je morda kriv makro `\literatura`. Tega lahko
+na vrstici `\bibliography{\literatura}` pri koncu dokumenta zamenjate z imenom vaše `.bib` datoteke (brez
+končnice), kar pomaga TeXStudiu pri autocompletionu. 
+
 Če gre pri prevajanju kaj narobe, med poskušanjem različnih stvari, ki odpravijo težavo, **ne pozabite
 počistiti dodatnih datotek** (`.log`, `.aux` ipd.), da se stare napake ne zadržuejo notri. V TexStudiu
 je za to navoljo ukaz `Tools > Clean Auxiliary Files`, na Linuxu pa tudi ukaz `latexmk -c`.
