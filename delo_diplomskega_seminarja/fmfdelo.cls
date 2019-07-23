@@ -60,7 +60,7 @@
   \algdef{S}[FOR]{ForEach}[2]{\algorithmicforeach\ #1\ \algorithmicin\ #2\ \algorithmicdo}
 }
 \newcommand{\zapisiMetaPodatke}{
-  \hypersetup{pdfencoding=auto, psdextra,
+  \hypersetup{pdfencoding=auto, psdextra, pdflang=sl, % ali 'en' za anglesicno
     bookmarksopen, bookmarksdepth=3,
     pdfauthor=\@avtor,
     pdftitle=\@naslov,
