@@ -50,7 +50,6 @@ na Levy-jeve topološke prostore.}  % Opis dela v eni povedi. Ne sme vsebovati m
 \usepackage[slovene,english]{babel}  % slovenščina
 \usepackage[T1]{fontenc}     % naprednejše kodiranje fonta
 \usepackage{amsmath,amssymb,amsfonts,amsthm} % matematični paketi
-\usepackage[dvipsnames,usenames]{color} % barve
 \usepackage{graphicx}     % za slike
 \usepackage{emptypage}    % prazne strani so neoštevilčene, ampak so štete
 \usepackage{units}        % fizikalne enote kot \unit[12]{kg} s polovico nedeljivega presledka, glej primer v kodi
@@ -274,7 +273,7 @@ the content and not the structure of your work.
 
 \vfill\noindent
 \textbf{Math.~Subj.~Class.~(2010):} oznake kot 74B05, 65N99, na voljo so na naslovu
-\url{http://www.ams.org/msc/msc2010.html?t=65Mxx} \\[1mm]
+\url{http://www.ams.org/msc/msc2010.html} \\[1mm]
 \textbf{Ključne besede:} nekaj ključnih pojmov \\[1mm]
 \textbf{Keywords:} some key concepts
 
@@ -408,6 +407,8 @@ tukaj citiram.~\cite{vene2000categorical}, \cite{gregoric2017stopniceni}, \cite{
 \addcontentsline{toc}{section}{References} % dodajmo v kazalo
 \bibliographystyle{fmf-en}                 % uporabljen stil je v datoteki fmf-en.bst, na voljo tudi slovenska verzija
 \bibliography{\literatura}                 % literatura je v datoteki, definirani na začetku
+% TeXStudio is confused by the backslash above, you can substitue the actual file name in, if the
+% cite suggestions are not working.
 
 % Za stvarno kazalo
 \cleardoublepage                           % na desni strani

@@ -44,7 +44,6 @@ na Levy-jeve topološke prostore.}  % Opis dela v eni povedi. Ne sme vsebovati m
 \usepackage[slovene]{babel}  % slovenščina
 \usepackage[T1]{fontenc}     % naprednejše kodiranje fonta
 \usepackage{amsmath,amssymb,amsfonts,amsthm} % matematični paketi
-\usepackage[dvipsnames,usenames]{color} % barve
 \usepackage{graphicx}     % za slike
 \usepackage{emptypage}    % prazne strani so neoštevilčene, ampak so štete
 \usepackage{units}        % fizikalne enote kot \unit[12]{kg} s polovico nedeljivega presledka, glej primer v kodi
@@ -216,7 +215,7 @@ the content and not the structure of your work.
 
 \vfill\noindent
 \textbf{Math.~Subj.~Class.~(2010):} oznake kot 74B05, 65N99, na voljo so na naslovu
-\url{http://www.ams.org/msc/msc2010.html?t=65Mxx} \\[1mm]
+\url{http://www.ams.org/msc/msc2010.html} \\[1mm]
 \textbf{Ključne besede:} \kljucnebesede \\[1mm]
 \textbf{Keywords:} \keywords
 
@@ -227,8 +226,8 @@ the content and not the structure of your work.
 
 \section{Uvod}
 Napišite kratek zgodovinski in matematični uvod.  Pojasnite motivacijo za problem, kje
-nastopa, kje vse je bil obravnavan. Na koncu opišite tudi organizacijo dela -- kaj je v kakšnem
-razdelku.
+nastopa, kje vse je bil obravnavan. Na koncu opišite tudi organizacijo dela -- kaj je v
+katerem razdelku.
 
 \section{Integrali po \texorpdfstring{$\omega$}{ω}-kompleksih}
 \subsection{Definicija}
@@ -329,6 +328,8 @@ tukaj citiram.~\cite{vene2000categorical}, \cite{gregoric2017stopniceni}, \cite{
 \addcontentsline{toc}{section}{\bibname}   % dodajmo v kazalo
 \bibliographystyle{fmf-sl}                 % uporabljen stil je v datoteki fmf-sl.bst, na voljo tudi angleška verzija
 \bibliography{\literatura}                 % literatura je v datoteki, definirani na začetku
+% TeXStudio zmede \ zgoraj, tako da lahko notri napišeš dejansko ime .bib datoteke, če ti
+% ne delajo predlogi citatov.
 
 % Za stvarno kazalo
 \cleardoublepage                           % na desni strani
