@@ -49,6 +49,9 @@ ponavadi nastaviti ozadje, za `.pdf` format lahko na primer kar uredite datoteko
 format tudi z uporabo kakšnega drugega programa ali online orodja ali pa to naredite v matematični
 knjižnici.
 
+Če dobite napako `The required XMP property 'pdf:Keywords' for the document information entry 'Keywords' is missing.`
+je trenuten wordaround, da se zakomentira vrstica `\Keywords{\kljucnebesede}`, pobrise `.xmpdata` datoteko in ponovno prevede dokument.
+
 ## Pogosta vprašanja
 Za težave in vprašanja glede template-a, prosim odprite nov issue, pred tem pa preglejte [že
 obstoječe](https://github.com/ul-fmf/fmfdelo/issues?q=is%3Aissue), če morda rešijo
