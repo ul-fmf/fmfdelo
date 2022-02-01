@@ -1,63 +1,75 @@
-# Splošno o predlogah za zaključna dela na FMF
+# Predloge za zaključna dela na oddelku za matematiko [FMF UL](https://www.fmf.uni-lj.si/)
 
-Na tem repozitoriju boste našli predloge za dela diplomskega seminarja in magistrska dela na OM FMF.
-Pred uporabo predloge, **prosim preberite navodila na vaši spletni učilnici in spodnja tehnična
-navodila**. Nato preberite ustrezna navodila za uporabo predloge ([magisterij](predloge/magisterij-primer-sl/README.md) ali [diploma](predloge/diploma-prazno/README.md)), prenesite in začnite pisati.
+Za uporabo najprej **preberite navodila na vaši spletni učilnici**, nato pa prenesite ustrezen arhiv s predlogo:
 
-## Prevajanje dokumenta
-Če dokument dokument vsebuje zunanjo literaturo (v `.bib` datoteki) ali stvarno kazalo (bolj za
-magisterije) je potrebno pri [TeXWorks](https://www.tug.org/texworks/) izbrati za prevajanje opcijo
-`pdflatex+bibtex+makeindex`. Za urejanje dokumentov močno priporočam
-[TeXStudio](http://www.texstudio.org/), ki zna autocompletati sklice, citate ipd.  Na voljo je za
-Windows, Linux in Mac. Za prevajanje s stvarnim kazalom je potrebno `Options > Configure TeXStudio >
-Show Advanced Options > Build > PDF Chain` nastaviti na `txs:///pdflatex | txs:///bibtex |
-txs:///makeindex | txs:///pdflatex | txs:///pdflatex | txs:///view-pdf`.  (vsebovati mora
-`makeindex`). Literatura se prevede avtomatsko brez dodatnih nastavitev.
+- [diploma-prazno.zip](arhivi/diploma-prazno.zip): prazna predloga za delo diplomskega seminarja
+- [diploma-primer.zip](arhivi/diploma-primer.zip): primer dela diplomskega seminarja
+- [magisterij-primer-sl.zip](arhivi/magisterij-primer-sl.zip): primer magistrskega dela (**POZOR**: predloga za magistrsko delo je v postopku [poenotenja z diplomskim delom](https://github.com/ul-fmf/fmfdelo/issues/11) - do takrat uporabljajte [ločena navodila](predloge/magisterij-primer-sl/README.md))
+- [magisterij-primer-en.zip](arhivi/magisterij-primer-en.zip): primer magistrskega dela v angleščini (velja enaka opomba kot zgoraj)
 
-Pri ukazih `\ref` in `\cite`, bi moral TeXStudio tudi sam ponuditi obstoječe oznake, ki ste jih naredili.
-Če pri ukazu `\cite` ne ponudi možnih bibliografskih ključev, je morda kriv makro `\literatura`. Tega lahko
-na vrstici `\bibliography{\literatura}` pri koncu dokumenta zamenjate z imenom vaše `.bib` datoteke (brez
-končnice), kar pomaga TeXStudiu pri autocompletionu. 
+in sledite spodnjim [navodilom za uporabo](#navodila-za-uporabo). Dokument bi se moral prevesti brez posebnosti in dodatnih nastavitev. Nekaj pogostih težav in rešitev je [opisanih spodaj](#odpravljanje-napak).
 
-Če gre pri prevajanju kaj narobe, med poskušanjem različnih stvari, ki odpravijo težavo, **ne pozabite
-počistiti dodatnih datotek** (`.log`, `.aux` ipd.), da se stare napake ne zadržuejo notri. V TexStudiu
-je za to navoljo ukaz `Tools > Clean Auxiliary Files`, na Linuxu pa tudi ukaz `latexmk -c`.
+Za pomoč pri razvoju se zahvaljujemo Aniti Buckley (za pomoč pri poenotenju in uvedbi PDF/A formata), Anji Petković (za angleški primer magistrskega dela), Maji Klavžar (za natančna navodila glede navajanja literature) ter Matjažu Konvalinki in Sašu Strletu (kot skrbnikoma programov za vse potrebne informacije).
 
-## Preverjanje črkovanja
-Uporabljajte urejevalnik, ki preverja črkovanje, npr. TeXStudio ali [vim](http://www.vim.org/). Za
-preverjanje črkovanja neodvisno od uporabljenega urejevalnika lahko uporabite
-[aspell](http://aspell.net/).
+_Razvijalci_: Luna Strah, Jure Slak, [Matija Pretnar](https://matija.pretnar.info/), Gašper Golob in Katja Berčič.
 
-## PDF/A-1b format
-Knjižnica zahteva shranjevanje PDF datotek magisterijev in diplom v [PDF/A-1b
-formatu](https://en.wikipedia.org/wiki/PDF/A), primernem za
-arhiviranje. V tem formatu boste morali tudi oddati svoje zaključno delo.
-Ta PDF format je bolj restriktiven od običajnega in med drugim zahteva obstoj PDF
-metapodatkov, vse uporabljene pisave morajo biti vdelane v dokument in slike ne smejo vsebovati
-prosojnih elementov. PDF, generiran s to predlogo, naj bi že ustrezal standardu PDF/A-1b,
-saj za to poskrbi že vključen paket `\usepackage[a-1b]{pdfx}`, če le niste vlkjučili slik s prosojnostjo.
+## Navodila za uporabo
 
-Vaš PDF pred oddajo (ali pa že kdaj prej) vseeno preverite z uporabo [kakšnega
-validatorja](https://www.pdf-online.com/osa/validate.aspx).  Napaki `The value of the key SMask is
-an image but must be None.` ali `The key S has a value Transparency which is prohibited.` pomenita,
-da imate vključeno kakšno prosojno sliko. Za rastrske slike je ponavadi dovolj, da vso prosojno
-barvo spremenite v belo, z uporabo primernega programa.  Za slike v vektorskih formatih je potrebno
-ponavadi nastaviti ozadje, za `.pdf` format lahko na primer kar uredite datoteko in zamenjate
-`/Transparency` pri polju `/S` z `/GTS_PDFA1`.  V najslabšem primeru lahko PDF pretvorite v PDF/A-1b
-format tudi z uporabo kakšnega drugega programa ali online orodja ali pa to naredite v matematični
-knjižnici.
+Za urejanje dokumentov močno priporočamo [Visual Studio Code](https://code.visualstudio.com) s podaljškom [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) in podaljškom za črkovanje [LTeX](https://marketplace.visualstudio.com/items?itemName=valentjn.vscode-ltex). Za preverjanje črkovanja neodvisno od urejevalnika lahko uporabite [aspell](http://aspell.net/).
 
-Če dobite napako `The required XMP property 'pdf:Keywords' for the document information entry 'Keywords' is missing.`
-je trenuten wordaround, da se zakomentira vrstica `\Keywords{\kljucnebesede}`, pobrise `.xmpdata` datoteko in ponovno prevede dokument.
+V LaTeX dokumentu pod komentarjem `% naslednje ukaze ustrezno dopolnite` izpolnite ime avtorja, mentorja, morebitnega somentorja, naslov dela in ostalo. Ti ukazi se uporabijo v generiranju naslovnice, izjave, povzetka in PDF metapodatkov.
 
-## Pogosta vprašanja
-Za težave in vprašanja glede template-a, prosim odprite nov issue, pred tem pa preglejte [že
-obstoječe](https://github.com/ul-fmf/fmfdelo/issues?q=is%3Aissue), če morda rešijo
-vašo težavo.
+Predloga podpira arhivski standard [PDF/A-2b](https://en.wikipedia.org/wiki/PDF/A), ki mu mora zadoščati vaše zaključno delo, ko ga boste oddali preko VIS-a. Med prevajanjem se samodejno pripravijo ustrezni metapodatki in zaznamki za poglavja, ki jih lahko vidite v drevesni strukturi v pregledovalniku PDF dokumentov. Na tem mestu lahko včasih nastopijo težave z matematičnimi znaki v naslovu ali poglavjih, če jih pregledovalnik PDF dokumentov ne prebavi. V tem primeru se avtomatsko izpustijo, če pa jih želimo zamenjati z golim besedilom (plain text) ali UTF-8 znaki, pa lahko to storimo z `\texorpdfstring`, kot je prikazano na primeru v predlogi.
 
-## Zahvale
-Hvala Anji Petković za angleško verzijo magisterija, Maji Klavžar za natančna navodila glede
-navajanja literature, Sašu Strletu in Matjažu Konvalinki kot skrbnikoma programov za vse potrebne
-informacije in Aniti Buckley za pomoč pri poenotenju in uvedbi PDF/A formata.
+Vaš PDF pred oddajo (ali pa že kdaj prej) preverite z uporabo spletnega validatorja [PDFForge](https://www.pdfforge.org/pdfcreator-online/en/validate-pdfa) ali pa z validatorjem [veraPDF](https://openpreservation.org/tools/verapdf/), ki ga lahko namestite na svoj računalnik.
 
-Matija Pretnar & Jure Slak (jure.slak@fmf.uni-lj.si)
+## Odpravljanje napak
+
+Če imate težavo:
+
+1. Najprej **počistite dodatne datoteke** (`.log`, `.aux` ipd.), v katerih se lahko stare napake zadržujejo dlje, kot je treba.
+V urejevalniku Visual Studio Code to naredite tako, da v paleti ukazov (Command Palette, <kbd>Ctrl+Shift+P</kbd> oz. <kbd>Cmd+Shift+P</kbd> na macOS) natipkate `Clean Auxiliary Files`. Tam bo pisalo tudi, s katero bližnjico pridete do te funkcije na vašem računalniku. Alternativno lahko v ukazni vrstici poženete ukaz `latexmk -c`.
+2. V [spodnjem seznamu](#seznam-najpogostejših-napak) poiščite napako, ki jo imate, sledite navodilom ter **ponovite 1. korak**.
+3. Če napake na seznamu ne najdete, stopite v stik z razvijalci ali odprite [issue na GitHubu](https://github.com/ul-fmf/fmfdelo/issues/new). **V nobenem primeru ne spreminjajte datoteke `fmfdelo.cls` ali strukture predloge**, saj je šlo zaradi formata PDF/A v predlogo veliko truda in bo spreminjanje bolj kot ne še kaj dodatno pokvarilo.
+
+### Seznam najpogostejših napak
+
+#### `pdfapart undefined`
+
+Če dobite pri prevajanju napako podobno `! Package keyval Error: pdfapart undefined.`, priporočamo, da posodobite svojo distribucijo LaTeX-a na najnovejšo verzijo.
+
+#### `./fmfdelo.cls  ! Undefined control sequence.`
+
+Če dobite napako oblike
+
+    (./fmfdelo.cls
+    ! Undefined control sequence.
+    \UseTextAccent ...up \@firstofone \let \@curr@enc
+                                                    \cf@encoding \@use@text@en...
+    l.2 ...fmfdelo}[2016/10/13 Zaključna dela na FMF]
+
+morate posodobiti `.cls` datoteko na najnovejšo verzijo.
+
+#### `The value of the key SMask ...` / `The key S has a value ...`
+
+Napaki `The value of the key SMask is an image but must be None.` ali
+`The key S has a value Transparency which is prohibited.` pomenita,
+da imate vključeno kakšno prosojno sliko. Za rastrske slike je ponavadi dovolj, da s primernim programom prosojno barvo spremenite v belo. Za slike v vektorskih formatih je potrebno ponavadi nastaviti ozadje, za `.pdf` format lahko na primer kar uredite datoteko in zamenjate `/Transparency` pri polju `/S` z `/GTS_PDFA1`.
+
+#### Rastrska pisava
+
+Če opazite, da je [pisava od blizu kockasta](https://github.com/ul-fmf/fmfdelo/issues/9), je treba [namestiti](https://tex.stackexchange.com/questions/1291/why-are-bitmap-fonts-used-automatically) paket `cm-super`.
+
+#### Manjkajoče velike začetnice v literaturi
+
+BibTeX pri navajanju literature odvisno od stila spreminja velikost črk, na primer
+
+    title = {Predloge za zaključna dela na FMF UL}
+
+se bo lahko odvisno od vrste vira izpisalo kot _Predloge za zaključna dela na Fmf Ul_ ali _Predloge za zaključna dela na fmf ul_. Če želite vsiliti svojo velikost, morate besedilo zaščiti z `{}`, na primer
+
+    title = {Predloge za zaključna dela na {FMF UL}}
+
+#### Neveljaven znak na začetku datoteke
+
+Če vam LaTeX (ali kakšno drugo orodje) javlja napako pred prvim znakom datoteke, tudi če ga pobrišete, gre najverjetneje za [BOM](https://en.wikipedia.org/wiki/Byte_order_mark), poseben neviden znak na začetku datoteke. Znebite se ga tako, da v Visual Studio Code spodaj kliknete na `UTF-8 with BOM` ter izberete `Save with encoding > UTF-8`.
