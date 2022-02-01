@@ -45,8 +45,16 @@
   \RequirePackage[T1]{fontenc}
   \RequirePackage{silence}
   \WarningFilter{hyperref}{Option}
+  % Paket hyperxmp nalozimo, da bo iz \hypersetup podatkov samodejno napolnil XMP podatke,
+  % ki so potrebni za PDF/A datoteke. S tem se izognemo generiranju datoteke .xmpdata, ki
+  % jo sicer potrebuje paket pdfx.
   \RequirePackage{hyperxmp}
   \RequirePackage[pdfa,pdfapart=1,pdfaconformance=B]{hyperref}
+  % Paketu hyperref podamo moznost pdfa, da ne dela linkov, ki bi lahko pokvarili PDF/A,
+  % drugi dve moznosti pa natancno specificirata verzijo.
+  % Paket hyperxmp naceloma ze nalozi hyperref, vendar ga vseeno nalozimo se sami,
+  % da dolocimo verzijo, hkrati pa podpremo stare verzije hyperxmpja, ki tega ne
+  % nalozijo.
 
   % algorithms
   \RequirePackage{algpseudocode}  % za psevdokodo
@@ -68,6 +76,8 @@
     pdfsubject={matematika},
     pdfkeywords=\@kljucnebesede}
   \RequirePackage[a-1b]{pdfx}
+  % Paket pdfx moramo naloziti, ker pravilno nastavljeni metapodatki se niso dovolj za
+  % PDF/A. Nastavljeni morajo biti fonti, barvni profili, ... in za vse to poskrbi pdfx.
   \let\C\undefined
 }
 
