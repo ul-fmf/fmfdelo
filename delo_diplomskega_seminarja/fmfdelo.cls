@@ -75,10 +75,13 @@
     pdfproducer={pdfTeX},
     pdfsubject={matematika},
     pdfkeywords=\@kljucnebesede}
+  % Paket hyperref definira ukaz \C, ki ga zelo zelo verjetno nihce ne bo rabil,
+  % zato ga odstranimo, da lahko \C uporabljamo za kompleksna stevila. Odstraniti
+  % ga moramo sele tu, saj \hypersetup ocitno makro ponovno definira
+  \let\C\undefined
   % Paket pdfx moramo naloziti, ker pravilno nastavljeni metapodatki se niso dovolj za
   % PDF/A. Nastavljeni morajo biti fonti, barvni profili, ... in za vse to poskrbi pdfx.
   \RequirePackage[a-1b]{pdfx}
-  \let\C\undefined
 }
 
 %-----------------------------------------------------------------------------
