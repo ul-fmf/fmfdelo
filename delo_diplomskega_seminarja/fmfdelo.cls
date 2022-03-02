@@ -173,6 +173,7 @@ Ljubljana, \@letnica}
 
 \thispagestyle{empty}
 \tableofcontents
+\vfill
 \pagebreak
 
 \thispagestyle{empty}
