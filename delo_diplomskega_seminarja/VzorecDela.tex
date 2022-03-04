@@ -38,8 +38,6 @@ vsebine.}
 \kljucnebesede{navedite nekaj ključnih pojmov, ki nastopajo v delu} % navedite nekaj ključnih pojmov, ki nastopajo v delu
 \keywords{angleški prevod ključnih besed} % angleški prevod ključnih besed
 
-\zapisiMetaPodatke  % poskrbi za metapodatke in veljaven PDF/A-1b standard
-
 % aktivirajte pakete, ki jih potrebujete
 % \usepackage{tikz}
 
@@ -47,7 +45,9 @@ vsebine.}
 \newcommand{\R}{\mathbb R}
 \newcommand{\N}{\mathbb N}
 \newcommand{\Z}{\mathbb Z}
-\newcommand{\C}{\mathbb C}
+% Paket hyperref definira ukaz \C, zato ga moramo povoziti, če ga želimo
+% uporabljati za kompleksna števila.
+\renewcommand{\C}{\mathbb C}
 \newcommand{\Q}{\mathbb Q}
 
 % matematične operatorje deklarirajte kot take, da jih bo Latex pravilno stavil

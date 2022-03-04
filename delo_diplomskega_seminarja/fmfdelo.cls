@@ -5,8 +5,15 @@
 %                       Pomozni ukazi in spremenljivke
 %-----------------------------------------------------------------------------
 
+% Nalozimo paket za zagotavljanje PDF/A-1B (ustrezni fonti, barvni profili, UTF-8 zapis simbolov, ...)
+\RequirePackage[a-1b]{pdfx}
+
 % Nalozimo pakete, ki ponujajo enostavno programiranje.
 \RequirePackage{etoolbox, ifthen, keyval}
+
+% Nalozimo paket za ustvarjanje .xmpdata datoteke, ki jo potrebuje paket pdfx
+% Okolja filecontents ne moremo uporabiti, ker se ga ne da poklicati v makroju.
+\RequirePackage{newfile}
 
 % Definiramo pomozne ukaze.
 \newcommand{\@ifthen}[2]{\ifthenelse{#1}{#2}{\relax}}
@@ -43,18 +50,6 @@
   \RequirePackage[slovene]{babel}
   \RequirePackage[utf8]{inputenc}
   \RequirePackage[T1]{fontenc}
-  \RequirePackage{silence}
-  \WarningFilter{hyperref}{Option}
-  % Paket hyperxmp nalozimo, da bo iz \hypersetup podatkov samodejno napolnil XMP podatke,
-  % ki so potrebni za PDF/A datoteke. S tem se izognemo generiranju datoteke .xmpdata, ki
-  % jo sicer potrebuje paket pdfx.
-  \RequirePackage{hyperxmp}
-  % Paketu hyperref podamo moznost pdfa, da ne dela linkov, ki bi lahko pokvarili PDF/A,
-  % drugi dve moznosti pa natancno specificirata verzijo.
-  % Paket hyperxmp naceloma ze nalozi hyperref, vendar ga vseeno nalozimo se sami,
-  % da dolocimo verzijo, hkrati pa podpremo stare verzije hyperxmpja, ki tega ne
-  % nalozijo.
-  \RequirePackage[pdfa,pdfapart=1,pdfaconformance=B]{hyperref}
 
   % algorithms
   \RequirePackage{algpseudocode}  % za psevdokodo
@@ -66,22 +61,6 @@
   \algnewcommand\algorithmicforeach{\textbf{for each}}
   \algrenewtext{For}[3]{\algorithmicfor\ #1 $\gets$ #2\ \algorithmicto\ #3\ \algorithmicdo}
   \algdef{S}[FOR]{ForEach}[2]{\algorithmicforeach\ #1\ \algorithmicin\ #2\ \algorithmicdo}
-}
-\newcommand{\zapisiMetaPodatke}{
-  \hypersetup{pdfencoding=auto, psdextra, pdflang=sl, % ali 'en' za anglesicno
-    bookmarksopen, bookmarksdepth=3,
-    pdfauthor=\@avtor,
-    pdftitle=\@naslov,
-    pdfproducer={pdfTeX},
-    pdfsubject={matematika},
-    pdfkeywords=\@kljucnebesede}
-  % Paket hyperref definira ukaz \C, ki ga zelo zelo verjetno nihce ne bo rabil,
-  % zato ga odstranimo, da lahko \C uporabljamo za kompleksna stevila. Odstraniti
-  % ga moramo sele tu, saj \hypersetup ocitno makro ponovno definira
-  \let\C\undefined
-  % Paket pdfx moramo naloziti, ker pravilno nastavljeni metapodatki se niso dovolj za
-  % PDF/A. Nastavljeni morajo biti fonti, barvni profili, ... in za vse to poskrbi pdfx.
-  \RequirePackage[a-1b]{pdfx}
 }
 
 %-----------------------------------------------------------------------------
@@ -143,9 +122,19 @@
 \newtheorem{izrek}[definicija]{Izrek}
 \newtheorem{trditev}[definicija]{Trditev}
 \newtheorem{posledica}[definicija]{Posledica}
-
 % ukaz za slovarsko geslo
 \newcommand{\geslo}[2]{\noindent\textbf{#1}\hspace*{3mm}\hangindent=\parindent\hangafter=1 #2\par}
+
+\AtEndPreamble{%
+\newoutputstream{xmpdatafile}
+\openoutputfile{\jobname.xmpdata}{xmpdatafile}
+\addtostream{xmpdatafile}{%
+\protect\Title{\@naslov}
+\protect\Author{\@avtor}
+\protect\Keywords{\@kljucnebesede}
+\protect\Subject{matematika}
+}
+}
 
 % Ukaz za izpis začetnih strani.
 \AfterEndPreamble{%
