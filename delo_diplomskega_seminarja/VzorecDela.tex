@@ -44,8 +44,9 @@ vsebine.}
 \newcommand{\R}{\mathbb R}
 \newcommand{\N}{\mathbb N}
 \newcommand{\Z}{\mathbb Z}
-% Paket hyperref definira ukaz \C, zato ga moramo povoziti, če ga želimo
-% uporabljati za kompleksna števila.
+% Lahko dobite napako se zgodi, da je ukaz \C definiral že paket hyperref,
+% zato dobite napako: Command \C already defined.
+% V tem primeru namesto ukaza \newcommand uporabite \renewcommand
 \newcommand{\C}{\mathbb C}
 \newcommand{\Q}{\mathbb Q}
 
