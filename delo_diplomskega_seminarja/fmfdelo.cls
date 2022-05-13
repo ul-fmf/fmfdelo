@@ -124,6 +124,8 @@
 \newtheorem{posledica}[definicija]{Posledica}
 % ukaz za slovarsko geslo
 \newcommand{\geslo}[2]{\noindent\textbf{#1}\hspace*{3mm}\hangindent=\parindent\hangafter=1 #2\par}
+\newcommand{\@presledek}{ }
+\def\sep{\protect\sep\@presledek}
 
 \AtEndPreamble{%
 \newoutputstream{xmpdatafile}
@@ -138,7 +140,7 @@
 
 % Ukaz za izpis začetnih strani.
 \AfterEndPreamble{%
-
+\def\sep{, }
 % od tod do povzetka ne spreminjaj nicesar
 \thispagestyle{empty}
 \noindent{\large
