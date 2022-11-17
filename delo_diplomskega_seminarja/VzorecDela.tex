@@ -35,10 +35,8 @@ vsebine.}
 % navedite vsaj eno klasifikacijsko oznako --
 % dostopne so na www.ams.org/mathscinet/msc/msc2010.html
 \klasifikacija{navedite vsaj eno klasifikacijsko oznako -- dostopne so na \url{www.ams.org/mathscinet/msc/msc2010.html}}
-\kljucnebesede{navedite nekaj ključnih pojmov, ki nastopajo v delu} % navedite nekaj ključnih pojmov, ki nastopajo v delu
-\keywords{angleški prevod ključnih besed} % angleški prevod ključnih besed
-
-\zapisiMetaPodatke  % poskrbi za metapodatke in veljaven PDF/A-1b standard
+\kljucnebesede{naravni logaritem\sep nenaravni algoritem} % navedite nekaj ključnih besed, ki nastopajo v delu, ločenih s \sep
+\keywords{natural logarithm\sep unnatural algorithm} % angleški prevod ključnih besed
 
 % aktivirajte pakete, ki jih potrebujete
 % \usepackage{tikz}
@@ -47,6 +45,9 @@ vsebine.}
 \newcommand{\R}{\mathbb R}
 \newcommand{\N}{\mathbb N}
 \newcommand{\Z}{\mathbb Z}
+% Lahko dobite napako se zgodi, da je ukaz \C definiral že paket hyperref,
+% zato dobite napako: Command \C already defined.
+% V tem primeru namesto ukaza \newcommand uporabite \renewcommand
 \newcommand{\C}{\mathbb C}
 \newcommand{\Q}{\mathbb Q}
 
