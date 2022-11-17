@@ -5,9 +5,6 @@
 %                       Pomozni ukazi in spremenljivke
 %-----------------------------------------------------------------------------
 
-% Nalozimo paket za zagotavljanje PDF/A-1B (ustrezni fonti, barvni profili, UTF-8 zapis simbolov, ...)
-\RequirePackage[a-1b]{pdfx}
-
 % Nalozimo pakete, ki ponujajo enostavno programiranje.
 \RequirePackage{etoolbox, ifthen, keyval}
 
@@ -128,6 +125,7 @@
 \def\sep{\protect\sep\@presledek}
 
 \AtEndPreamble{%
+\let\sep{\protect\sep}
 \newoutputstream{xmpdatafile}
 \openoutputfile{\jobname.xmpdata}{xmpdatafile}
 \addtostream{xmpdatafile}{%
@@ -136,6 +134,12 @@
 \protect\Keywords{\@kljucnebesede}
 \protect\Subject{matematika}
 }
+\closeoutputstream{xmpdatafile}
+
+% Nalozimo paket za zagotavljanje PDF/A-2B (ustrezni fonti, barvni profili, UTF-8 zapis simbolov, ...)
+\RequirePackage[a-2b]{pdfx}
+
+\def\sep{, }
 }
 
 % Ukaz za izpis začetnih strani.
