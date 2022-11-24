@@ -281,7 +281,7 @@ FUNCTION {bbl.bthesis}
 { "diplomsko delo" }
 
 FUNCTION {bbl.mthesis}
-{ "magistsko delo" }
+{ "magistrsko delo" }
 
 FUNCTION {bbl.phdthesis}
 { "doktorska disertacija" }
