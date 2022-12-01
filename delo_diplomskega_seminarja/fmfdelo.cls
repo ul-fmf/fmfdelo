@@ -125,6 +125,8 @@
 \def\sep{\protect\sep\@presledek}
 
 \AtEndPreamble{%
+\let\oldtexorpdfstring\texorpdfstring
+\renewcommand{\texorpdfstring}[2]{#2}
 \let\sep{\protect\sep}
 \newoutputstream{xmpdatafile}
 \openoutputfile{\jobname.xmpdata}{xmpdatafile}
@@ -135,6 +137,8 @@
 \protect\Subject{matematika}
 }
 \closeoutputstream{xmpdatafile}
+
+\let\texorpdfstring\oldtexorpdfstring
 
 % Nalozimo paket za zagotavljanje PDF/A-2B (ustrezni fonti, barvni profili, UTF-8 zapis simbolov, ...)
 \RequirePackage[a-2b]{pdfx}
