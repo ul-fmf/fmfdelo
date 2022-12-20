@@ -2,9 +2,7 @@
 
 Na tem repozitoriju boste našli predloge za dela diplomskega seminarja in magistrska dela na OM FMF.
 Pred uporabo predloge, **prosim preberite navodila na vaši spletni učilnici in spodnja tehnična
-navodila**. Nato kliknite na ustrezno mapo zgoraj ([magisterij](magistrsko_delo/) ali
-[diploma](delo_diplomskega_seminarja/)), preberite navodila za uporabo predloge, prenesite in
-začnite pisati.
+navodila**. Nato preberite ustrezna navodila za uporabo predloge ([magisterij](predloge/magisterij-primer-sl/README.md) ali [diploma](predloge/diploma-prazno/README.md)), prenesite in začnite pisati.
 
 ## Prevajanje dokumenta
 Če dokument dokument vsebuje zunanjo literaturo (v `.bib` datoteki) ali stvarno kazalo (bolj za

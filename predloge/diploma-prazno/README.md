@@ -1,7 +1,7 @@
 # Predloga za delo diplomskega seminarja
 
-Za pisanje dela diplomskega seminarja, prenesite [template.zip](template.zip), preimenujte datoteko
-`PredlogaDela.tex` in jo odprite.
+Za pisanje dela diplomskega seminarja, prenesite [primer](../../arhivi/diploma-primer.zip) ali [prazno predlogo](../../arhivi/diploma-prazna.zip), preimenujte datoteko
+`Priimek-Vpisna-Leto.tex` in jo odprite.
 
 ## Uporaba predloge
 Pod napisom "naslednje ukaze ustrezno napolnite" izpolni ime avtorja, mentorja, morebitnega
