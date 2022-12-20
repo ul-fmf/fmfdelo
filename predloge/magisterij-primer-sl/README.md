@@ -2,8 +2,8 @@
 
 To je primer predloge za magisterij, ki ustreza
 [navodilom za pisanje magisterija](https://www.fmf.uni-lj.si/si/knjiznica-matematicna/navodila-bol-mag/).
-Prenesite si [template.zip](template.zip), odzipajte, izpolnite in začnite pisati. Lahko prenesete tudi
-[angleško verzijo](template_english.zip).
+Prenesite si [primer](../arhivi/magisterij-primer-sl.zip), odzipajte, izpolnite in začnite pisati. Lahko prenesete tudi
+[angleško verzijo](../arhivi/magisterij-primer-en.zip).
 
 ## Uporaba predloge
 Pod napisom "Naslednje ukaze ustrezno popravi" izpolni ime avtorja, mentorja, morebitnega
