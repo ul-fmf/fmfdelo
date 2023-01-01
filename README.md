@@ -9,7 +9,7 @@ Za uporabo najprej **preberite navodila na vaši spletni učilnici**, nato pa pr
 
 in sledite spodnjim [navodilom za uporabo](#navodila-za-uporabo). Dokument bi se moral prevesti brez posebnosti in dodatnih nastavitev. Nekaj pogostih težav in rešitev je [opisanih spodaj](#odpravljanje-napak).
 
-Za pomoč pri razvoju se zahvaljujemo Aniti Buckley (za pomoč pri poenotenju in uvedbi PDF/A formata), Anji Petković (za angleški primer magistrskega dela), Maji Klavžar (za natančna navodila glede navajanja literature) ter Matjažu Konvalinki in Sašu Strletu (kot skrbnikoma programov za vse potrebne informacije).
+Za pomoč pri razvoju se zahvaljujemo Aniti Buckley (za pomoč pri poenotenju in uvedbi PDF/A formata), Maji Klavžar (za natančna navodila glede navajanja literature), Matjažu Konvalinki (kot skrbniku za vse potrebne informacije), Anji Petković (za angleški primer magistrskega dela) in Sašu Strletu (za prvo različico predloge za diplomsko delo).
 
 _Razvijalci_: Luna Strah, Jure Slak, [Matija Pretnar](https://matija.pretnar.info/), Gašper Golob in Katja Berčič.
 
