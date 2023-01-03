@@ -135,6 +135,9 @@
 % ukaz za slovarsko geslo
 \newcommand{\geslo}[2]{\noindent\textbf{#1}\hspace*{3mm}\hangindent=\parindent\hangafter=1 #2\par}
 
+% ukaz za literaturo
+\newcommand{\literatura}[1]{\def\@literatura{#1}}
+
 \AtEndPreamble{%
 \let\oldtexorpdfstring\texorpdfstring
 \renewcommand{\texorpdfstring}[2]{#2}
@@ -232,4 +235,12 @@ Ljubljana, \@letnica}
 {\bf Ključne besede:} \@kljucnebesede \\[1mm]
 {\bf Keywords:} \@keywords
 \pagebreak
+}
+
+\AtEndDocument{%
+% Ukazi za izpis virov
+\bibliographystyle{fmf-sl}
+\ifdef{\@literatura}{%
+  \bibliography{\@literatura}
+}{\relax}
 }
