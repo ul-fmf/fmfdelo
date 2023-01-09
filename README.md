@@ -27,8 +27,7 @@ Vaš PDF pred oddajo (ali pa že kdaj prej) preverite z uporabo spletnega valida
 
 Če imate težavo:
 
-1. Najprej **počistite dodatne datoteke** (`.log`, `.aux` ipd.), v katerih se lahko stare napake zadržujejo dlje, kot je treba.
-V urejevalniku Visual Studio Code to naredite tako, da v paleti ukazov (Command Palette, <kbd>Ctrl+Shift+P</kbd> oz. <kbd>Cmd+Shift+P</kbd> na macOS) natipkate `Clean Auxiliary Files`. Tam bo pisalo tudi, s katero bližnjico pridete do te funkcije na vašem računalniku. Alternativno lahko v ukazni vrstici poženete ukaz `latexmk -c`.
+1. Najprej **počistite dodatne datoteke** (`.log`, `.aux` ipd.), v katerih se lahko stare napake zadržujejo dlje, kot je treba. V urejevalniku Visual Studio Code to naredite tako, da v paleti ukazov (Command Palette, <kbd>Ctrl+Shift+P</kbd> oz. <kbd>Cmd+Shift+P</kbd> na macOS) natipkate `Clean Auxiliary Files`. Tam bo pisalo tudi, s katero bližnjico pridete do te funkcije na vašem računalniku. Alternativno lahko v ukazni vrstici poženete ukaz `latexmk -c`.
 2. V [spodnjem seznamu](#seznam-najpogostejših-napak) poiščite napako, ki jo imate, sledite navodilom ter **ponovite 1. korak**.
 3. Če napake na seznamu ne najdete, stopite v stik z razvijalci ali odprite [issue na GitHubu](https://github.com/ul-fmf/fmfdelo/issues/new). **V nobenem primeru ne spreminjajte datoteke `fmfdelo.cls` ali strukture predloge**, saj je šlo zaradi formata PDF/A v predlogo veliko truda in bo spreminjanje bolj kot ne še kaj dodatno pokvarilo.
 
@@ -52,9 +51,7 @@ morate posodobiti `.cls` datoteko na najnovejšo verzijo.
 
 #### `The value of the key SMask ...` / `The key S has a value ...`
 
-Napaki `The value of the key SMask is an image but must be None.` ali
-`The key S has a value Transparency which is prohibited.` pomenita,
-da imate vključeno kakšno prosojno sliko. Za rastrske slike je ponavadi dovolj, da s primernim programom prosojno barvo spremenite v belo. Za slike v vektorskih formatih je potrebno ponavadi nastaviti ozadje, za `.pdf` format lahko na primer kar uredite datoteko in zamenjate `/Transparency` pri polju `/S` z `/GTS_PDFA1`.
+Napaki `The value of the key SMask is an image but must be None.` ali `The key S has a value Transparency which is prohibited.` pomenita, da imate vključeno kakšno prosojno sliko. Za rastrske slike je ponavadi dovolj, da s primernim programom prosojno barvo spremenite v belo, za slike v vektorskih formatih pa je potrebno ponavadi nastaviti ozadje.
 
 #### Rastrska pisava
 
