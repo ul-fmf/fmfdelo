@@ -16,10 +16,10 @@
 \newcommand{\@ifthen}[2]{\ifthenelse{#1}{#2}{\relax}}
 \newcommand{\@unless}[2]{\ifthenelse{#1}{\relax}{#2}}
 \newcommand{\@blank}[1]{\equal{#1}{}}
-\newcommand{\@fri}{}
 
 \newboolean{@brezpaketov}         % Ali naj ne nalozimo dodatnih paketov?
 \newboolean{@drugastopnja}
+\newboolean{@fri}
 
 %-----------------------------------------------------------------------------
 %                                   Opcije
@@ -31,7 +31,7 @@
 \DeclareOption{fin1}{\def\@program{Finan\v{c}na matematika}\def\@stopnja{1.~stopnja}\def\@tipdela{Delo diplomskega seminarja}}
 \DeclareOption{mat2}{\def\@program{Matematika}\def\@stopnja{2.~stopnja}\def\@tipdela{Magistrsko delo}\setboolean{@drugastopnja}{true}}
 \DeclareOption{fin2}{\def\@program{Finan\v{c}na matematika}\def\@stopnja{2.~stopnja}\def\@tipdela{Magistrsko delo}\setboolean{@drugastopnja}{true}}
-\DeclareOption{isrm2}{\def\@fri{\\[1mm]FAKULTETA ZA RAČUNALNIŠTVO IN INFORMATIKO}\def\@program{Interdisciplinarni \v{s}tudij ra\v{c}unalni\v{s}tva in matematike}\def\@stopnja{2.~stopnja}\def\@tipdela{Magistrsko delo}\setboolean{@drugastopnja}{true}}
+\DeclareOption{isrm2}{\def\@program{Interdisciplinarni \v{s}tudij ra\v{c}unalni\v{s}tva in matematike}\def\@stopnja{2.~stopnja}\def\@tipdela{Magistrsko delo}\setboolean{@drugastopnja}{true}\setboolean{@fri}{true}}
 
 % vse ostale moznosti (fleqn, twocolumn, ...) podamo naprej v paket article
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{amsart}}
@@ -173,7 +173,9 @@
 \thispagestyle{empty}
 \noindent{\large
 UNIVERZA V LJUBLJANI\\[1mm]
-FAKULTETA ZA MATEMATIKO IN FIZIKO\@fri\\[5mm]
+FAKULTETA ZA MATEMATIKO IN FIZIKO
+\@ifthen{\boolean{@fri}}{\\[1mm]FAKULTETA ZA RAČUNALNIŠTVO IN INFORMATIKO}
+\\[5mm]
 \@program\ -- \@stopnja}
 \vfill
 
