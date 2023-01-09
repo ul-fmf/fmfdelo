@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 for dirname in *; do
     if [ -d "$dirname" ]; then
@@ -11,6 +12,7 @@ for dirname in *; do
         cd $dirname
         zip $zipname *
         latexmk -pdf $texname
+        verapdf $pdfname
         zip $zipname $pdfname
 
         git clean -Xdf
