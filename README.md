@@ -25,7 +25,7 @@ Vaš PDF pred oddajo (ali pa že kdaj prej) preverite z uporabo spletnega valida
 
 ## Odpravljanje napak
 
-Če imate težavo:
+Če imate težavo s predlogo:
 
 1. Najprej **počistite dodatne datoteke** (`.log`, `.aux` ipd.), v katerih se lahko stare napake zadržujejo dlje, kot je treba. V urejevalniku Visual Studio Code to naredite tako, da v paleti ukazov (Command Palette, <kbd>Ctrl+Shift+P</kbd> oz. <kbd>Cmd+Shift+P</kbd> na macOS) natipkate `Clean Auxiliary Files`. Tam bo pisalo tudi, s katero bližnjico pridete do te funkcije na vašem računalniku. Alternativno lahko v ukazni vrstici poženete ukaz `latexmk -c`.
 2. V [spodnjem seznamu](#seznam-najpogostejših-napak) poiščite napako, ki jo imate, sledite navodilom ter **ponovite 1. korak**.
@@ -70,3 +70,7 @@ se bo lahko odvisno od vrste vira izpisalo kot _Predloge za zaključna dela na F
 #### Neveljaven znak na začetku datoteke
 
 Če vam LaTeX (ali kakšno drugo orodje) javlja napako pred prvim znakom datoteke, tudi če ga pobrišete, gre najverjetneje za [BOM](https://en.wikipedia.org/wiki/Byte_order_mark), poseben neviden znak na začetku datoteke. Znebite se ga tako, da v Visual Studio Code spodaj kliknete na `UTF-8 with BOM` ter izberete `Save with encoding > UTF-8`.
+
+#### Ostale napake
+
+Še enkrat, če napake na seznamu ne najdete, **ne spreminjajte datoteke ali strukture predloge**, temveč opozorite razvijalce, da jo lahko preprečimo tudi za ostale uporabnike.
