@@ -190,20 +190,20 @@ FAKULTETA ZA MATEMATIKO IN FIZIKO
 
 \noindent{\large
 Ljubljana, \@letnica}
-\pagebreak
+\cleardoublepage
 
 \ifdefined\@zahvala
   \section*{Zahvala}
   \@zahvala
   \vfill
-  \pagebreak
+  \clearpage
 \fi
 
 \thispagestyle{empty}
 \pdfbookmark[1]{\contentsname}{kazalo-vsebine}
 \tableofcontents
 \vfill
-\pagebreak
+\clearpage
 
 \@ifthen{\boolean{@drugastopnja}}{
   \section*{Program dela}
@@ -217,7 +217,7 @@ Ljubljana, \@letnica}
     \begin{tabular}{rp{4cm}} \@podpisi \end{tabular}
   \end{flushright}
   \vfill
-  \pagebreak
+  \clearpage
 }
 
 \thispagestyle{empty}
@@ -236,7 +236,7 @@ Ljubljana, \@letnica}
 {\bf Math. Subj. Class. (2020):} \@klasifikacija \\[1mm]
 {\bf Ključne besede:} \@kljucnebesede \\[1mm]
 {\bf Keywords:} \@keywords
-\pagebreak
+\clearpage
 }
 
 \AtEndDocument{%
