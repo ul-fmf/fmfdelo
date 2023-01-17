@@ -79,6 +79,10 @@
 %                             Oblikovanje glave
 %-----------------------------------------------------------------------------
 \def\@mentorji{}
+\newcommand\@trim[1]{\ifblank{#1}{}{#1}}
+\newcommand{\requiredfield}[1]{
+  \@ifthen{\equal{#1}{}}{\PackageError{fmfdelo}{Polje je zahtevano.}{}}
+}
 \newcommand{\dodajmentorja}[2]{%
   \g@addto@macro\@mentorji{#1: & #2 \\}%
 }
@@ -100,19 +104,18 @@
 \newcommand{\somentorja}[2]{\dodajdvamentorja{Somentorja}{#1}{#2}\dodajdvapodpisa{somentorjev}}
 \newcommand{\mentorici}[2]{\dodajdvamentorja{Mentorici}{#1}{#2}\dodajdvapodpisa{mentoric}}
 \newcommand{\somentorici}[2]{\dodajdvamentorja{Somentorici}{#1}{#2}\dodajdvapodpisa{somentoric}}
-\newcommand{\program}[1]{\def\@program{#1}}
-\newcommand{\avtor}[1]{\def\@avtor{#1}}
-\newcommand{\naslov}[1]{\def\@naslov{#1}}
-\renewcommand{\title}[1]{\def\@title{#1}}
-\newcommand{\letnica}[1]{\def\@letnica{#1}}
-\newcommand{\zahvala}[1]{\def\@zahvala{#1}}
-\newcommand{\programdela}[1]{\def\@programdela{#1}}
-\newcommand{\osnovnaliteratura}[1]{\def\@osnovnaliteratura{#1}}
-\newcommand{\povzetek}[1]{\def\@povzetek{#1}}
-\renewcommand{\abstract}[1]{\def\@abstract{#1}}
-\newcommand{\klasifikacija}[1]{\def\@klasifikacija{#1}}
-\newcommand{\kljucnebesede}[1]{\def\@kljucnebesede{#1}}
-\renewcommand{\keywords}[1]{\def\@keywords{#1}}
+\newcommand{\avtor}[1]{\def\@avtor{\@trim{#1}}\requiredfield{\@avtor}}
+\newcommand{\naslov}[1]{\def\@naslov{\@trim{#1}}\requiredfield{\@naslov}}
+\renewcommand{\title}[1]{\def\@title{\@trim{#1}}\requiredfield{\@title}}
+\newcommand{\letnica}[1]{\def\@letnica{\@trim{#1}}\requiredfield{\@letnica}}
+\newcommand{\zahvala}[1]{\def\@zahvala{\@trim{#1}}}
+\newcommand{\programdela}[1]{\def\@programdela{\@trim{#1}}}
+\newcommand{\osnovnaliteratura}[1]{\def\@osnovnaliteratura{\@trim{#1}}}
+\newcommand{\povzetek}[1]{\def\@povzetek{\@trim{#1}}\requiredfield{\@povzetek}}
+\renewcommand{\abstract}[1]{\def\@abstract{\@trim{#1}}\requiredfield{\@abstract}}
+\newcommand{\klasifikacija}[1]{\def\@klasifikacija{\@trim{#1}}\requiredfield{\@klasifikacija}}
+\newcommand{\kljucnebesede}[1]{\def\@kljucnebesede{\@trim{#1}}{{\newcommand\sep{\relax}\requiredfield{\@kljucnebesede}}}} % da preverimo vsebino, lokalno definiramo \sep
+\renewcommand{\keywords}[1]{\def\@keywords{\@trim{#1}}{{\newcommand\sep{\relax}\requiredfield{\@keywords}}}}
 
 % ukazi za matematicna okolja
 \theoremstyle{definition} % tekst napisan pokoncno
