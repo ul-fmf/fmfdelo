@@ -231,7 +231,7 @@ Ljubljana, \@letnica}
 \end{center}
 \@abstract
 \vfill\noindent
-{\bf Math. Subj. Class. (2010):} \@klasifikacija \\[1mm]
+{\bf Math. Subj. Class. (2020):} \@klasifikacija \\[1mm]
 {\bf Ključne besede:} \@kljucnebesede \\[1mm]
 {\bf Keywords:} \@keywords
 \pagebreak
