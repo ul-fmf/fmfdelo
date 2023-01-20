@@ -151,7 +151,7 @@
 \protect\Title{\@naslov}
 \protect\Author{\@avtor}
 \protect\Keywords{\@kljucnebesede}
-\protect\Subject{matematika}
+\protect\Subject{\@tipdela, \@program, \@stopnja}
 }
 \closeoutputstream{xmpdatafile}
 
