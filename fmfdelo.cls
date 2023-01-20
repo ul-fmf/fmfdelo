@@ -7,7 +7,7 @@
 
 \LoadClass[12pt, a4paper]{amsart}
 \RequirePackage{amsfonts,amsmath,amssymb}
-\RequirePackage[slovene]{babel}
+\RequirePackage[slovene,english]{babel}
 \RequirePackage{bibentry}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
@@ -27,28 +27,37 @@
 \newboolean{@drugastopnja}
 \newboolean{@enovitistudij}
 \newboolean{@fri}
+\newboolean{@anglescina}
+\newcommand{\@sloeng}[2]{\ifthenelse{\boolean{@anglescina}}{#2}{#1}}
 
+\DeclareOption{anglescina}{\setboolean{@anglescina}{true}}
 \DeclareOption{mat1}{
   \def\@program{Matematika}
+  \def\@programme{Mathematics}
 }
 \DeclareOption{fin1}{
   \def\@program{Finančna matematika}
+  \def\@programme{Financial Mathematics}
 }
 \DeclareOption{mat2}{
   \def\@program{Matematika}
+  \def\@programme{Mathematics}
   \setboolean{@drugastopnja}{true}
 }
 \DeclareOption{fin2}{
   \def\@program{Finančna matematika}
+  \def\@programme{Financial Mathematics}
   \setboolean{@drugastopnja}{true}
 }
 \DeclareOption{isrm2}{
-  \def\@program{Interdisciplinarni študij računalništva in matematike}
+  \def\@program{Računalništvo in matematika}
+  \def\@programme{Computer Science and Mathematics}
   \setboolean{@drugastopnja}{true}
   \setboolean{@fri}{true}
 }
 \DeclareOption{ped}{
   \def\@program{Pedagoška matematika}
+  \def\@programme{Mathematics Education}
   \setboolean{@drugastopnja}{true}
   \setboolean{@enovitistudij}{true}
 }
@@ -59,9 +68,18 @@
 \ifthenelse{\boolean{@drugastopnja}}{
   \def\@stopnja{2. stopnja}
   \def\@tipdela{Magistrsko delo}
+  \def\@cycle{2nd cycle}
+  \def\@thesistype{Master's thesis}
 }{
   \def\@stopnja{1. stopnja}
   \def\@tipdela{Delo diplomskega seminarja}
+  \def\@cycle{1st cycle}
+  \def\@thesistype{Diploma seminar work}
+}
+\@sloeng{
+  \selectlanguage{slovene}
+}{
+  \selectlanguage{english}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -90,7 +108,9 @@
   }
 }
 \def\@mentorji{}
+\def\@supervisors{}
 \def\@podpisi{}
+\def\@signatures{}
 \newcommand{\@dodajmentorja}[3]{%
   \g@addto@macro\@mentorji{#1: & #3 \\}%
   \g@addto@macro\@podpisi{Podpis #2: & \phantom{prostor za podpis} \\[2cm]}%
@@ -98,6 +118,14 @@
 \newcommand{\@dodajdvamentorja}[4]{%
   \g@addto@macro\@mentorji{#1: & #3 \\ & #4 \\}%
   \g@addto@macro\@podpisi{Podpisa #2: & \phantom{prostor za podpis} \\[2cm] & \phantom{prostor za podpis} \\[2cm]}
+}
+\newcommand{\@addsupervisor}[3]{%
+  \g@addto@macro\@supervisors{#1: & #3 \\}%
+  \g@addto@macro\@signatures{#2 signature: & \phantom{prostor za podpis} \\[2cm]}%
+}
+\newcommand{\@addsupervisors}[4]{%
+  \g@addto@macro\@supervisors{#1: & #3 \\ & #4 \\}%
+  \g@addto@macro\@signatures{#2 signature: & \phantom{prostor za podpis} \\[2cm] & \phantom{prostor za podpis} \\[2cm]}
 }
 
 \newcommand{\avtor}{\@definerequiredfield{@avtor}}
@@ -126,6 +154,10 @@
 \newcommand{\somentorja}{\@dodajdvamentorja{Somentorja}{somentorjev}}
 \newcommand{\mentorici}{\@dodajdvamentorja{Mentorici}{mentoric}}
 \newcommand{\somentorici}{\@dodajdvamentorja{Somentorici}{somentoric}}
+\newcommand{\supervisor}[1]{\@addsupervisor{Supervisor}{Supervisor's}{#1}}
+\newcommand{\cosupervisor}[1]{\@addsupervisor{Co-supervisor}{Co-supervisor's}{#1}}
+\newcommand{\supervisors}[2]{\@addsupervisors{Supervisors}{Supervisors'}{#1}{#2}}
+\newcommand{\cosupervisors}[2]{\@addsupervisors{Co-supervisors}{Co-supervisors'}{#1}{#2}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % IZPIS PDF/A
@@ -137,12 +169,19 @@
 \let\sep{\protect\sep}
 \newoutputstream{xmpdatafile}
 \openoutputfile{\jobname.xmpdata}{xmpdatafile}
-\addtostream{xmpdatafile}{%
-\protect\Title{\@naslov}
-\protect\Author{\@avtor}
-\protect\Keywords{\@kljucnebesede}
-\protect\Subject{\@tipdela, \@program, \@klasifikacija}
-}
+\ifthenelse{\boolean{@anglescina}}{
+  \addtostream{xmpdatafile}{%
+  \protect\Title{\@title}
+  \protect\Author{\@avtor}
+  \protect\Keywords{\@keywords}
+  \protect\Subject{\@thesistype, \@programme, \@klasifikacija}
+}}{
+  \addtostream{xmpdatafile}{%
+  \protect\Title{\@naslov}
+  \protect\Author{\@avtor}
+  \protect\Keywords{\@kljucnebesede}
+  \protect\Subject{\@tipdela, \@program, \@klasifikacija}
+}}
 \closeoutputstream{xmpdatafile}
 
 \let\texorpdfstring\oldtexorpdfstring
@@ -186,6 +225,17 @@
 }{
   \popQED\end{zgled*}
 }
+\@ifthen{\boolean{@anglescina}}{
+\newtheorem{axiom}{Axiom}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{remark}[definition]{Remark}
+\newtheorem{example*}[definition]{Example}
+\newenvironment{example}[1][]{
+  \begin{example*}[#1]\renewcommand*{\qedsymbol}{$\diamondsuit$}\pushQED{\qed}
+}{
+  \popQED\end{example*}
+}
+}
 
  % poševno napisan tekst
 \theoremstyle{plain}
@@ -193,6 +243,12 @@
 \newtheorem{izrek}[definicija]{Izrek}
 \newtheorem{trditev}[definicija]{Trditev}
 \newtheorem{posledica}[definicija]{Posledica}
+\@ifthen{\boolean{@anglescina}}{
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{corollary}[definition]{Corollary}
+}
 
 \numberwithin{equation}{section}  % števec za enačbe zgleda kot (2.7) in se resetira v vsakem razdelku
 \newenvironment{dokaz}[1][Dokaz]{\begin{proof}[#1]}{\end{proof}}
@@ -211,6 +267,30 @@
 
 \AfterEndPreamble{%
 \pagestyle{plain}
+\@sloeng{\bibliographystyle{fmf-sl}}{\bibliographystyle{fmf-en}}
+\thispagestyle{empty}
+\@ifthen{\boolean{@anglescina}}{\thispagestyle{empty}
+\noindent{\large
+UNIVERSITY OF LJUBLJANA\\[1mm]
+FACULTY OF MATHEMATICS AND PHYSICS
+\@ifthen{\boolean{@fri}}{\\[1mm]FACULTY OF COMPUTER AND INFORMATION SCIENCE}
+\\[5mm]
+\@programme\ -- \@cycle}
+\vfill
+
+\begin{center}{\large
+\@avtor\\[2mm]
+{\bf \@title}\\[10mm]
+\@thesistype\\[1cm]
+\begin{tabular}{rl} \@supervisors \end{tabular}
+}
+\end{center}
+\vfill
+
+\noindent{\large
+Ljubljana, \@letnica}
+\cleardoublepage
+}
 \thispagestyle{empty}
 \noindent{\large
 UNIVERZA V LJUBLJANI\\[1mm]
@@ -234,7 +314,7 @@ Ljubljana, \@letnica}
 \cleardoublepage
 
 \ifdefined\@zahvala
-  \section*{Zahvala}
+  \@sloeng{\section*{Zahvala}}{\section*{Acknowledgements}}
   \@zahvala
   \vfill
   \clearpage
@@ -245,9 +325,8 @@ Ljubljana, \@letnica}
 \tableofcontents
 \vfill
 \clearpage
-
 \@ifthen{\boolean{@drugastopnja}}{
-  \section*{Program dela}
+  \@sloeng{\section*{Program dela}}{\section*{Project plan}}
   \@programdela
 
   \section*{Osnovna literatura}
@@ -258,7 +337,7 @@ Ljubljana, \@letnica}
 
   \vspace{2cm}
   \begin{flushright}
-    \begin{tabular}{rp{4cm}} \@podpisi \end{tabular}
+    \begin{tabular}{rp{4cm}} \@sloeng{\@podpisi}{\@signatures} \end{tabular}
   \end{flushright}
   \vfill
   \clearpage
@@ -289,7 +368,6 @@ Ljubljana, \@letnica}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \AtEndDocument{%
-\bibliographystyle{fmf-sl}
 \ifdef{\@slovar}{%
 \section*{Slovar strokovnih izrazov}
 \@slovar
