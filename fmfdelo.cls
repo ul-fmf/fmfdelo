@@ -110,6 +110,7 @@
 \newcommand{\klasifikacija}{\@definerequiredfield{@klasifikacija}}
 \newcommand{\kljucnebesede}{\@definerequiredfield{@kljucnebesede}}
 \renewcommand{\keywords}{\@definerequiredfield{@keywords}}
+\newcommand{\slovar}{\@definefield{@slovar}}
 \newcommand{\literatura}{\@definefield{@literatura}}
 
 \newcommand{\vnosliterature}[1]{\item[\cite{#1}] \bibentry{#1}}
@@ -287,6 +288,10 @@ Ljubljana, \@letnica}
 
 \AtEndDocument{%
 \bibliographystyle{fmf-sl}
+\ifdef{\@slovar}{%
+\section*{Slovar strokovnih izrazov}
+\@slovar
+}
 \ifdef{\@literatura}{%
   \bibliography{\@literatura}
 }{\relax}
