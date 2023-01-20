@@ -1,62 +1,80 @@
-% !TeX spellcheck = sl_SI
 \documentclass[mat1]{fmfdelo}
 % \documentclass[fin1]{fmfdelo}
-% \documentclass[mat2]{fmfdelo}
-% \documentclass[fin2]{fmfdelo}
-% \documentclass[isrm2]{fmfdelo}
-% \documentclass[ped2]{fmfdelo}
 
-% naslednje ukaze ustrezno napolnite
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% METAPODATKI
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% - vaše ime
 \avtor{Ime Priimek}
+
+% - naslov dela v slovenščini
 \naslov{Naslov dela}
+
+% - naslov dela v angleščini
 \title{Angleški prevod slovenskega naslova dela}
 
-% navedite ime mentorja s polnim nazivom: doc.~dr.~Ime Priimek,
-% izr.~prof.~dr.~Ime Priimek, prof.~dr.~Ime Priimek
-% uporabite le tisti ukaz/ukaze, ki je/so za vas ustrezni
-% \mentor{izr.~prof.~dr.~Ime Priimek}
+% - ime mentorja/mentorice s polnim nazivom:
+%   - doc.~dr.~Ime Priimek
+%   - izr.~prof.~dr.~Ime Priimek
+%   - prof.~dr.~Ime Priimek
+%   za druge variante uporabite ustrezne ukaze
 \mentorica{izr.~prof.~dr.~Ime Priimek}
 \somentor{doc.~dr.~Ime Priimek}
-%\somentorica{doc.~dr.~Ime Priimek}
-% \mentorja{}{}
-% \mentorici{}{}
 
-\letnica{2016} % leto diplome
+% - leto diplome
+\letnica{2016} 
 
-%  V povzetku na kratko opišite vsebinske rezultate dela. Sem ne sodi razlaga organizacije dela --
-%  v katerem poglavju/razdelku je kaj, pač pa le opis vsebine.
+% - povzetek v slovenščini
+%   V povzetku na kratko opišite vsebinske rezultate dela. Sem ne sodi razlaga
+%   organizacije dela, torej v katerem razdelku je kaj, pač pa le opis vsebine.
 \povzetek{V povzetku na kratko opišemo vsebinske rezultate dela. Sem ne sodi
 razlaga organizacije dela -- v katerem poglavju/razdelku je kaj, pač pa le opis
 vsebine.}
 
-%  Prevod slovenskega povzetka v angleščino.
+% - povzetek v angleščini
 \abstract{Prevod slovenskega povzetka v angleščino.}
 
-% navedite vsaj eno klasifikacijsko oznako -- dostopne so na https://msc2020.org/
+% - klasifikacijske oznake, ločene z vejicami
+%   Oznake, ki opisujejo področje dela, so dostopne na strani https://www.ams.org/msc/
 \klasifikacija{74B05, 65N99}
-\kljucnebesede{naravni logaritem\sep nenaravni algoritem} % navedite nekaj ključnih besed, ki nastopajo v delu, ločenih s \sep
+
+% - ključne besede, ki nastopajo v delu, ločene s \sep
+\kljucnebesede{naravni logaritem\sep nenaravni algoritem}
+
+% - angleški prevod ključnih besed
 \keywords{natural logarithm\sep unnatural algorithm} % angleški prevod ključnih besed
 
-% navedite pot do datoteke z viri (vključno s končnico .bib)
-\literatura{literatura.bib}
-
-% slovar strokovnih izrazov
+% - angleško-slovenski slovar strokovnih izrazov
 \slovar{
-  \geslo{continuous}{zvezen}
-  \geslo{uniformly continuous}{enakomerno zvezen}
-  \geslo{compact}{kompakten -- metrični prostor je kompakten, če ima v njem vsako zaporedje stekališče; podmnožica evklidskega prostora je kompaktna natanko tedaj, ko je omejena in zaprta  }
-  \geslo{glide reflection}{zrcalni zdrs ali zrcalni pomik -- tip ravninske evklidske izometrije, ki je kompozitum zrcaljenja in translacije vzdolž iste premice}  
-  \geslo{lattice}{mreža}  
-  \geslo{link}{splet}
-  \geslo{partition}{\textbf{$\sim$ of a set} razdelitev množice; \textbf{$\sim$ of a number} razčlenitev števila}
+\geslo{continuous}{zvezen}
+\geslo{uniformly continuous}{enakomerno zvezen}
+\geslo{compact}{kompakten -- metrični prostor je kompakten, če ima v njem vsako zaporedje stekališče; podmnožica evklidskega prostora je kompaktna natanko tedaj, ko je omejena in zaprta  }
+\geslo{glide reflection}{zrcalni zdrs ali zrcalni pomik -- tip ravninske evklidske izometrije, ki je kompozitum zrcaljenja in translacije vzdolž iste premice}  
+\geslo{lattice}{mreža}  
+\geslo{link}{splet}
+\geslo{partition}{\textbf{$\sim$ of a set} razdelitev množice; \textbf{$\sim$ of a number} razčlenitev števila}
 }
 
-% aktivirajte pakete, ki jih potrebujete
+% - ime datoteke z viri (vključno s končnico .bib), če uporabljate BibTeX
+\literatura{literatura.bib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DODATNE DEFINICIJE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% naložite dodatne pakete, ki jih potrebujete
 \usepackage{algpseudocode}  % za psevdokodo
 \usepackage{algorithm}      % za algoritme
 \floatname{algorithm}{Algoritem}
 \renewcommand{\listalgorithmname}{Kazalo algoritmov}
-% \usepackage{tikz}
+
+% deklarirajte vse matematične operatorje, da jih bo LaTeX pravilno stavil
+% \DeclareMathOperator{\conv}{conv}
+% na razpolago so naslednja matematična okolja, ki jih kličemo s parom
+% \begin{imeokolja}[morebitni komentar v oklepaju] ... \end{imeokolja}
+%
+% definicija, opomba, primer, zgled, lema, trditev, izrek, posledica, dokaz
 
 % za številske množice uporabite naslednje simbole
 \newcommand{\R}{\mathbb R}
@@ -68,16 +86,9 @@ vsebine.}
 \newcommand{\C}{\mathbb C}
 \newcommand{\Q}{\mathbb Q}
 
-% matematične operatorje deklarirajte kot take, da jih bo Latex pravilno stavil
-% \DeclareMathOperator{\conv}{conv}
-% na razpolago so naslednja matematična okolja, ki jih kličemo s parom
-% \begin{imeokolja}[morebitni komentar v oklepaju] ... \end{imeokolja}
-%
-% definicija, opomba, primer, zgled, lema, trditev, izrek, posledica, dokaz
-%
-
-% vstavite svoje definicije ...
-%  \newcommand{}{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ZAČETEK VSEBINE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 
@@ -263,4 +274,3 @@ navajamo v dveh oblikah, kot tiskani in spletni vir, najprej navedemo tiskani
 vir, nato pa še podatek o tem, kje je dostopen v elektronski obliki.
 
 \end{document}
-
