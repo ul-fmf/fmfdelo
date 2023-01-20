@@ -17,6 +17,8 @@
 \RequirePackage{ifthen}
 \RequirePackage{keyval}
 
+\newcommand{\@ifthen}[2]{\ifthenelse{#1}{#2}{\relax}}
+
 %-----------------------------------------------------------------------------
 %                                   Opcije
 %-----------------------------------------------------------------------------
@@ -76,10 +78,8 @@
     % Ker ključne besede vsebujejo nedefinirano ločilo \sep, ga za potrebe
     % preverjanja lokalno definiramo (zato par zavitih oklepajev).
     \newcommand\sep{\relax}
-    \ifthenelse{\equal{\csname #1\endcsname}{}}{
+    \@ifthen{\equal{\csname #1\endcsname}{}}{
       \PackageError{fmfdelo}{Polje je zahtevano.}{}
-    }{
-      \relax
     }
   }
 }
@@ -206,7 +206,7 @@
 \noindent{\large
 UNIVERZA V LJUBLJANI\\[1mm]
 FAKULTETA ZA MATEMATIKO IN FIZIKO
-\ifthenelse{\boolean{@fri}}{\\[1mm]FAKULTETA ZA RAČUNALNIŠTVO IN INFORMATIKO}{}
+\@ifthen{\boolean{@fri}}{\\[1mm]FAKULTETA ZA RAČUNALNIŠTVO IN INFORMATIKO}
 \\[5mm]
 \@program\ -- \@stopnja}
 \vfill
@@ -237,7 +237,7 @@ Ljubljana, \@letnica}
 \vfill
 \clearpage
 
-\ifthenelse{\boolean{@drugastopnja}}{
+\@ifthen{\boolean{@drugastopnja}}{
   \section*{Program dela}
   \@programdela
 
@@ -253,8 +253,6 @@ Ljubljana, \@letnica}
   \end{flushright}
   \vfill
   \clearpage
-}{
-  \relax
 }
 
 \thispagestyle{empty}
