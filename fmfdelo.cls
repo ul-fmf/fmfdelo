@@ -140,8 +140,10 @@
 
 \let\texorpdfstring\oldtexorpdfstring
 
+\makeatletter\let\saved@bibitem\@bibitem\makeatother
 % Nalozimo paket za zagotavljanje PDF/A-2B (ustrezni fonti, barvni profili, UTF-8 zapis simbolov, ...)
 \RequirePackage[a-2b]{pdfx}
+\makeatletter\let\@bibitem\saved@bibitem\makeatother
 }
 
 %-----------------------------------------------------------------------------
