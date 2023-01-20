@@ -4,8 +4,8 @@ Za uporabo najprej **preberite navodila na vaši spletni učilnici**, nato pa pr
 
 - [diploma-prazno.zip](arhivi/diploma-prazno.zip): prazna predloga za delo diplomskega seminarja
 - [diploma-primer.zip](arhivi/diploma-primer.zip): primer dela diplomskega seminarja
-- [magisterij-primer-sl.zip](arhivi/magisterij-primer-sl.zip): primer magistrskega dela (**POZOR**: predloga za magistrsko delo je v postopku [poenotenja z diplomskim delom](https://github.com/ul-fmf/fmfdelo/issues/11) - do takrat uporabljajte [ločena navodila](predloge/magisterij-primer-sl/README.md))
-- [magisterij-primer-en.zip](arhivi/magisterij-primer-en.zip): primer magistrskega dela v angleščini (velja enaka opomba kot zgoraj)
+- [magisterij-primer-sl.zip](arhivi/magisterij-primer-sl.zip): primer magistrskega dela
+- [magisterij-primer-en.zip](arhivi/magisterij-primer-en.zip): primer magistrskega dela v angleščini
 
 in sledite spodnjim [navodilom za uporabo](#navodila-za-uporabo). Dokument bi se moral prevesti brez posebnosti in dodatnih nastavitev. Nekaj pogostih težav in rešitev je [opisanih spodaj](#odpravljanje-napak).
 

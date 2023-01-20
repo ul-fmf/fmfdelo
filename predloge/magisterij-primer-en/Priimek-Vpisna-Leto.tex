@@ -1,69 +1,98 @@
-% !TeX spellcheck = en_GB
-% vim: set spell spelllang=en_gb:
-% za preverjanje črkovanja, če se uporablja Texstudio ali vim
-\documentclass[12pt,a4paper,twoside]{article}
-\usepackage[utf8]{inputenc}  % pravilno razpoznavanje unicode znakov
+\documentclass[mat2,anglescina]{fmfdelo}
+% \documentclass[fin2,anglescina]{fmfdelo}
+% \documentclass[isrm2,anglescina]{fmfdelo}
+% \documentclass[ped,anglescina]{fmfdelo}
 
-% NASLEDNJE UKAZE USTREZNO POPRAVI
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% METAPODATKI
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Naslednje ukaze ustrezno popravi
-\newcommand{\program}{Matematika} % ime studijskega programa
-\newcommand{\programme}{Mathematics} % ime studijskega programa v anglescini
-\newcommand{\imeavtorja}{Marija Novak} % ime avtorja
-\newcommand{\imementorja}{prof.~dr.~Janez Novak}  % akademski naziv in ime mentorja, uporabi poln naziv, prof.~dr.~, doc.~dr., ali izr.~prof.~dr.
-\newcommand{\adviser}{(Assistant/Associative)~Professor~Janez~Novak}% ustrezno popravi: Assistant Professor je docent, Associate Professor je izredni profesor, Professor pa je redni profesor
+% - vaše ime
+\avtor{Marija Novak}
 
-\newcommand{\imesomentorja}{} % akademski naziv in ime somentorja
-\newcommand{\naslovdela}{Naslov vašega dela}
-\newcommand{\englishtitle}{Title in English}
-\newcommand{\letnica}{2017} %letnica diplome
-\newcommand{\opis}{Delo obravnava integracijo po ω-kompleksih, njene lastnosti in posplošitve
-na Levy-jeve topološke prostore.}  % Opis dela v eni povedi. Ne sme vsebovati matematičnih simbolov v $ $.
-\newcommand{\kljucnebesede}{integracija\sep kompleks} % ključne besede, ločene z \sep, da se PDF metapodatki prav procesirajo
-\newcommand{\keywords}{integration\sep complex} % ključne besede v angleščini
-\newcommand{\organization}{Univerza v Ljubljani, Fakulteta za matematiko in fiziko} % fakulteta
-\newcommand{\literatura}{literatura}  % pot do datoteke z literaturo (.bib)
-\newcommand{\sep}{, }  % separator med ključnimi besedami v besedilu
-% KONEC PODATKOV
+% - naslov dela v slovenščini
+\naslov{Naslov dela}
 
-\usepackage{bibentry}         % za navajanje literature v programu dela s celim imenom
-\nobibliography{\literatura}
-\newcommand{\plancite}[1]{\item[\cite{#1}] \bibentry{#1}} % citiranje v programu dela
+% - naslov dela v angleščini
+\title{Angleški prevod slovenskega naslova dela}
 
-\usepackage{filecontents}  % za pisanje datoteke s PDF metapodatki
-\usepackage{silence} \WarningFilter{latex}{Overwriting file}  % odstrani annoying warning o obstoju datoteke
-% datoteka s PDF metapodatki, zgenerira se kot magisterij.xmpdata
-\begin{filecontents*}{\jobname.xmpdata}
-  \Title{\naslovdela}
-  \Author{\imeavtorja}
-  \Keywords{\kljucnebesede}
-  \Subject{matematika}
-  \Org{\organization}
-\end{filecontents*}
+% - ime mentorja/mentorice s polnim nazivom:
+%   - doc.~dr.~Ime Priimek
+%   - izr.~prof.~dr.~Ime Priimek
+%   - prof.~dr.~Ime Priimek
+%   za druge variante uporabite ustrezne ukaze
+\mentor{prof.~dr.~Janez Novak}
+% \somentor{...}
+% \mentorica{...}
+% \somentorica{...}
+% \mentorja{...}{...}
+% \somentorja{...}{...}
+% \mentorici{...}{...}
+% \somentorici{...}{...}
+% mentorja morate navesti še z angleškim nazivom:
+% - doc.~dr. = Assist.~Prof.~Dr.
+% - izr.~prof.~dr. = Assoc.~Prof.~Dr.
+% - prof.~dr. = Prof.~Dr.
+\supervisor{Prof.~Dr.~Janez~Novak}
+% \supervisor{...}
+% \cosupervisor{...}
+% \supervisors{...}{...}
+% \cosupervisors{...}{...}
 
-\usepackage[a-2b]{pdfx}  % zgenerira PDF v tem PDF/A-2b formatu, kot zahteva knjižnica
-\hypersetup{bookmarksopen, bookmarksdepth=3, colorlinks=true,
-  linkcolor=black, anchorcolor=black, citecolor=black, filecolor=black,
-  menucolor=black, runcolor=black, urlcolor=black, pdfencoding=auto,
-  breaklinks=true, psdextra}
+% - leto magisterija
+\letnica{2017} 
 
-\usepackage[slovene,english]{babel}  % slovenščina
-\usepackage[T1]{fontenc}     % naprednejše kodiranje fonta
-\usepackage{amsmath,amssymb,amsfonts,amsthm} % matematični paketi
-\usepackage{graphicx}     % za slike
-\usepackage{emptypage}    % prazne strani so neoštevilčene, ampak so štete
+% - povzetek v slovenščini
+%   V povzetku na kratko opišite vsebinske rezultate dela. Sem ne sodi razlaga
+%   organizacije dela, torej v katerem razdelku je kaj, pač pa le opis vsebine.
+\povzetek{Tukaj napišemo povzetek vsebine. Sem sodi razlaga vsebine in ne opis tega, kako je delo organizirano.}
+
+% - povzetek v angleščini
+\abstract{An abstract of the work is written here. This includes a short description of
+the content and not the structure of your work.}
+
+% - klasifikacijske oznake, ločene z vejicami
+%   Oznake, ki opisujejo področje dela, so dostopne na strani https://www.ams.org/msc/
+\klasifikacija{74B05, 65N99}
+
+% - ključne besede, ki nastopajo v delu, ločene s \sep
+\kljucnebesede{integracija\sep kompleks}
+
+% - angleški prevod ključnih besed
+\keywords{integration\sep complex} % angleški prevod ključnih besed
+
+% - neobvezna zahvala
+\zahvala{
+  Neobvezno.
+  Zahvaljujem se \dots
+}
+
+% - program dela, ki ga napiše mentor z osnovno literaturo
+\programdela{
+  Mentor naj napiše program dela skupaj z osnovno literaturo.
+}
+
+\osnovnaliteratura{
+% Literatura mora biti tukaj posebej samostojno navedena (po pomembnosti) in ne
+% le citirana. V tem razdelku literature ne oštevilčimo po svoje, ampak uporabljamo
+% ukaz \vnosliterature, v katerega vpišemo citat
+  \vnosliterature{lebedev2009introduction}
+  \vnosliterature{gurtin1982introduction}
+  \vnosliterature{zienkiewicz2000finite}
+  \vnosliterature{STtemplate}
+}
+
+% - ime datoteke z viri (vključno s končnico .bib), če uporabljate BibTeX
+\literatura{literatura.bib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DODATNE DEFINICIJE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% naložite dodatne pakete, ki jih potrebujete
 \usepackage{units}        % fizikalne enote kot \unit[12]{kg} s polovico nedeljivega presledka, glej primer v kodi
-\usepackage{makeidx}      % za stvarno kazalo, lahko zakomentiraš, če ne rabiš
-\makeindex                % za stvarno kazalo, lahko zakomentiraš, če ne rabiš
-% oblika strani
-\usepackage[
-  top=3cm,
-  bottom=3cm,
-  inner=3.5cm,      % margini za dvostransko tiskanje
-  outer=2.5cm,
-  footskip=40pt     % pozicija številke strani
-]{geometry}
-
+\usepackage{graphicx}     % za slike
+% \usepackage{tikz}
 % VEČ ZANIMIVIH PAKETOV
 % \usepackage{array}      % več možnosti za tabele
 % \usepackage[list=true,listformat=simple]{subcaption}  % več kot ena slika na figure, omogoči slika 1a, slika 1b
@@ -79,43 +108,12 @@ na Levy-jeve topološke prostore.}  % Opis dela v eni povedi. Ne sme vsebovati m
 % \usepackage{algpseudocode}  % za psevdokodo
 % \usepackage{algorithm}
 % \floatname{algorithm}{Algoritem}
-% \renewcommand{\listalgorithmname}{Table of Algorithms}
+% \renewcommand{\listalgorithmname}{Kazalo algoritmov}
 
-% DRUGI TVOJI PAKETI:
-% tukaj
+% deklarirajte vse matematične operatorje, da jih bo LaTeX pravilno stavil
+% \DeclareMathOperator{\...}{...}
 
-\selectlanguage{english}
-
-\setlength{\overfullrule}{50pt} % označi predlogo vrstico
-\pagestyle{plain}               % samo številka strani na dnu, nobene glave / noge
-
-% ukazi za matematična okolja
-\theoremstyle{definition} % tekst napisan pokončno
-\newtheorem{definicija}{Definicija}[section]
-\newtheorem{primer}[definicija]{Primer}
-\newtheorem{opomba}[definicija]{Opomba}
-\newtheorem{aksiom}{Aksiom}
-
-\newtheorem{definition}{Definition}[section]
-\newtheorem{remark}[definition]{Remark}
-\newtheorem{example}[definition]{Example}
-\newtheorem{axiom}[definition]{Axiom}
-
-\theoremstyle{plain} % tekst napisan poševno
-\newtheorem{lema}[definicija]{Lema}
-\newtheorem{izrek}[definicija]{Izrek}
-\newtheorem{trditev}[definicija]{Trditev}
-\newtheorem{posledica}[definicija]{Posledica}
-
-\newtheorem{lemma}[definition]{Lemma}
-\newtheorem{theorem}[definition]{Theorem}
-\newtheorem{proposition}[definition]{Proposition}
-\newtheorem{corollary}[definition]{Corollary}
-\newtheorem{question}[definition]{Question}
-
-\numberwithin{equation}{section}  % števec za enačbe zgleda kot 2.7 in se resetira v vsakem poglavju
-
-% Matematični ukazi
+% vstavite svoje definicije ...
 \newcommand{\R}{\mathbb R}
 \newcommand{\N}{\mathbb N}
 \newcommand{\Z}{\mathbb Z}
@@ -125,165 +123,11 @@ na Levy-jeve topološke prostore.}  % Opis dela v eni povedi. Ne sme vsebovati m
 \newcommand{\C}{\mathbb C}
 \newcommand{\Q}{\mathbb Q}
 
-% \DeclareMathOperator{\tr}{tr}  % morda potrebuješ operator za sled ali kaj drugega?
-
-% bold matematika znotraj \textbf{ }, tudi v naslovih, kot \omega spodaj
-\makeatletter \g@addto@macro\bfseries{\boldmath} \makeatother
-
-% Poimenuj kazalo slik kot ``Kazalo slik'' in ne ``Slike''
-\addto\captionsslovene{
-  \renewcommand{\listfigurename}{Kazalo slik}%
-}
-
-% če želiš, da se poglavja začnejo na lihih straneh zgoraj
-% \let\oldsection\section
-% \def\section{\cleardoublepage\oldsection}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%           DOCUMENT           %%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ZAČETEK VSEBINE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
-
-\pagenumbering{roman} % začnemo z rimskimi številkami
-\thispagestyle{empty} % ampak na prvi strani ni številke
-
-\noindent{\large
-UNIVERZA V LJUBLJANI\\[1mm]
-FAKULTETA ZA MATEMATIKO IN FIZIKO\\[5mm]
-\program\ -- 2.~stopnja}
-% ustrezno dopolni za IŠRM
-\vfill
-
-\begin{center}
-  \large
-  \imeavtorja\\[3mm]
-  \Large
-  \textbf{\MakeUppercase{\naslovdela}}\\[10mm]
-  \large
-  Magistrsko delo \\[1cm]
-  Mentor: \imementorja \\[2mm] % ustrezno popravi spol
-%   Somentor: \imesomentorja   % dodaj, če potrebno
-\end{center}
-\vfill
-
-\noindent{\large Ljubljana, \letnica}
-
-\cleardoublepage
-
-%Prva stran v angleščini
-\thispagestyle{empty} % ampak na prvi strani ni številke
-
-\noindent{\large
-UNIVERSITY OF LJUBLJANA\\[1mm]
-FACULTY OF MATHEMATICS AND PHYSICS\\[5mm]
-\programme\ -- 2nd~cycle}
-% ustrezno dopolni za IŠRM
-\vfill
-
-\begin{center}
-  \large
-  \imeavtorja\\[3mm]
-  \Large
-  \textbf{\MakeUppercase{\englishtitle}}\\[10mm]
-  \large
-  Master's Thesis \\[1cm]
-  Adviser: \adviser \\[2mm] % ustrezno popravi spol
-%   Somentor: \imesomentorja   % dodaj, če potrebno
-\end{center}
-\vfill
-
-\noindent{\large Ljubljana, \letnica}
-
-\cleardoublepage
-
-%% HERE COMES THE DECLARATION OF AUTHORSHIP - PRINT FROM VIS
-
-% zahvala
-\pdfbookmark[1]{Acknowledgements}{zahvala} %
-\section*{Acknowledgements}
-Not obligatory.
-I would like to thank\dots
-% end zahvala -- izbriši to vmes, če ne rabiš
-
-\cleardoublepage
-
-\pdfbookmark[1]{\contentsname}{kazalo-vsebine}
-\tableofcontents
-
-% list of figures
-% \cleardoublepage
-% \pdfbookmark[1]{\listfigurename}{kazalo-slik}
-% \listoffigures
-% end list of figures
-
-\cleardoublepage
-
-\phantomsection
-\addcontentsline{toc}{section}{Project plan} % dodajmo v kazalo
-\section*{Program dela}
-Mentor naj napiše program dela skupaj z osnovno literaturo. Na literaturo se
-lahko sklicuje kot~\cite{lebedev2009introduction}, \cite{gurtin1982introduction},
-\cite{zienkiewicz2000finite}, \cite{STtemplate}.
-
-\section*{Work plan}
-Adviser writes down the plan of the project. He/she can cite the references in the
-following way~\cite{lebedev2009introduction}, \cite{gurtin1982introduction},
-\cite{zienkiewicz2000finite}, \cite{STtemplate}.
-
-\section*{Osnovna literatura (Basic references)}
-% pot do .bib datoteke, da ve iz katere baze vzemat citate, ampak da ne naredi tukaj seznama literature
-%\nobibliography{literatura}
-%\bibliographystyle{fmf-en}
-Literatura mora biti tukaj posebej samostojno navedena (po pomembnosti) in ne le citirana.  V tem
-razdelku literature ne oštevilčimo po svoje, ampak uporabljamo okolje itemize in ukaz plancite, saj
-je celotna literatura oštevilčena na koncu. (The main references need to be explicitly written down
-here (in the order of importance) and not only cited. In this section we do not enumerate the
-references again, since they are already enumerated in the last section. We use the environment
-itemize and command plancite instead.)
-
-\begin{itemize}
-  \plancite{lebedev2009introduction}
-  \plancite{gurtin1982introduction}
-  \plancite{zienkiewicz2000finite}
-  \plancite{STtemplate}
-\end{itemize}
-
-\vspace{2cm}
-\hspace*{\fill} Podpis mentorja (adviser): \phantom{prostor za podpis}
-
-% \vspace{2cm}
-% \hspace*{\fill} Podpis somentorja (co adviser): \phantom{prostor za podpis}
-
-\cleardoublepage
-\pdfbookmark[1]{Povzetek}{abstract}
-
-\begin{center}
-\textbf{\naslovdela} \\[3mm]
-\textsc{Povzetek} \\[2mm]
-\end{center}
-Tukaj napišemo povzetek vsebine. Sem sodi razlaga vsebine in ne opis tega, kako je delo
-organizirano.
-
-\vfill
-\begin{center}
-\textbf{\englishtitle} \\[3mm] % prevod slovenskega naslova dela
-\textsc{Abstract}\\[2mm]
-\end{center}
-
-An abstract of the work is written here. This includes a short description of
-the content and not the structure of your work.
-
-\vfill\noindent
-\textbf{Math.~Subj.~Class.~(2020):} oznake kot 74B05, 65N99, na voljo so na naslovu
-\url{https://msc2020.org/} \\[1mm]
-\textbf{Ključne besede:} nekaj ključnih pojmov \\[1mm]
-\textbf{Keywords:} some key concepts
-
-\cleardoublepage
-
-\setcounter{page}{1}    % od sedaj naprej začni zopet z 1
-\pagenumbering{arabic}  % in z arabskimi številkami
 
 \section{Introduction}
 Write down a short introduction, focusing on historical and mathematical aspects. Introduce the
@@ -394,29 +238,5 @@ tukaj citiram.~\cite{vene2000categorical}, \cite{gregoric2017stopniceni}, \cite{
 \cite{nsphere}, \cite{kearsley1975linearly}, \cite{STtemplate}, \cite{NunbergerTand}.
 
 \end{otherlanguage}
-
-% Literatura:
-% Primer navajanja na http://www.fmf.uni-lj.si/storage/24240/LiteraturaM.pdf,
-% ampak bi moral stil poskrbeti za vse. Reference se uredijo po abecedi.
-% Če nobena izbira izmed @book, @atricle,... ni ok, potem se lahko vse napiše v
-% @misc pod note={} in deluje tako kot normalen LaTeX.
-% Komentar v bib datoteki se naredi samo s parom { }
-% Za urejanje literature avtor priporoča program Jabref, ki zna tudi avtomatsko
-% okrajšati imena revij. Za pravilno sortiranje vnosov brez avtorja, uporabite
-% polje key={ }, kot v primeru.
-% V primeru napak pišite na jure.slak@gmail.com.
-\cleardoublepage                           % na desni strani
-\phantomsection                            % da prav delujejo hiperlinki
-\addcontentsline{toc}{section}{References} % dodajmo v kazalo
-\bibliographystyle{fmf-en}                 % uporabljen stil je v datoteki fmf-en.bst, na voljo tudi slovenska verzija
-\bibliography{\literatura}                 % literatura je v datoteki, definirani na začetku
-% TeXStudio is confused by the backslash above, you can substitue the actual file name in, if the
-% cite suggestions are not working.
-
-% Za stvarno kazalo
-\cleardoublepage                           % na desni strani
-\phantomsection                            % da prav delujejo hiperlinki
-\addcontentsline{toc}{section}{\indexname} % dodajmo v kazalo
-\printindex
 
 \end{document}

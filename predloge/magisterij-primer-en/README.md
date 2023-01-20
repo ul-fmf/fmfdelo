@@ -1,1 +1,0 @@
-../magisterij-primer-sl/README.md
