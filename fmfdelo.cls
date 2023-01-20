@@ -46,6 +46,10 @@
   \setboolean{@drugastopnja}{true}
   \setboolean{@fri}{true}
 }
+\DeclareOption{ped2}{
+  \def\@program{Pedagoška matematika}
+  \setboolean{@drugastopnja}{true}
+}
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{amsart}}
 
