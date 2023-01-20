@@ -25,10 +25,10 @@
 %-----------------------------------------------------------------------------
 
 \DeclareOption{mat1}{\def\@program{Matematika}\def\@stopnja{1.~stopnja}\def\@tipdela{Delo diplomskega seminarja}}
-\DeclareOption{fin1}{\def\@program{Finan\v{c}na matematika}\def\@stopnja{1.~stopnja}\def\@tipdela{Delo diplomskega seminarja}}
+\DeclareOption{fin1}{\def\@program{Finančna matematika}\def\@stopnja{1.~stopnja}\def\@tipdela{Delo diplomskega seminarja}}
 \DeclareOption{mat2}{\def\@program{Matematika}\def\@stopnja{2.~stopnja}\def\@tipdela{Magistrsko delo}\setboolean{@drugastopnja}{true}}
-\DeclareOption{fin2}{\def\@program{Finan\v{c}na matematika}\def\@stopnja{2.~stopnja}\def\@tipdela{Magistrsko delo}\setboolean{@drugastopnja}{true}}
-\DeclareOption{isrm2}{\def\@program{Interdisciplinarni \v{s}tudij ra\v{c}unalni\v{s}tva in matematike}\def\@stopnja{2.~stopnja}\def\@tipdela{Magistrsko delo}\setboolean{@drugastopnja}{true}\setboolean{@fri}{true}}
+\DeclareOption{fin2}{\def\@program{Finančna matematika}\def\@stopnja{2.~stopnja}\def\@tipdela{Magistrsko delo}\setboolean{@drugastopnja}{true}}
+\DeclareOption{isrm2}{\def\@program{Interdisciplinarni študij računalništva in matematike}\def\@stopnja{2.~stopnja}\def\@tipdela{Magistrsko delo}\setboolean{@drugastopnja}{true}\setboolean{@fri}{true}}
 
 % vse ostale moznosti (fleqn, twocolumn, ...) podamo naprej v paket article
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{amsart}}
