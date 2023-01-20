@@ -17,7 +17,6 @@
 \newcommand{\@unless}[2]{\ifthenelse{#1}{\relax}{#2}}
 \newcommand{\@blank}[1]{\equal{#1}{}}
 
-\newboolean{@brezpaketov}         % Ali naj ne nalozimo dodatnih paketov?
 \newboolean{@drugastopnja}
 \newboolean{@fri}
 
@@ -25,8 +24,6 @@
 %                                   Opcije
 %-----------------------------------------------------------------------------
 
-% brezpaketov: neobveznih paketov ne nalozimo
-\DeclareOption{brezpaketov}{\setboolean{@brezpaketov}{true}}
 \DeclareOption{mat1}{\def\@program{Matematika}\def\@stopnja{1.~stopnja}\def\@tipdela{Delo diplomskega seminarja}}
 \DeclareOption{fin1}{\def\@program{Finan\v{c}na matematika}\def\@stopnja{1.~stopnja}\def\@tipdela{Delo diplomskega seminarja}}
 \DeclareOption{mat2}{\def\@program{Matematika}\def\@stopnja{2.~stopnja}\def\@tipdela{Magistrsko delo}\setboolean{@drugastopnja}{true}}
@@ -43,24 +40,22 @@
 %-----------------------------------------------------------------------------
 % Za osnovo si vzamemo amsart ter nalozimo pakete.
 \LoadClass[12pt, a4paper]{amsart}
-\@unless{\boolean{@brezpaketov}}{
-  \RequirePackage{amsfonts,amsmath,amssymb}
-  \RequirePackage[slovene]{babel}
-  \RequirePackage[utf8]{inputenc}
-  \RequirePackage[T1]{fontenc}
-  \usepackage{bibentry}         % za navajanje literature v programu dela s celim imenom
+\RequirePackage{amsfonts,amsmath,amssymb}
+\RequirePackage[slovene]{babel}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\usepackage{bibentry}         % za navajanje literature v programu dela s celim imenom
 
-  % algorithms
-  \RequirePackage{algpseudocode}  % za psevdokodo
-  \RequirePackage{algorithm}      % za
-  \floatname{algorithm}{Algoritem}
-  \renewcommand{\listalgorithmname}{Kazalo algoritmov}
-  \algnewcommand\algorithmicto{\textbf{to}}
-  \algnewcommand\algorithmicin{\textbf{in}}
-  \algnewcommand\algorithmicforeach{\textbf{for each}}
-  \algrenewtext{For}[3]{\algorithmicfor\ #1 $\gets$ #2\ \algorithmicto\ #3\ \algorithmicdo}
-  \algdef{S}[FOR]{ForEach}[2]{\algorithmicforeach\ #1\ \algorithmicin\ #2\ \algorithmicdo}
-}
+% algorithms
+\RequirePackage{algpseudocode}  % za psevdokodo
+\RequirePackage{algorithm}      % za
+\floatname{algorithm}{Algoritem}
+\renewcommand{\listalgorithmname}{Kazalo algoritmov}
+\algnewcommand\algorithmicto{\textbf{to}}
+\algnewcommand\algorithmicin{\textbf{in}}
+\algnewcommand\algorithmicforeach{\textbf{for each}}
+\algrenewtext{For}[3]{\algorithmicfor\ #1 $\gets$ #2\ \algorithmicto\ #3\ \algorithmicdo}
+\algdef{S}[FOR]{ForEach}[2]{\algorithmicforeach\ #1\ \algorithmicin\ #2\ \algorithmicdo}
 
 %-----------------------------------------------------------------------------
 %                                Dimenzije
