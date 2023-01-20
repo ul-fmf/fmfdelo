@@ -48,6 +48,7 @@
   \RequirePackage[slovene]{babel}
   \RequirePackage[utf8]{inputenc}
   \RequirePackage[T1]{fontenc}
+  \usepackage{bibentry}         % za navajanje literature v programu dela s celim imenom
 
   % algorithms
   \RequirePackage{algpseudocode}  % za psevdokodo
@@ -111,6 +112,7 @@
 \newcommand{\zahvala}[1]{\def\@zahvala{\@trim{#1}}}
 \newcommand{\programdela}[1]{\def\@programdela{\@trim{#1}}}
 \newcommand{\osnovnaliteratura}[1]{\def\@osnovnaliteratura{\@trim{#1}}}
+\newcommand{\vnosliterature}[1]{\item[\cite{#1}] \bibentry{#1}}
 \newcommand{\povzetek}[1]{\def\@povzetek{\@trim{#1}}\requiredfield{\@povzetek}}
 \renewcommand{\abstract}[1]{\def\@abstract{\@trim{#1}}\requiredfield{\@abstract}}
 \newcommand{\klasifikacija}[1]{\def\@klasifikacija{\@trim{#1}}\requiredfield{\@klasifikacija}}
@@ -212,8 +214,11 @@ Ljubljana, \@letnica}
   \section*{Program dela}
   \@programdela
 
-  \section*{Osnovna literatura}
+  \@sloeng{\section*{Osnovna literatura}}{\section*{Basic references}}
+  \nobibliography*
+  \begin{itemize}
   \@osnovnaliteratura
+  \end{itemize}
 
   \vspace{2cm}
   \begin{flushright}
