@@ -40,6 +40,10 @@ vsebine.}
 \literatura{literatura.bib}
 
 % aktivirajte pakete, ki jih potrebujete
+\usepackage{algpseudocode}  % za psevdokodo
+\usepackage{algorithm}      % za algoritme
+\floatname{algorithm}{Algoritem}
+\renewcommand{\listalgorithmname}{Kazalo algoritmov}
 % \usepackage{tikz}
 
 % za številske množice uporabite naslednje simbole
@@ -183,6 +187,12 @@ razbijanje algoritma na več kosov, pa z (precej razumljivo) uradno
 dokumentacijo\footnote{\url{http://tug.ctan.org/macros/latex/contrib/algorithmicx/algorithmicx.pdf}}.
 Če želite vključiti izvorno kodo nekega programa, priporočamo paket
 \texttt{minted}\footnote{\url{https://github.com/gpoore/minted}}.
+
+\algnewcommand\algorithmicto{\textbf{to}}
+\algnewcommand\algorithmicin{\textbf{in}}
+\algnewcommand\algorithmicforeach{\textbf{for each}}
+\algrenewtext{For}[3]{\algorithmicfor\ #1 $\gets$ #2\ \algorithmicto\ #3\ \algorithmicdo}
+\algdef{S}[FOR]{ForEach}[2]{\algorithmicforeach\ #1\ \algorithmicin\ #2\ \algorithmicdo}
 
 \begin{algorithm}[ht]
   \caption{Opis, ki ima enako funkcionalnost kot opis pod sliko.}

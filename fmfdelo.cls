@@ -1,142 +1,128 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{fmfdelo}[2022/12/22 Zakljucna dela na FMF]
+\ProvidesClass{fmfdelo}[2023/01/20 Zakljucna dela na FMF]
 
 %-----------------------------------------------------------------------------
-%                       Pomozni ukazi in spremenljivke
+%                             Nalaganje paketov
 %-----------------------------------------------------------------------------
 
-% Nalozimo pakete, ki ponujajo enostavno programiranje.
-\RequirePackage{etoolbox, ifthen, keyval}
-
-% Nalozimo paket za ustvarjanje .xmpdata datoteke, ki jo potrebuje paket pdfx
-% Okolja filecontents ne moremo uporabiti, ker se ga ne da poklicati v makroju.
+\LoadClass[12pt, a4paper]{amsart}
+\RequirePackage{amsfonts,amsmath,amssymb}
+\RequirePackage[slovene]{babel}
+\RequirePackage{bibentry}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
 \RequirePackage{newfile}
-
-% Definiramo pomozne ukaze.
-\newcommand{\@ifthen}[2]{\ifthenelse{#1}{#2}{\relax}}
-\newcommand{\@unless}[2]{\ifthenelse{#1}{\relax}{#2}}
-\newcommand{\@blank}[1]{\equal{#1}{}}
-
-\newboolean{@drugastopnja}
-\newboolean{@fri}
+\RequirePackage{etoolbox}
+\RequirePackage{ifthen}
+\RequirePackage{keyval}
 
 %-----------------------------------------------------------------------------
 %                                   Opcije
 %-----------------------------------------------------------------------------
 
-\DeclareOption{mat1}{\def\@program{Matematika}\def\@stopnja{1.~stopnja}\def\@tipdela{Delo diplomskega seminarja}}
-\DeclareOption{fin1}{\def\@program{Finančna matematika}\def\@stopnja{1.~stopnja}\def\@tipdela{Delo diplomskega seminarja}}
-\DeclareOption{mat2}{\def\@program{Matematika}\def\@stopnja{2.~stopnja}\def\@tipdela{Magistrsko delo}\setboolean{@drugastopnja}{true}}
-\DeclareOption{fin2}{\def\@program{Finančna matematika}\def\@stopnja{2.~stopnja}\def\@tipdela{Magistrsko delo}\setboolean{@drugastopnja}{true}}
-\DeclareOption{isrm2}{\def\@program{Interdisciplinarni študij računalništva in matematike}\def\@stopnja{2.~stopnja}\def\@tipdela{Magistrsko delo}\setboolean{@drugastopnja}{true}\setboolean{@fri}{true}}
 
-% vse ostale moznosti (fleqn, twocolumn, ...) podamo naprej v paket article
+\newboolean{@drugastopnja}
+\newboolean{@fri}
+
+\DeclareOption{mat1}{
+  \def\@program{Matematika}
+}
+\DeclareOption{fin1}{
+  \def\@program{Finančna matematika}
+}
+\DeclareOption{mat2}{
+  \def\@program{Matematika}
+  \setboolean{@drugastopnja}{true}
+}
+\DeclareOption{fin2}{
+  \def\@program{Finančna matematika}
+  \setboolean{@drugastopnja}{true}
+}
+\DeclareOption{isrm2}{
+  \def\@program{Interdisciplinarni študij računalništva in matematike}
+  \setboolean{@drugastopnja}{true}
+  \setboolean{@fri}{true}
+}
+
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{amsart}}
 
 \ProcessOptions\relax
+\ifthenelse{\boolean{@drugastopnja}}{
+  \def\@stopnja{2. stopnja}
+  \def\@tipdela{Magistrsko delo}
+}{
+  \def\@stopnja{1. stopnja}
+  \def\@tipdela{Delo diplomskega seminarja}
+}
 
 %-----------------------------------------------------------------------------
-%                             Nalaganje paketov
-%-----------------------------------------------------------------------------
-% Za osnovo si vzamemo amsart ter nalozimo pakete.
-\LoadClass[12pt, a4paper]{amsart}
-\RequirePackage{amsfonts,amsmath,amssymb}
-\RequirePackage[slovene]{babel}
-\RequirePackage[utf8]{inputenc}
-\RequirePackage[T1]{fontenc}
-\usepackage{bibentry}         % za navajanje literature v programu dela s celim imenom
-
-% algorithms
-\RequirePackage{algpseudocode}  % za psevdokodo
-\RequirePackage{algorithm}      % za
-\floatname{algorithm}{Algoritem}
-\renewcommand{\listalgorithmname}{Kazalo algoritmov}
-\algnewcommand\algorithmicto{\textbf{to}}
-\algnewcommand\algorithmicin{\textbf{in}}
-\algnewcommand\algorithmicforeach{\textbf{for each}}
-\algrenewtext{For}[3]{\algorithmicfor\ #1 $\gets$ #2\ \algorithmicto\ #3\ \algorithmicdo}
-\algdef{S}[FOR]{ForEach}[2]{\algorithmicforeach\ #1\ \algorithmicin\ #2\ \algorithmicdo}
-
-%-----------------------------------------------------------------------------
-%                                Dimenzije
+%                             Vnos metapodatkov
 %-----------------------------------------------------------------------------
 
-% ne spreminjaj podatkov, ki vplivajo na obliko strani
-\textwidth 15cm
-\textheight 24cm
-\oddsidemargin.5cm
-\evensidemargin.5cm
-\topmargin-5mm
-\addtolength{\footskip}{10pt}
-\pagestyle{plain}
-\overfullrule=15pt
-
-%-----------------------------------------------------------------------------
-%                             Oblikovanje glave
-%-----------------------------------------------------------------------------
+\newcommand{\@definefield}[2]{
+  % \definefield{@imepolja}{...} načeloma naredi \def\@imepolja{...},
+  % le da pri tem iz ... pobriše presledke
+  % Iz imena ukaza dobimo ukaz s pomočjo \csname kot
+  %   \csname imeukaza\endcsname ~> \imeukaza
+  % Če bi napisali \def\csname @imepolja\endcsname{...} bi to povozilo ukaz
+  % \csname, zato moramo uporabiti \expandafter, da najprej izvedemo \csname,
+  % šele nato \def.
+  \expandafter\def\csname #1\endcsname{\ifblank{#2}{}{#2}}
+}
+\newcommand{\@definerequiredfield}[2]{
+  \@definefield{#1}{#2}
+  {
+    % Ker ključne besede vsebujejo nedefinirano ločilo \sep, ga za potrebe
+    % preverjanja lokalno definiramo (zato par zavitih oklepajev).
+    \newcommand\sep{\relax}
+    \ifthenelse{\equal{\csname #1\endcsname}{}}{
+      \PackageError{fmfdelo}{Polje je zahtevano.}{}
+    }{
+      \relax
+    }
+  }
+}
 \def\@mentorji{}
-\newcommand\@trim[1]{\ifblank{#1}{}{#1}}
-\newcommand{\requiredfield}[1]{
-  \@ifthen{\equal{#1}{}}{\PackageError{fmfdelo}{Polje je zahtevano.}{}}
-}
-\newcommand{\dodajmentorja}[2]{%
-  \g@addto@macro\@mentorji{#1: & #2 \\}%
-}
-\newcommand{\dodajdvamentorja}[3]{%
-  \g@addto@macro\@mentorji{#1: & #2 \\ & #3 \\}%
-}
 \def\@podpisi{}
-\newcommand{\dodajpodpis}[1]{%
-  \g@addto@macro\@podpisi{Podpis #1: & \phantom{prostor za podpis} \\[2cm]}%
+\newcommand{\@dodajmentorja}[3]{%
+  \g@addto@macro\@mentorji{#1: & #3 \\}%
+  \g@addto@macro\@podpisi{Podpis #2: & \phantom{prostor za podpis} \\[2cm]}%
 }
-\newcommand{\dodajdvapodpisa}[1]{%
-  \g@addto@macro\@podpisi{Podpisa #1: & \phantom{prostor za podpis} \\[2cm] & \phantom{prostor za podpis} \\[2cm]}
+\newcommand{\@dodajdvamentorja}[4]{%
+  \g@addto@macro\@mentorji{#1: & #3 \\ & #4 \\}%
+  \g@addto@macro\@podpisi{Podpisa #2: & \phantom{prostor za podpis} \\[2cm] & \phantom{prostor za podpis} \\[2cm]}
 }
-\newcommand{\mentor}[1]{\dodajmentorja{Mentor}{#1}\dodajpodpis{mentorja}}
-\newcommand{\somentor}[1]{\dodajmentorja{Somentor}{#1}\dodajpodpis{somentorja}}
-\newcommand{\mentorica}[1]{\dodajmentorja{Mentorica}{#1}\dodajpodpis{mentorice}}
-\newcommand{\somentorica}[1]{\dodajmentorja{Somentorica}{#1}\dodajpodpis{somentorice}}
-\newcommand{\mentorja}[2]{\dodajdvamentorja{Mentorja}{#1}{#2}\dodajdvapodpisa{mentorjev}}
-\newcommand{\somentorja}[2]{\dodajdvamentorja{Somentorja}{#1}{#2}\dodajdvapodpisa{somentorjev}}
-\newcommand{\mentorici}[2]{\dodajdvamentorja{Mentorici}{#1}{#2}\dodajdvapodpisa{mentoric}}
-\newcommand{\somentorici}[2]{\dodajdvamentorja{Somentorici}{#1}{#2}\dodajdvapodpisa{somentoric}}
-\newcommand{\avtor}[1]{\def\@avtor{\@trim{#1}}\requiredfield{\@avtor}}
-\newcommand{\naslov}[1]{\def\@naslov{\@trim{#1}}\requiredfield{\@naslov}}
-\renewcommand{\title}[1]{\def\@title{\@trim{#1}}\requiredfield{\@title}}
-\newcommand{\letnica}[1]{\def\@letnica{\@trim{#1}}\requiredfield{\@letnica}}
-\newcommand{\zahvala}[1]{\def\@zahvala{\@trim{#1}}}
-\newcommand{\programdela}[1]{\def\@programdela{\@trim{#1}}}
-\newcommand{\osnovnaliteratura}[1]{\def\@osnovnaliteratura{\@trim{#1}}}
+
+\newcommand{\avtor}{\@definerequiredfield{@avtor}}
+\newcommand{\naslov}{\@definerequiredfield{@naslov}}
+\renewcommand{\title}{\@definerequiredfield{@title}}
+\newcommand{\letnica}{\@definerequiredfield{@letnica}}
+\newcommand{\zahvala}{\@definefield{@zahvala}}
+\newcommand{\programdela}{\@definefield{@programdela}}
+\newcommand{\osnovnaliteratura}{\@definefield{@osnovnaliteratura}}
+\newcommand{\povzetek}{\@definerequiredfield{@povzetek}}
+\renewcommand{\abstract}{\@definerequiredfield{@abstract}}
+\newcommand{\klasifikacija}{\@definerequiredfield{@klasifikacija}}
+\newcommand{\kljucnebesede}{\@definerequiredfield{@kljucnebesede}}
+\renewcommand{\keywords}{\@definerequiredfield{@keywords}}
+\newcommand{\literatura}{\@definefield{@literatura}}
+
 \newcommand{\vnosliterature}[1]{\item[\cite{#1}] \bibentry{#1}}
-\newcommand{\povzetek}[1]{\def\@povzetek{\@trim{#1}}\requiredfield{\@povzetek}}
-\renewcommand{\abstract}[1]{\def\@abstract{\@trim{#1}}\requiredfield{\@abstract}}
-\newcommand{\klasifikacija}[1]{\def\@klasifikacija{\@trim{#1}}\requiredfield{\@klasifikacija}}
-\newcommand{\kljucnebesede}[1]{\def\@kljucnebesede{\@trim{#1}}{{\newcommand\sep{\relax}\requiredfield{\@kljucnebesede}}}} % da preverimo vsebino, lokalno definiramo \sep
-\renewcommand{\keywords}[1]{\def\@keywords{\@trim{#1}}{{\newcommand\sep{\relax}\requiredfield{\@keywords}}}}
-
-% ukazi za matematicna okolja
-\theoremstyle{definition} % tekst napisan pokoncno
-\newtheorem{definicija}{Definicija}[section]
-\newtheorem{primer*}[definicija]{Primer}
-\newtheorem{opomba}[definicija]{Opomba}
-\newtheorem{zgled*}[definicija]{Zgled}
-\newtheorem{aksiom}{Aksiom}
-
-\numberwithin{equation}{section}  % števec za enačbe zgleda kot (2.7) in se resetira v vsakem razdelku
-\newenvironment{dokaz}[1][Dokaz]{\begin{proof}[#1]}{\end{proof}}
-\newenvironment{primer}[1][]{\begin{primer*}[#1]\renewcommand*{\qedsymbol}{$\diamondsuit$}\pushQED{\qed}}{\popQED\end{primer*}}
-\newenvironment{zgled}[1][]{\begin{zgled*}[#1]\renewcommand*{\qedsymbol}{$\diamondsuit$}\pushQED{\qed}}{\popQED\end{zgled*}}
-
-\theoremstyle{plain} % tekst napisan posevno
-\newtheorem{lema}[definicija]{Lema}
-\newtheorem{izrek}[definicija]{Izrek}
-\newtheorem{trditev}[definicija]{Trditev}
-\newtheorem{posledica}[definicija]{Posledica}
-% ukaz za slovarsko geslo
 \newcommand{\geslo}[2]{\noindent\textbf{#1}\hspace*{3mm}\hangindent=\parindent\hangafter=1 #2\par}
 
-% ukaz za literaturo
-\newcommand{\literatura}[1]{\def\@literatura{#1}}
+\newcommand{\mentor}{\@dodajmentorja{Mentor}{mentorja}}
+\newcommand{\somentor}{\@dodajmentorja{Somentor}{somentorja}}
+\newcommand{\mentorica}{\@dodajmentorja{Mentorica}{mentorice}}
+\newcommand{\somentorica}{\@dodajmentorja{Somentorica}{somentorice}}
+\newcommand{\mentorja}{\@dodajdvamentorja{Mentorja}{mentorjev}}
+\newcommand{\somentorja}{\@dodajdvamentorja{Somentorja}{somentorjev}}
+\newcommand{\mentorici}{\@dodajdvamentorja{Mentorici}{mentoric}}
+\newcommand{\somentorici}{\@dodajdvamentorja{Somentorici}{somentoric}}
+
+%-----------------------------------------------------------------------------
+%                             Izpis PDF/A
+%-----------------------------------------------------------------------------
 
 \AtEndPreamble{%
 \let\oldtexorpdfstring\texorpdfstring
@@ -156,32 +142,78 @@
 
 % Nalozimo paket za zagotavljanje PDF/A-2B (ustrezni fonti, barvni profili, UTF-8 zapis simbolov, ...)
 \RequirePackage[a-2b]{pdfx}
+}
+
+%-----------------------------------------------------------------------------
+%                                Dimenzije
+%-----------------------------------------------------------------------------
+
+\textwidth 15cm
+\textheight 24cm
+\oddsidemargin.5cm
+\evensidemargin.5cm
+\topmargin-5mm
+\addtolength{\footskip}{10pt}
+\overfullrule=15pt
+
+%-----------------------------------------------------------------------------
+%                             Razno
+%-----------------------------------------------------------------------------
+
+% pokončno napisan tekst
+\theoremstyle{definition}
+\newtheorem{aksiom}{Aksiom}
+\newtheorem{definicija}{Definicija}[section]
+\newtheorem{opomba}[definicija]{Opomba}
+\newtheorem{primer*}[definicija]{Primer}
+\newenvironment{primer}[1][]{
+  \begin{primer*}[#1]\renewcommand*{\qedsymbol}{$\diamondsuit$}\pushQED{\qed}
+}{
+  \popQED\end{primer*}
+}
+\newtheorem{zgled*}[definicija]{Zgled}
+\newenvironment{zgled}[1][]{
+  \begin{zgled*}[#1]\renewcommand*{\qedsymbol}{$\diamondsuit$}\pushQED{\qed}
+}{
+  \popQED\end{zgled*}
+}
+
+ % poševno napisan tekst
+\theoremstyle{plain}
+\newtheorem{lema}[definicija]{Lema}
+\newtheorem{izrek}[definicija]{Izrek}
+\newtheorem{trditev}[definicija]{Trditev}
+\newtheorem{posledica}[definicija]{Posledica}
+
+\numberwithin{equation}{section}  % števec za enačbe zgleda kot (2.7) in se resetira v vsakem razdelku
+\newenvironment{dokaz}[1][Dokaz]{\begin{proof}[#1]}{\end{proof}}
 
 % bold matematika znotraj \textbf{ }, tudi v naslovih
-\makeatletter \g@addto@macro\bfseries{\boldmath} \makeatother
+\g@addto@macro\bfseries{\boldmath}
 
 % Poimenuj kazalo slik kot ``Kazalo slik'' in ne ``Slike''
 \addto\captionsslovene{
   \renewcommand{\listfigurename}{Kazalo slik}%
 }
-}
 
-% Ukaz za izpis začetnih strani.
+%-----------------------------------------------------------------------------
+%                             Izpis začetnih strani
+%-----------------------------------------------------------------------------
+
 \AfterEndPreamble{%
-\def\sep{, }
-% od tod do povzetka ne spreminjaj nicesar
+\pagestyle{plain}
 \thispagestyle{empty}
 \noindent{\large
 UNIVERZA V LJUBLJANI\\[1mm]
 FAKULTETA ZA MATEMATIKO IN FIZIKO
-\@ifthen{\boolean{@fri}}{\\[1mm]FAKULTETA ZA RAČUNALNIŠTVO IN INFORMATIKO}
+\ifthenelse{\boolean{@fri}}{\\[1mm]FAKULTETA ZA RAČUNALNIŠTVO IN INFORMATIKO}{}
 \\[5mm]
 \@program\ -- \@stopnja}
 \vfill
 
 \begin{center}{\large
 \@avtor\\[2mm]
-{\bf \@naslov}\\[10mm]
+\textbf{\@naslov}\\[10mm]
 \@tipdela\\[1cm]
 \begin{tabular}{rl} \@mentorji \end{tabular}
 }
@@ -205,7 +237,7 @@ Ljubljana, \@letnica}
 \vfill
 \clearpage
 
-\@ifthen{\boolean{@drugastopnja}}{
+\ifthenelse{\boolean{@drugastopnja}}{
   \section*{Program dela}
   \@programdela
 
@@ -221,29 +253,35 @@ Ljubljana, \@letnica}
   \end{flushright}
   \vfill
   \clearpage
+}{
+  \relax
 }
 
 \thispagestyle{empty}
 \begin{center}
-{\bf \@naslov}\\[3mm]
-{\sc Povzetek}
+\textbf{\@naslov}\\[3mm]
+\textsc{Povzetek}
 \end{center}
 \@povzetek
 \vfill
 \begin{center}
-{\bf \@title}\\[3mm]
-{\sc Abstract}
+\textbf{\@title}\\[3mm]
+\textsc{Abstract}
 \end{center}
 \@abstract
 \vfill\noindent
-{\bf Math. Subj. Class. (2020):} \@klasifikacija \\[1mm]
-{\bf Ključne besede:} \@kljucnebesede \\[1mm]
-{\bf Keywords:} \@keywords
+\textbf{Math. Subj. Class. (2020):} \@klasifikacija \\[1mm]
+\def\sep{, } % Pri izpisu ključne besede ločimo z vejico.
+\textbf{Ključne besede:} \@kljucnebesede \\[1mm]
+\textbf{Keywords:} \@keywords
 \clearpage
 }
 
+%-----------------------------------------------------------------------------
+%                             Izpis končnih strani
+%-----------------------------------------------------------------------------
+
 \AtEndDocument{%
-% Ukazi za izpis virov
 \bibliographystyle{fmf-sl}
 \ifdef{\@literatura}{%
   \bibliography{\@literatura}
