@@ -271,6 +271,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \AfterEndPreamble{%
+% magisterije začnemo z rimskimi številkami
+\@ifthen{\boolean{@drugastopnja}}{\pagenumbering{roman}}
 \pagestyle{plain}
 \@sloeng{\bibliographystyle{fmf-sl}}{\bibliographystyle{fmf-en}}
 \@ifthen{\boolean{@anglescina}}{
@@ -371,6 +373,12 @@ Ljubljana, \@letnica}
 \textbf{Ključne besede:} \@kljucnebesede \\[1mm]
 \textbf{Keywords:} \@keywords
 \cleardoublepage
+
+% vsebino magisterije začnemo z arabskimi številkami od 1 naprej
+\@ifthen{\boolean{@drugastopnja}}{
+  \setcounter{page}{1}
+  \pagenumbering{arabic}
+}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
