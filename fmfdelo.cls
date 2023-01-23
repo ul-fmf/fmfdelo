@@ -7,7 +7,6 @@
 
 \LoadClass[12pt, a4paper]{amsart}
 \RequirePackage{amsfonts,amsmath,amssymb}
-\RequirePackage[slovene,english]{babel}
 \RequirePackage{bibentry}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
@@ -76,9 +75,11 @@
   \def\@cycle{1st cycle}
   \def\@thesistype{Diploma seminar work}
 }
+
 \@sloeng{
-  \selectlanguage{slovene}
+  \RequirePackage[slovene]{babel}
 }{
+  \RequirePackage[slovene,english]{babel}
   \selectlanguage{english}
 }
 
@@ -268,8 +269,8 @@
 \AfterEndPreamble{%
 \pagestyle{plain}
 \@sloeng{\bibliographystyle{fmf-sl}}{\bibliographystyle{fmf-en}}
+\@ifthen{\boolean{@anglescina}}{
 \thispagestyle{empty}
-\@ifthen{\boolean{@anglescina}}{\thispagestyle{empty}
 \noindent{\large
 UNIVERSITY OF LJUBLJANA\\[1mm]
 FACULTY OF MATHEMATICS AND PHYSICS
@@ -317,19 +318,24 @@ Ljubljana, \@letnica}
   \@sloeng{\section*{Zahvala}}{\section*{Acknowledgements}}
   \@zahvala
   \vfill
-  \clearpage
+  \cleardoublepage
 \fi
 
 \thispagestyle{empty}
 \pdfbookmark[1]{\contentsname}{kazalo-vsebine}
 \tableofcontents
 \vfill
-\clearpage
+\cleardoublepage
 \@ifthen{\boolean{@drugastopnja}}{
+  \@sloeng{
+    \addcontentsline{toc}{section}{Program dela}
+  }{
+    \addcontentsline{toc}{section}{Project plan}
+  }
   \@sloeng{\section*{Program dela}}{\section*{Project plan}}
   \@programdela
 
-  \section*{Osnovna literatura}
+  \@sloeng{\section*{Osnovna literatura}}{\section*{Basic references}}
   \nobibliography*
   \begin{itemize}
   \@osnovnaliteratura
@@ -340,7 +346,7 @@ Ljubljana, \@letnica}
     \begin{tabular}{rp{4cm}} \@sloeng{\@podpisi}{\@signatures} \end{tabular}
   \end{flushright}
   \vfill
-  \clearpage
+  \cleardoublepage
 }
 
 \thispagestyle{empty}
@@ -360,7 +366,7 @@ Ljubljana, \@letnica}
 \def\sep{, } % Pri izpisu ključne besede ločimo z vejico.
 \textbf{Ključne besede:} \@kljucnebesede \\[1mm]
 \textbf{Keywords:} \@keywords
-\clearpage
+\cleardoublepage
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -368,11 +374,12 @@ Ljubljana, \@letnica}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \AtEndDocument{%
-\ifdef{\@slovar}{%
+\ifdefined\@slovar
+\addcontentsline{toc}{section}{Slovar strokovnih izrazov}
 \section*{Slovar strokovnih izrazov}
 \@slovar
-}
-\ifdef{\@literatura}{%
-  \bibliography{\@literatura}
-}{\relax}
+\fi
+\ifdefined\@literatura
+\bibliography{\@literatura}
+\fi
 }
