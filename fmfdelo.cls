@@ -5,8 +5,8 @@
 % NALAGANJE PAKETOV
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\LoadClass[12pt, a4paper]{amsart}
-\RequirePackage{amsfonts,amsmath,amssymb}
+\LoadClass[12pt, a4paper]{article}
+\RequirePackage{amsfonts,amsmath,amssymb,amsthm}
 \RequirePackage{bibentry}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
@@ -61,7 +61,7 @@
   \setboolean{@enovitistudij}{true}
 }
 
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{amsart}}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 
 \ProcessOptions\relax
 \ifthenelse{\boolean{@drugastopnja}}{
@@ -140,7 +140,7 @@
 \renewcommand{\abstract}{\@definerequiredfield{@abstract}}
 \newcommand{\klasifikacija}{\@definerequiredfield{@klasifikacija}}
 \newcommand{\kljucnebesede}{\@definerequiredfield{@kljucnebesede}}
-\renewcommand{\keywords}{\@definerequiredfield{@keywords}}
+\newcommand{\keywords}{\@definerequiredfield{@keywords}}
 \newcommand{\slovar}{\@definefield{@slovar}}
 \newcommand{\literatura}{\@definefield{@literatura}}
 
@@ -191,6 +191,10 @@
 % Nalozimo paket za zagotavljanje PDF/A-2B (ustrezni fonti, barvni profili, UTF-8 zapis simbolov, ...)
 \RequirePackage[a-2b]{pdfx}
 \makeatletter\let\@bibitem\saved@bibitem\makeatother
+\hypersetup{bookmarksopen, bookmarksdepth=3, colorlinks=true,
+  linkcolor=black, anchorcolor=black, citecolor=black, filecolor=black,
+  menucolor=black, runcolor=black, urlcolor=black, pdfencoding=auto,
+  breaklinks=true, psdextra}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -281,7 +285,7 @@ FACULTY OF MATHEMATICS AND PHYSICS
 
 \begin{center}{\large
 \@avtor\\[2mm]
-{\bf \@title}\\[10mm]
+{\Large\textbf{\MakeUppercase{\@title}}}\\[10mm]
 \@thesistype\\[1cm]
 \begin{tabular}{rl} \@supervisors \end{tabular}
 }
@@ -303,7 +307,7 @@ FAKULTETA ZA MATEMATIKO IN FIZIKO
 
 \begin{center}{\large
 \@avtor\\[2mm]
-\textbf{\@naslov}\\[10mm]
+{\Large\textbf{\MakeUppercase{\@naslov}}}\\[10mm]
 \@tipdela\\[1cm]
 \begin{tabular}{rl} \@mentorji \end{tabular}
 }
