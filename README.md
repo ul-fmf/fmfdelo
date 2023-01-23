@@ -2,10 +2,10 @@
 
 Za uporabo najprej **preberite navodila na vaši spletni učilnici**, nato pa prenesite ustrezen arhiv s predlogo:
 
-- [diploma-prazno.zip](arhivi/diploma-prazno.zip): prazna predloga za delo diplomskega seminarja
-- [diploma-primer.zip](arhivi/diploma-primer.zip): primer dela diplomskega seminarja
-- [magisterij-primer-sl.zip](arhivi/magisterij-primer-sl.zip): primer magistrskega dela
-- [magisterij-primer-en.zip](arhivi/magisterij-primer-en.zip): primer magistrskega dela v angleščini
+- [diploma-prazno.zip](arhivi/diploma-prazno.zip?raw=true): prazna predloga za delo diplomskega seminarja
+- [diploma-primer.zip](arhivi/diploma-primer.zip?raw=true): primer dela diplomskega seminarja
+- [magisterij-primer-sl.zip](arhivi/magisterij-primer-sl.zip?raw=true): primer magistrskega dela
+- [magisterij-primer-en.zip](arhivi/magisterij-primer-en.zip?raw=true): primer magistrskega dela v angleščini
 
 in sledite spodnjim [navodilom za uporabo](#navodila-za-uporabo). Dokument bi se moral prevesti brez posebnosti in dodatnih nastavitev. Nekaj pogostih težav in rešitev je [opisanih spodaj](#odpravljanje-napak).
 
