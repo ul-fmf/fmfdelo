@@ -18,12 +18,14 @@
 \RequirePackage{keyval}
 
 \newcommand{\@ifthen}[2]{\ifthenelse{#1}{#2}{\relax}}
+\newcommand{\@unless}[2]{\ifthenelse{#1}{\relax}{#2}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % OPCIJE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newboolean{@drugastopnja}
+\newboolean{@enovitistudij}
 \newboolean{@fri}
 
 \DeclareOption{mat1}{
@@ -45,9 +47,10 @@
   \setboolean{@drugastopnja}{true}
   \setboolean{@fri}{true}
 }
-\DeclareOption{ped2}{
+\DeclareOption{ped}{
   \def\@program{Pedagoška matematika}
   \setboolean{@drugastopnja}{true}
+  \setboolean{@enovitistudij}{true}
 }
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{amsart}}
@@ -138,7 +141,7 @@
 \protect\Title{\@naslov}
 \protect\Author{\@avtor}
 \protect\Keywords{\@kljucnebesede}
-\protect\Subject{\@tipdela, \@program, \@stopnja}
+\protect\Subject{\@tipdela, \@program, \@klasifikacija}
 }
 \closeoutputstream{xmpdatafile}
 
@@ -214,7 +217,7 @@ UNIVERZA V LJUBLJANI\\[1mm]
 FAKULTETA ZA MATEMATIKO IN FIZIKO
 \@ifthen{\boolean{@fri}}{\\[1mm]FAKULTETA ZA RAČUNALNIŠTVO IN INFORMATIKO}
 \\[5mm]
-\@program\ -- \@stopnja}
+\@program\@unless{\boolean{@enovitistudij}}{\ -- \@stopnja}}
 \vfill
 
 \begin{center}{\large
@@ -247,7 +250,7 @@ Ljubljana, \@letnica}
   \section*{Program dela}
   \@programdela
 
-  \@sloeng{\section*{Osnovna literatura}}{\section*{Basic references}}
+  \section*{Osnovna literatura}
   \nobibliography*
   \begin{itemize}
   \@osnovnaliteratura
