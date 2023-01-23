@@ -326,6 +326,11 @@ Ljubljana, \@letnica}
 \cleardoublepage
 
 \ifdefined\@zahvala
+  \@sloeng{
+    \pdfbookmark[1]{Zahvala}{zahvala}
+  }{
+    \pdfbookmark[1]{Acknowledgements}{zahvala}
+  }
   \@sloeng{\section*{Zahvala}}{\section*{Acknowledgements}}
   \@zahvala
   \vfill
@@ -339,9 +344,9 @@ Ljubljana, \@letnica}
 \cleardoublepage
 \@ifthen{\boolean{@drugastopnja}}{
   \@sloeng{
-    \addcontentsline{toc}{section}{Program dela}
+    \pdfbookmark[1]{Program dela}{program}
   }{
-    \addcontentsline{toc}{section}{Project plan}
+    \pdfbookmark[1]{Project plan}{program}
   }
   \@sloeng{\section*{Program dela}}{\section*{Project plan}}
   \@programdela
@@ -362,6 +367,7 @@ Ljubljana, \@letnica}
 
 \thispagestyle{empty}
 \ifthenelse{\boolean{@anglescina}}{
+\pdfbookmark[1]{Abstract}{abstract}
 \begin{center}
 \textbf{\@title}\\[3mm]
 \textsc{Abstract}
@@ -379,6 +385,7 @@ Ljubljana, \@letnica}
 \textbf{Keywords:} \@keywords
 \textbf{Ključne besede:} \@kljucnebesede \\[1mm]
 }{
+\pdfbookmark[1]{Povzetek}{povzetek}
 \begin{center}
 \textbf{\@naslov}\\[3mm]
 \textsc{Povzetek}
@@ -411,7 +418,7 @@ Ljubljana, \@letnica}
 
 \AtEndDocument{%
 \ifdefined\@slovar
-\addcontentsline{toc}{section}{Slovar strokovnih izrazov}
+\pdfbookmark[1]{Slovar strokovnih izrazov}{slovar}
 \section*{Slovar strokovnih izrazov}
 \@slovar
 \fi
