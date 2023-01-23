@@ -361,6 +361,24 @@ Ljubljana, \@letnica}
 }
 
 \thispagestyle{empty}
+\ifthenelse{\boolean{@anglescina}}{
+\begin{center}
+\textbf{\@title}\\[3mm]
+\textsc{Abstract}
+\end{center}
+\@abstract
+\vfill
+\begin{center}
+\textbf{\@naslov}\\[3mm]
+\textsc{Povzetek}
+\end{center}
+\@povzetek
+\vfill\noindent
+\textbf{Math. Subj. Class. (2020):} \@klasifikacija \\[1mm]
+\def\sep{, } % Pri izpisu ključne besede ločimo z vejico.
+\textbf{Keywords:} \@keywords
+\textbf{Ključne besede:} \@kljucnebesede \\[1mm]
+}{
 \begin{center}
 \textbf{\@naslov}\\[3mm]
 \textsc{Povzetek}
@@ -377,6 +395,7 @@ Ljubljana, \@letnica}
 \def\sep{, } % Pri izpisu ključne besede ločimo z vejico.
 \textbf{Ključne besede:} \@kljucnebesede \\[1mm]
 \textbf{Keywords:} \@keywords
+}
 \cleardoublepage
 
 % vsebino magisterije začnemo z arabskimi številkami od 1 naprej
