@@ -150,7 +150,7 @@
 \newenvironment{razsirjenipovzetek}{
   \begin{otherlanguage}{slovene}
     \section{Razširjeni povzetek v slovenskem jeziku}
-}{\end{otherlanguage}\setboolean{@razsirjenipovzetek}{true}}
+}{\end{otherlanguage}}
 
 \newcommand{\mentor}{\@dodajmentorja{Mentor}{mentorja}}
 \newcommand{\somentor}{\@dodajmentorja{Somentor}{somentorja}}
