@@ -53,10 +53,6 @@ morate posodobiti `.cls` datoteko na najnovejšo verzijo.
 
 Napaki `The value of the key SMask is an image but must be None.` ali `The key S has a value Transparency which is prohibited.` pomenita, da imate vključeno kakšno prosojno sliko. Za rastrske slike je ponavadi dovolj, da s primernim programom prosojno barvo spremenite v belo, za slike v vektorskih formatih pa je potrebno ponavadi nastaviti ozadje.
 
-#### Rastrska pisava
-
-Če opazite, da je [pisava od blizu kockasta](https://github.com/ul-fmf/fmfdelo/issues/9), je treba [namestiti](https://tex.stackexchange.com/questions/1291/why-are-bitmap-fonts-used-automatically) paket `cm-super`.
-
 #### Manjkajoče velike začetnice v literaturi
 
 BibTeX pri navajanju literature odvisno od stila spreminja velikost črk, na primer
