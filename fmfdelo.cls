@@ -5,7 +5,6 @@
 % NALAGANJE PAKETOV
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\LoadClass[12pt, a4paper]{article}
 \RequirePackage{amsfonts,amsmath,amssymb,amsthm}
 \RequirePackage{bibentry}
 \RequirePackage[utf8]{inputenc}
@@ -27,6 +26,7 @@
 \newboolean{@enovitistudij}
 \newboolean{@fri}
 \newboolean{@anglescina}
+\newboolean{@tisk}
 \newcommand{\@sloeng}[2]{\ifthenelse{\boolean{@anglescina}}{#2}{#1}}
 
 \DeclareOption{anglescina}{\setboolean{@anglescina}{true}}
@@ -60,10 +60,15 @@
   \setboolean{@drugastopnja}{true}
   \setboolean{@enovitistudij}{true}
 }
+\DeclareOption{tisk}{
+  \setboolean{@tisk}{true}
+  \PassOptionsToClass{twoside}{article}
+}
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 
 \ProcessOptions\relax
+\LoadClass[12pt, a4paper]{article}
 \ifthenelse{\boolean{@drugastopnja}}{
   \def\@stopnja{2. stopnja}
   \def\@tipdela{Magistrsko delo}
@@ -196,9 +201,14 @@
 % Nalozimo paket za zagotavljanje PDF/A-2B (ustrezni fonti, barvni profili, UTF-8 zapis simbolov, ...)
 \RequirePackage[a-2b]{pdfx}
 \makeatletter\let\@bibitem\saved@bibitem\makeatother
+\ifthenelse{\boolean{@tisk}}{
+  \definecolor{linkcolor}{RGB}{0,0,0}
+}{
+  \definecolor{linkcolor}{RGB}{0,84,147}
+}
 \hypersetup{bookmarksopen, bookmarksdepth=3, colorlinks=true,
-  linkcolor=black, anchorcolor=black, citecolor=black, filecolor=black,
-  menucolor=black, runcolor=black, urlcolor=black, pdfencoding=auto,
+  linkcolor=linkcolor, anchorcolor=linkcolor, citecolor=linkcolor, filecolor=linkcolor,
+  menucolor=linkcolor, runcolor=linkcolor, urlcolor=linkcolor, pdfencoding=auto,
   breaklinks=true, psdextra}
 }
 
