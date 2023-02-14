@@ -10,7 +10,7 @@ for dirname in *; do
         zipname=../../arhivi/$dirname.zip
 
         cd $dirname
-        zip $zipname *
+        zip -r $zipname *
         latexmk -pdf $texname
         verapdf $pdfname
         zip $zipname $pdfname
