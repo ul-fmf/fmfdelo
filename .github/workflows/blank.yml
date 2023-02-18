@@ -13,29 +13,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - name: Set up Git repository
+        uses: actions/checkout@v2
       - name: pripravi-arhive.sh
-        run: |
-          cd predloge
-          for dirname in *; do
-            if [ -d "$dirname" ]; then
-              git clean -Xdf
-              basename="Priimek-Vpisna-Leto"
-              texname=$basename.tex
-              pdfname=$basename.pdf
-              zipname=../../arhivi/$dirname.zip
-              echo $dirname
-
-              cd $dirname
-              zip -r $zipname *
-              echo "zipped"
-              latexmk -pdf $texname
-              echo "built"
-              verapdf $pdfname
-              zip $zipname $pdfname
-
-              git clean -Xdf
-              cd ..
-            fi
-          done
+        uses: dante-ev/latex-action@latest
+        with:
+          entrypoint: ./pripravi-arhive.sh
