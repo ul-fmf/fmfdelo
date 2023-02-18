@@ -13,7 +13,7 @@ for dirname in *; do
         cd $dirname
         zip -r $zipname *
         latexmk -pdf $texname
-        verapdf $pdfname
+        sudo flatpak run --command=verapdf org.verapdf.veraPDF $pdfname
         zip $zipname $pdfname
 
         git clean -Xdf
