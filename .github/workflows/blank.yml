@@ -17,7 +17,6 @@ jobs:
       - uses: actions/checkout@v3
       - name: pripravi-arhive.sh
         run: |
-          set -e
           cd predloge
           for dirname in *; do
             if [ -d "$dirname" ]; then
@@ -26,10 +25,13 @@ jobs:
               texname=$basename.tex
               pdfname=$basename.pdf
               zipname=../../arhivi/$dirname.zip
+              echo $dirname
 
               cd $dirname
               zip -r $zipname *
+              echo "zipped"
               latexmk -pdf $texname
+              echo "built"
               verapdf $pdfname
               zip $zipname $pdfname
 
