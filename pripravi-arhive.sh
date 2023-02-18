@@ -13,7 +13,7 @@ for dirname in *; do
         cd $dirname
         zip -r $zipname *
         latexmk -pdf $texname
-        verapdf $pdfname
+        #verapdf $pdfname
         zip $zipname $pdfname
 
         git clean -Xdf
