@@ -20,7 +20,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install flatpak
       - name: Install verapdf
-        run: flatpak install flathub https://flathub.org/repo/appstream/org.verapdf.veraPDF.flatpakref
+        run: flatpak install https://flathub.org/repo/appstream/org.verapdf.veraPDF.flatpakref
       - name: pripravi-arhive.sh
         uses: dante-ev/latex-action@latest
         with:
