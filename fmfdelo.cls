@@ -14,6 +14,7 @@
 \RequirePackage{etoolbox}
 \RequirePackage{ifthen}
 \RequirePackage{keyval}
+\RequirePackage{makeidx}
 
 \newcommand{\@ifthen}[2]{\ifthenelse{#1}{#2}{\relax}}
 \newcommand{\@unless}[2]{\ifthenelse{#1}{\relax}{#2}}
@@ -281,6 +282,9 @@
   \renewcommand{\listfigurename}{Kazalo slik}%
 }
 
+% generiraj vsebinsko kazalo
+\makeindex
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % IZPIS ZAČETNIH STRANI
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -433,6 +437,9 @@ Ljubljana, \@letnica}
 \@slovar
 \fi
 \ifdefined\@literatura
+\cleardoublepage
 \bibliography{\@literatura}
 \fi
+\cleardoublepage
+\printindex
 }
