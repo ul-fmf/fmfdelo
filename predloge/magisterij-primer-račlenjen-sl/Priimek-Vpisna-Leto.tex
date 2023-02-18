@@ -1,0 +1,97 @@
+\documentclass[mat2, tisk]{fmfdelo}
+% \documentclass[fin2, tisk]{fmfdelo}
+% \documentclass[isrm2, tisk]{fmfdelo}
+% \documentclass[ped, tisk]{fmfdelo}
+% Če pobrišete možnost tisk, bodo povezave obarvane,
+% na začetku pa ne bo praznih strani po naslovu, …
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% METAPODATKI
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% - vaše ime
+\avtor{Marija Novak}
+
+% - naslov dela v slovenščini
+\naslov{Naslov dela}
+
+% - naslov dela v angleščini
+\title{Angleški prevod slovenskega naslova dela}
+
+% - ime mentorja/mentorice s polnim nazivom:
+%   - doc.~dr.~Ime Priimek
+%   - izr.~prof.~dr.~Ime Priimek
+%   - prof.~dr.~Ime Priimek
+%   za druge variante uporabite ustrezne ukaze
+\mentor{prof.~dr.~Janez Novak}
+% \somentor{...}
+% \mentorica{...}
+% \somentorica{...}
+% \mentorja{...}{...}
+% \somentorja{...}{...}
+% \mentorici{...}{...}
+% \somentorici{...}{...}
+
+% - leto magisterija
+\letnica{2017} 
+
+% - povzetek v slovenščini
+%   V povzetku na kratko opišite vsebinske rezultate dela. Sem ne sodi razlaga
+%   organizacije dela, torej v katerem razdelku je kaj, pač pa le opis vsebine.
+\povzetek{Tukaj napišemo povzetek vsebine. Sem sodi razlaga vsebine in ne opis tega, kako je delo organizirano.}
+
+% - povzetek v angleščini
+\abstract{An abstract of the work is written here. This includes a short description of
+the content and not the structure of your work.}
+
+% - klasifikacijske oznake, ločene z vejicami
+%   Oznake, ki opisujejo področje dela, so dostopne na strani https://www.ams.org/msc/
+\klasifikacija{74B05, 65N99}
+
+% - ključne besede, ki nastopajo v delu, ločene s \sep
+\kljucnebesede{integracija\sep kompleks}
+
+% - angleški prevod ključnih besed
+\keywords{integration\sep complex} % angleški prevod ključnih besed
+
+% - neobvezna zahvala
+\zahvala{
+  Neobvezno.
+  Zahvaljujem se \dots
+}
+
+% - program dela, ki ga napiše mentor z osnovno literaturo
+\programdela{
+  Mentor naj napiše program dela skupaj z osnovno literaturo.
+}
+
+\osnovnaliteratura{
+% Literatura mora biti tukaj posebej samostojno navedena (po pomembnosti) in ne
+% le citirana. V tem razdelku literature ne oštevilčimo po svoje, ampak uporabljamo
+% ukaz \vnosliterature, v katerega vpišemo citat
+  \vnosliterature{lebedev2009introduction}
+  \vnosliterature{gurtin1982introduction}
+  \vnosliterature{zienkiewicz2000finite}
+  \vnosliterature{STtemplate}
+}
+
+% - ime datoteke z viri (vključno s končnico .bib), če uporabljate BibTeX
+\literatura{literatura.bib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DODATNE DEFINICIJE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{definicije.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ZAČETEK VSEBINE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\input{vsebina/uvod.tex}
+\input{vsebina/integrali.tex}
+\input{vsebina/napotki.tex}
+
+\end{document}
