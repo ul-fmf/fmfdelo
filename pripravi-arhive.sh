@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 
+cd predloge
 for dirname in *; do
     if [ -d "$dirname" ]; then
         git clean -Xdf
