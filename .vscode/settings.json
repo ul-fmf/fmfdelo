@@ -1,0 +1,56 @@
+{
+    "latex-workshop.latex.outDir": "build",
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "pdflatex->bibtex->makeindex->pdflatex",
+            "tools": [
+                "pdflatex",
+                "bibtex",
+                "makeindex",
+                "pdflatex",
+                "pdflatexfinal"
+            ]
+        },
+    ],
+    "latex-workshop.latex.tools": [
+        {
+            "name": "pdflatex",
+            "command": "pdflatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-shell-escape",
+                "-draftmode",
+                "-output-directory=%OUTDIR%",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "pdflatexfinal",
+            "command": "pdflatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-shell-escape",
+                "-output-directory=%OUTDIR%",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "bibtex",
+            "command": "bibtex",
+            "args": [
+                "%OUTDIR%/%DOCFILE%"
+            ]
+        },
+        {
+            "name": "makeindex",
+            "command": "makeindex",
+            "args": [
+                "%OUTDIR%/%DOCFILE%"
+            ]
+        }
+    ]
+}

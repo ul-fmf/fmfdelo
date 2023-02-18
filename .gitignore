@@ -222,3 +222,6 @@ TSWLatexianTemp*
 *-tags.tex
 
 *.bak
+
+# build folder
+build/
