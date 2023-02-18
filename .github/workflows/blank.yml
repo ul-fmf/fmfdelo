@@ -19,10 +19,8 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install flatpak
-          flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
       - name: Install verapdf
-        run: |
-          flatpak install flathub org.verapdf.veraPDF
+        run: flatpak install flathub https://flathub.org/repo/appstream/org.verapdf.veraPDF.flatpakref
       - name: pripravi-arhive.sh
         uses: dante-ev/latex-action@latest
         with:
