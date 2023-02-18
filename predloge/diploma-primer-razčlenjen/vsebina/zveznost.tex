@@ -1,0 +1,143 @@
+\section{Zveznost}
+
+V tem poglavju bomo ponovili osnovne pojme, povezane z zveznostjo funkcij. Pri
+tem bomo sledili~\cite{glob}.
+
+Viri se v seznamu literature prikažejo le, če jih uporabimo v besedilu,
+zato moramo citirati tudi~\cite{lang,zbornik,kalisnik,wiki,vec-avtorjev}.
+
+\begin{definicija}
+Funkcija $f\colon [a,b]\to\R$ je \emph{zvezna}, če \ldots
+\end{definicija}
+
+Podrobneje si poglejmo naslednji rezultat. Ker se bomo kasneje nanj sklicevali,
+si pripravimo oznako z ukazom \verb|\label{oznaka}|. Seveda morajo biti oznake
+različnih trditev različne. Enako označujemo tudi druga okolja oziroma enote
+besedila.
+
+\begin{izrek}\label{izr:enakomerno}
+Zvezna funkcija na zaprtem intervalu je enakomerno zvezna.
+\end{izrek}
+
+\begin{dokaz}
+Na začetku dokaza, če je to le mogoče in smiselno, razložite idejo dokaza.
+
+Dokazovali bomo s protislovjem. Pomagali si bomo z definicijo zveznosti in s
+kompaktnostjo intervala.  Izberimo $\varepsilon>0$. Če $f$ ni enakomerno
+zvezna, potem za vsak $\delta>0$ obstajata $x, y$, ki zadoščata
+\begin{equation}\label{eq:razlika}
+  |x-y|<\delta\quad \text{in}\quad |f(x)-f(y)| \ge \varepsilon. \qedhere
+\end{equation}
+\end{dokaz}
+
+V zgornjem primeru smo kvadratek za konec dokaza postavili v zadnjo vrstico
+besedila, ki je vrstična formula, s pomočjo ukaza \verb|\qedhere|.  Ta ukaz
+ustrezno deluje znotraj okolij \emph{equation, align*} in podobnih, ne pa
+znotraj \verb|$$ ... $$|.
+
+Oglejmo si še enkrat neenačbi~\eqref{eq:razlika}. Na formule se sklicujemo z
+ukazom \verb|\eqref{oznaka}|, ki postavi zaporedno številko enačbe
+v oklepaje, na trditve in ostale enote pa z ukazom \verb|\ref{oznaka}|. Črni
+pravokotnik ob robu strani označuje predolgo vrstico, kjer \LaTeX ni uspel
+pravilno postaviti besedila, zato mu morate pomagati, npr.\ tako, da stavek
+nekoliko preoblikujete, sami razdelite nedeljivo enoto (npr. razdelite
+matematično formulo na dva dela) ali pa ponudite možnosti za deljenje težavne
+besede s pomočjo znakov\verb|\-|, ki jih postavite na mesto, kjer se besedo sme
+deliti, npr.\  \verb|te\-žav\-nost\-ni\-ca|. Zgoraj bi tako lahko zapisali:
+
+Oglejmo si še enkrat neenačbi~\eqref{eq:razlika}. Za sklicevanje na označene
+enote besedila imamo na razpolago dva ukaza; na formule se sklicujemo z ukazom
+\verb|\eqref{oznaka}|, \dots
+
+V predzadnjem odstavku je v oklepaju za okrajšavo npr.\ nastal predolg
+presledek sredi stavka, saj je \LaTeX zaradi pike sklepal, da je na tem mestu
+stavka konec. Tak predolg presledek preprečimo tako, da za piko sredi stavka
+postavimo poševnico in za njo presledek, torej \verb|\ |.\\
+
+Če dokaz trditve ne sledi neposredno formulaciji trditve, moramo povedati, kaj
+bomo dokazovali. To naredimo tako, da ob ukazu za okolje dokaz dodamo neobvezni
+parameter,  v katerem napišemo besedilo, ki se bo izpisalo namesto besede
+\emph{Dokaz}, npr.\ \verb|\begin{Dokaz}[Dokaz izreka \ref{izr:enakomerno}]|.
+
+\begin{dokaz}[Dokaz izreka \ref{izr:enakomerno}]
+  Dokazovanja te trditve se lahko lotimo tudi takole \ldots
+\end{dokaz}
+
+\subsection{Naslov morebitnega (pod)razdelka} Besedilo naj se nadaljuje v vrstici naslova, torej za ukazom \verb|\subsection{}| ne smete izpustiti prazne vrstice.
+
+Podobno kot lahko spremenimo ime dokaza, lahko dodamo komentar v ime trditve,
+torej s pomočjo neobveznega parametra; prvega od spodnjih izpisov dosežemo z
+ukazom \verb|\begin{posledica}[izrek o vmesni vrednosti]|. Če želimo v
+parametru navesti vir, pri katerem bomo navedli podatek o tem, kje v viru to
+trditev najdemo, pa uporabimo ukaz
+\verb|\begin{posledica}[\protect{\cite[izrek 3.14]{glob}}]|. Seveda lahko obe
+možnosti kombiniramo.
+
+
+\begin{posledica}[izrek o vmesni vrednosti]
+  Naj bo $f$ zvezna in \ldots
+\end{posledica}
+
+Ali pa
+
+\begin{posledica}[izrek o vmesni vrednosti \protect{\cite[izrek 3.14]{glob}}]
+  Naj bo $f$ zvezna in \ldots
+\end{posledica}
+
+Podobno lahko napovemo tudi vsebino primera.
+
+\begin{primer}[nezvezna funkcija nima nujno lastnosti povprečne vrednosti]
+  Naj bo $f \colon \R \to \R$ dana s predpisom \dots
+\end{primer}
+
+\subsection{Pisanje algoritmov}
+Za pisanje algoritmov sta na voljo okolji \texttt{algorithm} in
+\texttt{algorithmic} iz paketov \texttt{algorithm} in \texttt{algorithmix}, ki
+sodelujeta podobno kot \texttt{table} in \texttt{tabular}. Algoritmi plavajo
+med tekstom, enako kot slike in tabele, nanje se lahko tudi sklicujemo, kot
+prikazano v izvorni kodi in v algoritmu~\ref{alg:metoda}. Sklicujemo se lahko
+tudi na pomembne vrstice, npr.\ na vrstico~\ref{alg:pomembna-vrstica}, ki
+predstavlja glavni del algoritma. Za primer pisanja algoritma se posvetujte s
+primerom v tem dokumentu, za bolj napredne primere uporabe, kot na primer
+razbijanje algoritma na več kosov, pa z (precej razumljivo) uradno
+dokumentacijo\footnote{\url{http://tug.ctan.org/macros/latex/contrib/algorithmicx/algorithmicx.pdf}}.
+Če želite vključiti izvorno kodo nekega programa, priporočamo paket
+\texttt{minted}\footnote{\url{https://github.com/gpoore/minted}}.
+
+\algnewcommand\algorithmicto{\textbf{to}}
+\algnewcommand\algorithmicin{\textbf{in}}
+\algnewcommand\algorithmicforeach{\textbf{for each}}
+\algrenewtext{For}[3]{\algorithmicfor\ #1 $\gets$ #2\ \algorithmicto\ #3\ \algorithmicdo}
+\algdef{S}[FOR]{ForEach}[2]{\algorithmicforeach\ #1\ \algorithmicin\ #2\ \algorithmicdo}
+
+\begin{algorithm}[ht]
+  \caption{Opis, ki ima enako funkcionalnost kot opis pod sliko.}
+  \label{alg:metoda}
+  \raggedright
+  \textbf{Vhod:} Števili $n, m \in \N, n > m$. \\
+  \textbf{Izhod:} Decimalno število $x$, ki aproksimira rešitev enačbe $n x = m$.
+  \begin{algorithmic}[1]
+    \Function{reši}{$n$, $m$} \Comment{Vsi vhodni parametri morajo biti opisani.}
+    \State $a \gets [\,]$ \Comment{Spremenljivka $a$ naj postane prazna kopica.}
+    \For{$i$}{$1$}{$n$}
+      \If{$i \operatorname{mod} 7 = 5$}
+        \State \Call{heapop}{$a$}
+      \ElsIf{$i < 5$}
+      \State \Call{heappush}{$a, \frac{i+12}{7} + \pi$} \Comment{Lahko uporabljamo matematiko.}
+      \Else
+        \State \Call{heappush}{$a, i$}
+      \EndIf
+    \EndFor
+    \Statex  \Comment{Prazna vrstica}
+    \State $x \gets 0$  \Comment{To je primer komentarja.}
+    \ForEach{e}{a}
+      \State $x \gets 1 + \sqrt[e]{x}$
+    \EndFor
+    \While{$|x| > \varepsilon$}
+      \State $x \gets x / 2$
+    \EndWhile
+    \State $x \gets m / n$ \label{alg:pomembna-vrstica}
+    \State \Return $x$  \Comment{Vsi izhodni parametri morajo biti opisani nad algoritmom.}
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}
