@@ -1,6 +1,11 @@
 #!/bin/bash
 set -e
 
+echo "Installing veraPDF"
+sudo apt-get install flatpak
+sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak install -y --noninteractive flathub org.verapdf.veraPDF
+
 cd predloge
 for dirname in *; do
     if [ -d "$dirname" ]; then
