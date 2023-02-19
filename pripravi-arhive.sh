@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 
+lsb_release -a
 echo "Installing veraPDF"
 add-apt-repository ppa:flatpak/stable
 apt update
