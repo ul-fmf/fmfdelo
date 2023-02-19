@@ -2,7 +2,8 @@
 set -e
 
 echo "Installing veraPDF"
-apt update && apt full-upgrade -y
+git config --global --add safe.directory /github/workspace
+apt update && apt full-upgrade -y > /dev/null
 apt install -y flatpak
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak install -y --noninteractive flathub org.verapdf.veraPDF
