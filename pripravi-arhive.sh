@@ -2,6 +2,8 @@
 set -e
 
 echo "Installing veraPDF"
+add-apt-repository ppa:flatpak/stable
+apt update
 apt-get install flatpak
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak install -y --noninteractive flathub org.verapdf.veraPDF
