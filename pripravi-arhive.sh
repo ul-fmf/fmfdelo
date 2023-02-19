@@ -2,6 +2,7 @@
 set -e
 
 echo "Installing veraPDF"
+export FLATPAK_SYSTEM_HELPER_ON_SESSION=foo # bypass parental controls
 git config --global --add safe.directory /github/workspace
 apt update && apt full-upgrade -y > /dev/null
 apt install -y flatpak
