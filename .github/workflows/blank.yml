@@ -3,6 +3,8 @@ name: Pripravi Arhive
 on:
   push:
     branches: [ "master" ]
+    paths-ignore:
+      - '*.pdf'
   pull_request:
     branches: [ "master" ]
 
@@ -12,10 +14,42 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: lunarstarlight/fmfdelo-texlive:latest
     steps:
-      - name: Set up Git repository
+      - name: Checkout
         uses: actions/checkout@v2
-      - name: pripravi-arhive.sh
-        uses: dante-ev/latex-action@latest
-        with:
-          entrypoint: ./pripravi-arhive.sh
+      # - name: Namesti veraPDF
+      #   run: |
+      #     export FLATPAK_SYSTEM_HELPER_ON_SESSION=foo # bypass parental controls
+      #     git config --global --add safe.directory /github/workspace
+      #     apt-get update #&& apt-get full-upgrade -y > /dev/null
+      #     apt-get remove -y binutils
+      #     apt-get install -y flatpak
+      #     # flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+      #     flatpak install -y --noninteractive https://flathub.org/repo/appstream/org.verapdf.veraPDF
+      - name: Pripravi arhive
+        run : |
+          dbus-daemon --system
+          # flatpak run --command=verapdf org.verapdf.veraPDF --help
+          cd predloge
+          for dirname in $(ls); do
+              if [ -d "$dirname" ]; then
+                  git clean -Xdf
+                  basename="Priimek-Vpisna-Leto"
+                  texname=$basename.tex
+                  pdfname=$basename.pdf
+                  zipname=../../arhivi/$dirname.zip
+
+                  echo "Compiling $dirname"
+                  cd $dirname
+                  zip -r $zipname *
+                  latexmk -pdf $texname
+                  flatpak run --command=verapdf org.verapdf.veraPDF $pdfname
+                  zip $zipname $pdfname
+
+                  git clean -Xdf
+                  cd ..
+              fi
+          done
+
