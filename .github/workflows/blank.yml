@@ -19,18 +19,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      # - name: Namesti veraPDF
-      #   run: |
-      #     export FLATPAK_SYSTEM_HELPER_ON_SESSION=foo # bypass parental controls
-      #     git config --global --add safe.directory /github/workspace
-      #     apt-get update #&& apt-get full-upgrade -y > /dev/null
-      #     apt-get remove -y binutils
-      #     apt-get install -y flatpak
-      #     # flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-      #     flatpak install -y --noninteractive https://flathub.org/repo/appstream/org.verapdf.veraPDF
       - name: Pripravi arhive
         run : |
-          dbus-daemon --system
+          # dbus-daemon --system
+          # flatpak repair --system --reinstall-all
           # flatpak run --command=verapdf org.verapdf.veraPDF --help
           git config --global --add safe.directory /__w/fmfdelo/fmfdelo
           cd predloge
@@ -46,7 +38,7 @@ jobs:
                   cd $dirname
                   zip -r $zipname *
                   latexmk -pdf $texname
-                  flatpak run --command=verapdf org.verapdf.veraPDF $pdfname
+                  verapdf -f 2b $pdfname
                   zip $zipname $pdfname
 
                   git clean -Xdf
