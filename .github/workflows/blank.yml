@@ -32,6 +32,7 @@ jobs:
         run : |
           dbus-daemon --system
           # flatpak run --command=verapdf org.verapdf.veraPDF --help
+          git config --global --add safe.directory /__w/fmfdelo/fmfdelo
           cd predloge
           for dirname in $(ls); do
               if [ -d "$dirname" ]; then
