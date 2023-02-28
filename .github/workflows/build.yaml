@@ -1,0 +1,59 @@
+name: Pripravi Arhive
+
+on:
+  push:
+    branches: [ "master" ]
+    paths-ignore:
+      - '*.zip'
+  pull_request:
+    branches: [ "master" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: lunarstarlight/fmfdelo-texlive:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
+          fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
+      - name: Pripravi arhive
+        run : |
+          git config --global --add safe.directory /__w/fmfdelo/fmfdelo
+          cd predloge
+          for dirname in $(ls); do
+              if [ -d "$dirname" ]; then
+                  git clean -Xdf
+                  basename="Priimek-Vpisna-Leto"
+                  texname=$basename.tex
+                  pdfname=$basename.pdf
+                  zipname=../../arhivi/$dirname.zip
+
+                  echo "Compiling $dirname"
+                  cd $dirname
+                  zip -r $zipname *
+                  latexmk -pdf $texname
+                  verapdf -f 2b $pdfname
+                  zip $zipname $pdfname
+
+                  git clean -Xdf
+                  cd ..
+              fi
+          done
+          cd ..
+      - name: Posodobi arhive
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f arhivi/*.zip
+          git commit -m "Posodobi arhive [skip ci]"
+      - name: Objavi arhive
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
