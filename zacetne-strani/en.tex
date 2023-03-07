@@ -1,0 +1,14 @@
+\input{zacetne-strani/en/front-page.tex}
+\input{zacetne-strani/sl/naslovnica.tex}
+\input{zacetne-strani/en/acknowledgements.tex}
+\input{zacetne-strani/common/toc.tex}
+\@ifthen{\boolean{@drugastopnja}}{
+  \input{zacetne-strani/common/program.tex}
+}
+
+\thispagestyle{empty}
+\pdfbookmark[1]{Abstract}{abstract}
+\input{zacetne-strani/en/abstract.tex}
+\input{zacetne-strani/sl/povzetek.tex}
+\input{zacetne-strani/en/keywords.tex}
+\cleardoublepage
