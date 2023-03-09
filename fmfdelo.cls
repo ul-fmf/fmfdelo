@@ -288,75 +288,48 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % IZPIS ZAČETNIH STRANI
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\@sloeng{\def\@frontpages{\@frontpages@sl}}{\def\@frontpages{\@frontpages@en}}
 
-\AfterEndPreamble{%
-% magisterije začnemo z rimskimi številkami
-\@ifthen{\boolean{@drugastopnja}}{\pagenumbering{roman}}
-\pagestyle{plain}
-\@sloeng{\bibliographystyle{fmf-sl}}{\bibliographystyle{fmf-en}}
-\@ifthen{\boolean{@anglescina}}{
-\thispagestyle{empty}
-\noindent{\large
-UNIVERSITY OF LJUBLJANA\\[1mm]
-FACULTY OF MATHEMATICS AND PHYSICS
-\@ifthen{\boolean{@fri}}{\\[1mm]FACULTY OF COMPUTER AND INFORMATION SCIENCE}
-\\[5mm]
-\@programme\ -- \@cycle}
-\vfill
-
-\begin{center}{\large
-\@avtor\\[2mm]
-{\Large\textbf{\MakeUppercase{\@title}}}\\[10mm]
-\@thesistype\\[1cm]
-\begin{tabular}{rl} \@supervisors \end{tabular}
-}
-\end{center}
-\vfill
-
-\noindent{\large
-Ljubljana, \@letnica}
-\cleardoublepage
-}
-\thispagestyle{empty}
-\noindent{\large
-UNIVERZA V LJUBLJANI\\[1mm]
-FAKULTETA ZA MATEMATIKO IN FIZIKO
-\@ifthen{\boolean{@fri}}{\\[1mm]FAKULTETA ZA RAČUNALNIŠTVO IN INFORMATIKO}
-\\[5mm]
-\@program\@unless{\boolean{@enovitistudij}}{\ -- \@stopnja}}
-\vfill
-
-\begin{center}{\large
-\@avtor\\[2mm]
-{\Large\textbf{\MakeUppercase{\@naslov}}}\\[10mm]
-\@tipdela\\[1cm]
-\begin{tabular}{rl} \@mentorji \end{tabular}
-}
-\end{center}
-\vfill
-
-\noindent{\large
-Ljubljana, \@letnica}
-\cleardoublepage
-
-\ifdefined\@zahvala
-  \@sloeng{
-    \pdfbookmark[1]{Zahvala}{zahvala}
-  }{
-    \pdfbookmark[1]{Acknowledgements}{zahvala}
+\def\@frontpages@sl{
+  \@frontpages@sl@naslovnica
+  \@frontpages@sl@zahvala
+  \@frontpages@common@toc
+  \@ifthen{\boolean{@drugastopnja}}{
+    \@frontpages@common@program
   }
-  \@sloeng{\section*{Zahvala}}{\section*{Acknowledgements}}
-  \@zahvala
+
+  \thispagestyle{empty}
+  \pdfbookmark[1]{Povzetek}{povzetek}
+  \@frontpages@sl@povzetek
+  \@frontpages@en@abstract
+  \@frontpages@sl@kljucnebesede
+  \cleardoublepage
+}
+\def\@frontpages@en{
+  \@frontpages@en@frontpage
+  \@frontpages@sl@naslovnica
+  \@frontpages@en@acknowledgements
+  \@frontpages@common@toc
+  \@ifthen{\boolean{@drugastopnja}}{
+    \@frontpages@common@program
+  }
+
+  \thispagestyle{empty}
+  \pdfbookmark[1]{Abstract}{abstract}
+  \@frontpages@en@abstract
+  \@frontpages@sl@povzetek
+  \@frontpages@en@keywords
+  \cleardoublepage
+}
+
+\def\@frontpages@common@toc{
+  \thispagestyle{empty}
+  \pdfbookmark[1]{\contentsname}{kazalo-vsebine}
+  \tableofcontents
   \vfill
   \cleardoublepage
-\fi
-
-\thispagestyle{empty}
-\pdfbookmark[1]{\contentsname}{kazalo-vsebine}
-\tableofcontents
-\vfill
-\cleardoublepage
-\@ifthen{\boolean{@drugastopnja}}{
+}
+\def\@frontpages@common@program{
   \@sloeng{
     \pdfbookmark[1]{Program dela}{program}
   }{
@@ -378,47 +351,109 @@ Ljubljana, \@letnica}
   \vfill
   \cleardoublepage
 }
+\def\@frontpages@sl@naslovnica{
+  \thispagestyle{empty}
+  \noindent
+  {\large
+  UNIVERZA V LJUBLJANI\\[1mm]
+  FAKULTETA ZA MATEMATIKO IN FIZIKO
+  \@ifthen{\boolean{@fri}}{\\[1mm]FAKULTETA ZA RAČUNALNIŠTVO IN INFORMATIKO}
+  \\[5mm]
+  \@program\@unless{\boolean{@enovitistudij}}{\ -- \@stopnja}
+  }
+  \vfill
+  \begin{center}
+  {\large
+  \@avtor\\[2mm]
+  {\Large\textbf{\MakeUppercase{\@naslov}}}\\[10mm]
+  \@tipdela\\[1cm]
+  \begin{tabular}{rl} \@mentorji \end{tabular}
+  }
+  \end{center}
+  \vfill
 
-\thispagestyle{empty}
-\ifthenelse{\boolean{@anglescina}}{
-\pdfbookmark[1]{Abstract}{abstract}
-\begin{center}
-\textbf{\@title}\\[3mm]
-\textsc{Abstract}
-\end{center}
-\@abstract
-\vfill
-\begin{center}
-\textbf{\@naslov}\\[3mm]
-\textsc{Povzetek}
-\end{center}
-\@povzetek
-\vfill\noindent
-\textbf{Math. Subj. Class. (2020):} \@klasifikacija \\[1mm]
-\def\sep{, } % Pri izpisu ključne besede ločimo z vejico.
-\textbf{Keywords:} \@keywords
-\textbf{Ključne besede:} \@kljucnebesede \\[1mm]
-}{
-\pdfbookmark[1]{Povzetek}{povzetek}
-\begin{center}
-\textbf{\@naslov}\\[3mm]
-\textsc{Povzetek}
-\end{center}
-\@povzetek
-\vfill
-\begin{center}
-\textbf{\@title}\\[3mm]
-\textsc{Abstract}
-\end{center}
-\@abstract
-\vfill\noindent
-\textbf{Math. Subj. Class. (2020):} \@klasifikacija \\[1mm]
-\def\sep{, } % Pri izpisu ključne besede ločimo z vejico.
-\textbf{Ključne besede:} \@kljucnebesede \\[1mm]
-\textbf{Keywords:} \@keywords
+  \noindent{\large
+  Ljubljana, \@letnica}
+  \cleardoublepage
 }
-\cleardoublepage
+\def\@frontpages@en@frontpage{
+  \thispagestyle{empty}
+  \noindent{\large
+  UNIVERSITY OF LJUBLJANA\\[1mm]
+  FACULTY OF MATHEMATICS AND PHYSICS
+  \@ifthen{\boolean{@fri}}{\\[1mm]FACULTY OF COMPUTER AND INFORMATION SCIENCE}
+  \\[5mm]
+  \@programme\ -- \@cycle}
+  \vfill
 
+  \begin{center}{\large
+  \@avtor\\[2mm]
+  {\Large\textbf{\MakeUppercase{\@title}}}\\[10mm]
+  \@thesistype\\[1cm]
+  \begin{tabular}{rl} \@supervisors \end{tabular}
+  }
+  \end{center}
+  \vfill
+
+  \noindent{\large
+  Ljubljana, \@letnica}
+  \cleardoublepage
+}
+\def\@frontpages@sl@zahvala{
+  \ifdefined\@zahvala
+    \pdfbookmark[1]{Zahvala}{zahvala}
+    \section*{Zahvala}
+    \@zahvala
+    \vfill
+    \cleardoublepage
+  \fi
+}
+\def\@frontpages@en@acknowledgements{
+  \ifdefined\@zahvala
+    \pdfbookmark[1]{Acknowledgements}{zahvala}
+    \section*{Acknowledgements}
+    \@zahvala
+    \vfill
+    \cleardoublepage
+  \fi
+}
+\def\@frontpages@sl@povzetek{
+  \begin{center}
+    \textbf{\@naslov}\\[3mm]
+    \textsc{Povzetek}
+  \end{center}
+  \@povzetek
+  \vfill
+}
+\def\@frontpages@en@abstract{
+  \begin{center}
+    \textbf{\@title}\\[3mm]
+    \textsc{Abstract}
+  \end{center}
+  \@abstract
+  \vfill
+}
+\def\@frontpages@sl@kljucnebesede{
+  \noindent
+  \textbf{Math. Subj. Class. (2020):} \@klasifikacija \\[1mm]
+  \def\sep{, } % Pri izpisu ključne besede ločimo z vejico.
+  \textbf{Ključne besede:} \@kljucnebesede \\[1mm]
+  \textbf{Keywords:} \@keywords
+}
+\def\@frontpages@en@keywords{
+  \noindent
+  \textbf{Math. Subj. Class. (2020):} \@klasifikacija \\[1mm]
+  \def\sep{, } % Pri izpisu ključne besede ločimo z vejico.
+  \textbf{Keywords:} \@keywords \\[1mm]
+  \textbf{Ključne besede:} \@kljucnebesede
+}
+
+\AfterEndPreamble{%
+% magisterije začnemo z rimskimi številkami
+\@ifthen{\boolean{@drugastopnja}}{\pagenumbering{roman}}
+\pagestyle{plain}
+\@sloeng{\bibliographystyle{fmf-sl}}{\bibliographystyle{fmf-en}}
+\@frontpages
 % vsebino magisterije začnemo z arabskimi številkami od 1 naprej
 \@ifthen{\boolean{@drugastopnja}}{
   \setcounter{page}{1}
