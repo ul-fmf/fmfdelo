@@ -28,6 +28,7 @@
 \newboolean{@fri}
 \newboolean{@anglescina}
 \newboolean{@tisk}
+\newboolean{@trst}
 \newcommand{\@sloeng}[2]{\ifthenelse{\boolean{@anglescina}}{#2}{#1}}
 
 \DeclareOption{anglescina}{\setboolean{@anglescina}{true}}
@@ -64,6 +65,17 @@
 \DeclareOption{tisk}{
   \setboolean{@tisk}{true}
   \PassOptionsToClass{twoside}{article}
+}
+\DeclareOption{trst1}{
+  \setboolean{@anglescina}{true}
+  \setboolean{@trst}{true}
+  \def\@programme{Programme for a double diploma in mathematics}
+}
+\DeclareOption{trst2}{
+  \setboolean{@anglescina}{true}
+  \setboolean{@trst}{true}
+  \setboolean{@drugastopnja}{true}
+  \def\@programme{Programme for a double degree in mathematics}
 }
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
@@ -289,6 +301,7 @@
 % IZPIS ZAČETNIH STRANI
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \@sloeng{\def\@frontpages{\@frontpages@sl}}{\def\@frontpages{\@frontpages@en}}
+\@ifthen{\boolean{@trst}}{\def\@frontpages{\@frontpages@trst}}
 
 \def\@frontpages@sl{
   \@frontpages@sl@naslovnica
@@ -319,6 +332,23 @@
   \@frontpages@en@abstract
   \@frontpages@sl@povzetek
   \@frontpages@en@keywords
+  \cleardoublepage
+}
+\def\@frontpages@trst{
+  \@frontpages@en@frontpage
+  \@frontpages@trst@frontpage
+  \@frontpages@en@acknowledgements
+  \@frontpages@common@toc
+  \@ifthen{\boolean{@drugastopnja}}{
+    \@frontpages@common@program
+  }
+
+  \thispagestyle{empty}
+  \pdfbookmark[1]{Abstract}{abstract}
+  \@frontpages@en@abstract
+  \@frontpages@trst@abstract
+  \@frontpages@sl@povzetek
+  \@frontpages@trst@keywords
   \cleardoublepage
 }
 
@@ -399,6 +429,48 @@
   Ljubljana, \@letnica}
   \cleardoublepage
 }
+\def\@frontpages@trst@frontpage{
+  \thispagestyle{empty}
+  \noindent
+  \hfuzz=3pt
+  \begin{minipage}[6em]{0.5\linewidth}
+    \small\center
+    UNIVERSITÀ DEGLI STUDI DI TRIESTE\\[1mm]
+    DIPARTIMENTO DI MATEMATICA\\
+    E GEOSCIENZE\\[1mm]
+    Programma di doppio titolo\\
+    in Matematica
+  \end{minipage}
+  \begin{minipage}[6em]{0.5\linewidth}
+    \small\center
+    UNIVERZA V LJUBLJANI\\[1mm]
+    FAKULTETA ZA MATEMATIKO\\
+    IN FIZIKO\\[1mm]
+    Program dvojne diplome\\
+    iz matematike
+  \end{minipage}
+  \vfill
+  \begin{center}
+  {\large
+  \@avtor\\[2mm]
+  \parbox{0.45\linewidth}{
+    \center\Large\textbf{\MakeUppercase{@it@naslov}}\\[10mm]
+    \large @it@tipdela
+  }
+  \hfill
+  \parbox{0.45\linewidth}{
+    \center\Large\textbf{\MakeUppercase{\@naslov}}\\[10mm]
+    \large\@tipdela
+  }\\[1cm]
+  \begin{tabular}{rl} \@mentorji \end{tabular}
+  }
+  \end{center}
+  \vfill
+
+  \noindent{\large
+  Ljubljana, \@letnica}
+  \cleardoublepage
+}
 \def\@frontpages@sl@zahvala{
   \ifdefined\@zahvala
     \pdfbookmark[1]{Zahvala}{zahvala}
@@ -433,6 +505,16 @@
   \@abstract
   \vfill
 }
+\def\@frontpages@trst@abstract{
+  \begin{otherlanguage}{italian}
+  \begin{center}
+    \textbf{@it@title}\\[3mm]
+    \textsc{Summario}
+  \end{center}
+  @it@abstract
+  \end{otherlanguage}
+  \vfill
+}
 \def\@frontpages@sl@kljucnebesede{
   \noindent
   \textbf{Math. Subj. Class. (2020):} \@klasifikacija \\[1mm]
@@ -445,6 +527,14 @@
   \textbf{Math. Subj. Class. (2020):} \@klasifikacija \\[1mm]
   \def\sep{, } % Pri izpisu ključne besede ločimo z vejico.
   \textbf{Keywords:} \@keywords \\[1mm]
+  \textbf{Ključne besede:} \@kljucnebesede
+}
+\def\@frontpages@trst@keywords{
+  \noindent
+  \textbf{Math. Subj. Class. (2020):} \@klasifikacija \\[1mm]
+  \def\sep{, } % Pri izpisu ključne besede ločimo z vejico.
+  \textbf{Keywords:} \@keywords \\[1mm]
+  \textbf{Parole chiave:} @it@keywords \\[1mm]
   \textbf{Ključne besede:} \@kljucnebesede
 }
 
