@@ -30,6 +30,7 @@
 \newboolean{@tisk}
 \newboolean{@trst}
 \newcommand{\@sloeng}[2]{\ifthenelse{\boolean{@anglescina}}{#2}{#1}}
+\newcommand{\@iftrst}[2]{\@ifthen{\boolean{@trst}}{#1}}
 
 \DeclareOption{anglescina}{\setboolean{@anglescina}{true}}
 \DeclareOption{mat1}{
@@ -70,12 +71,14 @@
   \setboolean{@anglescina}{true}
   \setboolean{@trst}{true}
   \def\@programme{Programme for a double diploma in mathematics}
+  \def\@it@thesistype{Tesi finale}
 }
 \DeclareOption{trst2}{
   \setboolean{@anglescina}{true}
   \setboolean{@trst}{true}
   \setboolean{@drugastopnja}{true}
-  \def\@programme{Programme for a double degree in mathematics}
+  \def\@programme{Programme for a double master's degree in mathematics}
+  \def\@it@thesistype{Tesi finale}
 }
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
@@ -128,8 +131,10 @@
 }
 \def\@mentorji{}
 \def\@supervisors{}
+\def\@it@supervisors{}
 \def\@podpisi{}
 \def\@signatures{}
+\def\@it@signatures{}
 \newcommand{\@dodajmentorja}[3]{%
   \g@addto@macro\@mentorji{#1: & #3 \\}%
   \g@addto@macro\@podpisi{Podpis #2: & \phantom{prostor za podpis} \\[2cm]}%
@@ -145,6 +150,14 @@
 \newcommand{\@addsupervisors}[4]{%
   \g@addto@macro\@supervisors{#1: & #3 \\ & #4 \\}%
   \g@addto@macro\@signatures{#2 signature: & \phantom{prostor za podpis} \\[2cm] & \phantom{prostor za podpis} \\[2cm]}
+}
+\newcommand{\@it@addsupervisor}[3]{%
+  \g@addto@macro\@it@supervisors{#1: & #3 \\}%
+  \g@addto@macro\@it@signatures{Firma del #2: & \phantom{prostor za podpis} \\[2cm]}%
+}
+\newcommand{\@it@addsupervisors}[4]{%
+  \g@addto@macro\@it@supervisors{#1: & #3 \\ & #4 \\}%
+  \g@addto@macro\@it@signatures{Firma dei signature: & \phantom{prostor za podpis} \\[2cm] & \phantom{prostor za podpis} \\[2cm]}
 }
 
 \newcommand{\avtor}{\@definerequiredfield{@avtor}}
@@ -162,13 +175,25 @@
 \newcommand{\slovar}{\@definefield{@slovar}}
 \newcommand{\literatura}{\@definefield{@literatura}}
 
+\@ifthen{\boolean{@anglescina}}{
+  \newcommand{\razsirjenipovzetek}{\protect\input{razsirjenipovzetek.tex}}
+}
+
+\@ifthen{\boolean{@trst}}{
+  \newcommand{\titolo}{\@definerequiredfield{@it@title}}
+  \newcommand{\summario}{\@definerequiredfield{@it@abstract}}
+  \newcommand{\parolechiave}{\@definerequiredfield{@it@keywords}}
+  \newcommand{\it@razsirjenipovzetek}{\protect\input{sintesiestesa.tex}}
+}
+
 \newcommand{\vnosliterature}[1]{\item[\cite{#1}] \bibentry{#1}}
 \newcommand{\geslo}[2]{\noindent\textbf{#1}\hspace*{3mm}\hangindent=\parindent\hangafter=1 #2\par}
 
-\newenvironment{razsirjenipovzetek}{
-  \begin{otherlanguage}{slovene}
-    \section{Razširjeni povzetek v slovenskem jeziku}
-}{\end{otherlanguage}}
+% \newenvironment{razsirjenipovzetek}{
+%   \expandafter\def\sl@razsirjenipovzetek{
+%   \begin{otherlanguage}{slovene}
+%     \section{Razširjeni povzetek v slovenskem jeziku}
+% }{\end{otherlanguage}}}
 
 \newcommand{\mentor}{\@dodajmentorja{Mentor}{mentorja}}
 \newcommand{\somentor}{\@dodajmentorja{Somentor}{somentorja}}
@@ -182,6 +207,10 @@
 \newcommand{\cosupervisor}[1]{\@addsupervisor{Co-supervisor}{Co-supervisor's}{#1}}
 \newcommand{\supervisors}[2]{\@addsupervisors{Supervisors}{Supervisors'}{#1}{#2}}
 \newcommand{\cosupervisors}[2]{\@addsupervisors{Co-supervisors}{Co-supervisors'}{#1}{#2}}
+\newcommand{\supervisore}[1]{\@it@addsupervisor{Supervisore}{supervisore}{#1}}
+\newcommand{\cosupervisore}[1]{\@it@addsupervisor{Co-supervisore}{co-supervisore}{#1}}
+\newcommand{\supervisori}[2]{\@it@addsupervisors{Supervisori}{supervisorsi}{#1}{#2}}
+\newcommand{\cosupervisori}[2]{\@it@addsupervisors{Co-supervisori}{co-supervisori}{#1}{#2}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % IZPIS PDF/A
@@ -335,8 +364,8 @@
   \cleardoublepage
 }
 \def\@frontpages@trst{
-  \@frontpages@en@frontpage
-  \@frontpages@trst@frontpage
+  \@frontpages@trst@en@frontpage
+  \@frontpages@trst@itslo@frontpage
   \@frontpages@en@acknowledgements
   \@frontpages@common@toc
   \@ifthen{\boolean{@drugastopnja}}{
@@ -429,10 +458,59 @@
   Ljubljana, \@letnica}
   \cleardoublepage
 }
-\def\@frontpages@trst@frontpage{
+\renewcommand{\twocolumn}[3][0.45]{
+  \hfill
+  \parbox{#1\linewidth}{
+    \center #2
+  }
+  \hfill
+  \parbox{#1\linewidth}{
+    \center #3
+  }
+  \hfill
+}
+
+\def\@frontpages@trst@en@frontpage{
   \thispagestyle{empty}
   \noindent
-  \hfuzz=3pt
+  \hfuzz=3pt % ker se spodnja minipagea prekrivata
+  % minipage je potreben, ker dva parboxa ne pašeta lepo
+  \begin{minipage}[6em]{0.5\linewidth}
+    \small\center
+    UNIVERSITY OF TRIESTE\\[1mm]
+    DEPARTIMENT OF MATHEMATICS\\
+    AND GEOLOGY
+  \end{minipage}
+  \begin{minipage}[6em]{0.5\linewidth}
+    \small\center
+    UNIVERZA V LJUBLJANI\\[1mm]
+    FAKULTETA ZA MATEMATIKO\\
+    IN FIZIKO
+  \end{minipage}\\
+  \begin{center}
+    \@programme\ -- \@cycle
+  \end{center}
+  \vfill
+
+  \begin{center}{\large
+  \@avtor\\[2mm]
+  {\Large\textbf{\MakeUppercase{\@title}}}\\[10mm]
+  \@thesistype\\[1cm]
+  \begin{tabular}{rl} \@supervisors \end{tabular}
+  }
+  \end{center}
+  \vfill
+
+  \begin{center}\large
+    Ljubljana, \@letnica
+  \end{center}
+  \cleardoublepage
+}
+\def\@frontpages@trst@itslo@frontpage{
+  \thispagestyle{empty}
+  \noindent
+  \hfuzz=3pt % ker se spodnja minipagea prekrivata
+  % minipage je potreben, ker dva parboxa ne pašeta lepo
   \begin{minipage}[6em]{0.5\linewidth}
     \small\center
     UNIVERSITÀ DEGLI STUDI DI TRIESTE\\[1mm]
@@ -442,7 +520,7 @@
     in Matematica
   \end{minipage}
   \begin{minipage}[6em]{0.5\linewidth}
-    \small\center
+    \small\center\vspace*{2.5pt} % poravnava zaradi `À` v drugi univerzi
     UNIVERZA V LJUBLJANI\\[1mm]
     FAKULTETA ZA MATEMATIKO\\
     IN FIZIKO\\[1mm]
@@ -453,22 +531,22 @@
   \begin{center}
   {\large
   \@avtor\\[2mm]
-  \parbox{0.45\linewidth}{
-    \center\Large\textbf{\MakeUppercase{@it@naslov}}\\[10mm]
-    \large @it@tipdela
-  }
-  \hfill
-  \parbox{0.45\linewidth}{
-    \center\Large\textbf{\MakeUppercase{\@naslov}}\\[10mm]
-    \large\@tipdela
-  }\\[1cm]
-  \begin{tabular}{rl} \@mentorji \end{tabular}
+  \twocolumn
+    {\Large\textbf{\MakeUppercase{\@it@title}}}
+    {\Large\textbf{\MakeUppercase{\@naslov}}}
+  \\[10mm]
+  \twocolumn
+    {\large\@it@thesistype}
+    {\large\@tipdela}
+  \\[1cm]
+  \begin{tabular}{rl} \@it@supervisors \\ \@mentorji \end{tabular}
   }
   \end{center}
   \vfill
 
-  \noindent{\large
-  Ljubljana, \@letnica}
+  \begin{center}\large
+    Ljubljana, \@letnica
+  \end{center}
   \cleardoublepage
 }
 \def\@frontpages@sl@zahvala{
@@ -508,10 +586,10 @@
 \def\@frontpages@trst@abstract{
   \begin{otherlanguage}{italian}
   \begin{center}
-    \textbf{@it@title}\\[3mm]
+    \textbf{\@it@title}\\[3mm]
     \textsc{Summario}
   \end{center}
-  @it@abstract
+  \@it@abstract
   \end{otherlanguage}
   \vfill
 }
@@ -534,7 +612,7 @@
   \textbf{Math. Subj. Class. (2020):} \@klasifikacija \\[1mm]
   \def\sep{, } % Pri izpisu ključne besede ločimo z vejico.
   \textbf{Keywords:} \@keywords \\[1mm]
-  \textbf{Parole chiave:} @it@keywords \\[1mm]
+  \textbf{Parole chiave:} \@it@keywords \\[1mm]
   \textbf{Ključne besede:} \@kljucnebesede
 }
 
@@ -544,6 +622,36 @@
 \pagestyle{plain}
 \@sloeng{\bibliographystyle{fmf-sl}}{\bibliographystyle{fmf-en}}
 \@frontpages
+
+\@ifthen{\boolean{@trst}}{
+  \theoremstyle{definition}
+  \let\definicija\undefined
+  \let\c@definicija\undefined
+  \newtheorem{definicija}{Definicija}
+  \begin{otherlanguage}{slovene}
+    \begin{center}
+      \textsc{Razširjeni povzetek v italijanskem jeziku}
+    \end{center}
+    \it@razsirjenipovzetek
+  \end{otherlanguage}
+  \setcounter{section}{0}
+  \cleardoublepage
+}
+\@ifthen{\boolean{@anglescina}}{
+  \theoremstyle{definition}
+  \let\definicija\undefined
+  \let\c@definicija\undefined
+  \newtheorem{definicija}{Definicija}
+  \begin{otherlanguage}{slovene}
+    \begin{center}
+      \textsc{Razširjeni povzetek v slovenskem jeziku}
+    \end{center}
+    \razsirjenipovzetek
+  \end{otherlanguage}
+  \setcounter{section}{0}
+  \cleardoublepage
+}
+
 % vsebino magisterije začnemo z arabskimi številkami od 1 naprej
 \@ifthen{\boolean{@drugastopnja}}{
   \setcounter{page}{1}
