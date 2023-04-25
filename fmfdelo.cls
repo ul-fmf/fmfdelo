@@ -189,12 +189,6 @@
 \newcommand{\vnosliterature}[1]{\item[\cite{#1}] \bibentry{#1}}
 \newcommand{\geslo}[2]{\noindent\textbf{#1}\hspace*{3mm}\hangindent=\parindent\hangafter=1 #2\par}
 
-% \newenvironment{razsirjenipovzetek}{
-%   \expandafter\def\sl@razsirjenipovzetek{
-%   \begin{otherlanguage}{slovene}
-%     \section{Razširjeni povzetek v slovenskem jeziku}
-% }{\end{otherlanguage}}}
-
 \newcommand{\mentor}{\@dodajmentorja{Mentor}{mentorja}}
 \newcommand{\somentor}{\@dodajmentorja{Somentor}{somentorja}}
 \newcommand{\mentorica}{\@dodajmentorja{Mentorica}{mentorice}}
