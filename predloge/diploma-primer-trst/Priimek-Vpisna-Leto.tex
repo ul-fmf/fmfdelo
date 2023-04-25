@@ -1,0 +1,162 @@
+\documentclass[trst1, tisk]{fmfdelo}
+% Če pobrišete možnost tisk, bodo povezave obarvane,
+% na začetku pa ne bo praznih strani po naslovu, …
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% METAPODATKI
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% - vaše ime
+\avtor{Marija Novak}
+
+% - naslov dela v slovenščini
+\naslov{Naslov dela}
+
+% - naslov dela v angleščini
+\title{Angleški prevod slovenskega naslova dela}
+
+\titolo{Italijanski prevod naslova}
+
+% - ime mentorja/mentorice s polnim nazivom:
+%   - doc.~dr.~Ime Priimek
+%   - izr.~prof.~dr.~Ime Priimek
+%   - prof.~dr.~Ime Priimek
+%   za druge variante uporabite ustrezne ukaze
+\mentor{prof.~dr.~Janez Novak}
+% \somentor{...}
+% \mentorica{...}
+% \somentorica{...}
+% \mentorja{...}{...}
+% \somentorja{...}{...}
+% \mentorici{...}{...}
+% \somentorici{...}{...}
+% mentorja morate navesti še z angleškim nazivom:
+% - doc.~dr. = Assist.~Prof.~Dr.
+% - izr.~prof.~dr. = Assoc.~Prof.~Dr.
+% - prof.~dr. = Prof.~Dr.
+\supervisor{Prof.~Dr.~Janez~Novak}
+% \supervisor{...}
+% \cosupervisor{...}
+% \supervisors{...}{...}
+% \cosupervisors{...}{...}
+\supervisore{Prof.~Dr.~Janez~Novak}
+% \supervisore{...}
+% \cosupervisore{...}
+% \supervisorsi{...}{...}
+% \cosupervisorsi{...}{...}
+
+% - leto magisterija
+\letnica{2017} 
+
+% - povzetek v slovenščini
+%   V povzetku na kratko opišite vsebinske rezultate dela. Sem ne sodi razlaga
+%   organizacije dela, torej v katerem razdelku je kaj, pač pa le opis vsebine.
+\povzetek{Tukaj napišemo povzetek vsebine. Sem sodi razlaga vsebine in ne opis tega, kako je delo organizirano.}
+
+% - povzetek v angleščini
+\abstract{An abstract of the work is written here. This includes a short description of
+the content and not the structure of your work.}
+
+\sommario{Povzetek v Italijanščini}
+
+% - klasifikacijske oznake, ločene z vejicami
+%   Oznake, ki opisujejo področje dela, so dostopne na strani https://www.ams.org/msc/
+\klasifikacija{74B05, 65N99}
+
+% - ključne besede, ki nastopajo v delu, ločene s \sep
+\kljucnebesede{integracija\sep kompleks}
+
+% - angleški prevod ključnih besed
+\keywords{integration\sep complex} % angleški prevod ključnih besed
+
+\parolechiave{ključne\sep besede} % italijanski prevod ključnih besed
+
+% - neobvezna zahvala
+\zahvala{
+  Neobvezno.
+  Zahvaljujem se \dots
+}
+
+% - ime datoteke z viri (vključno s končnico .bib), če uporabljate BibTeX
+\literatura{literatura.bib}
+
+% - angleško-slovenski slovar strokovnih izrazov
+\slovar{
+\geslo{continuous}{zvezen}
+\geslo{uniformly continuous}{enakomerno zvezen}
+\geslo{compact}{kompakten -- metrični prostor je kompakten, če ima v njem vsako zaporedje stekališče; podmnožica evklidskega prostora je kompaktna natanko tedaj, ko je omejena in zaprta  }
+\geslo{glide reflection}{zrcalni zdrs ali zrcalni pomik -- tip ravninske evklidske izometrije, ki je kompozitum zrcaljenja in translacije vzdolž iste premice}  
+\geslo{lattice}{mreža}  
+\geslo{link}{splet}
+\geslo{partition}{\textbf{$\sim$ of a set} razdelitev množice; \textbf{$\sim$ of a number} razčlenitev števila}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DODATNE DEFINICIJE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% naložite dodatne pakete, ki jih potrebujete
+\usepackage{units}        % fizikalne enote kot \unit[12]{kg} s polovico nedeljivega presledka, glej primer v kodi
+\usepackage{graphicx}     % za slike
+% \usepackage{tikz}
+% VEČ ZANIMIVIH PAKETOV
+% \usepackage{array}      % več možnosti za tabele
+% \usepackage[list=true,listformat=simple]{subcaption}  % več kot ena slika na figure, omogoči slika 1a, slika 1b
+% \usepackage[all]{xy}    % diagrami
+% \usepackage{doi}        % za clickable DOI entrye v bibliografiji
+% \usepackage{enumerate}     % več možnosti za sezname
+
+% Za barvanje source kode
+% \usepackage{minted}
+% \renewcommand\listingscaption{Program}
+
+% Za pisanje psevdokode
+% \usepackage{algpseudocode}  % za psevdokodo
+% \usepackage{algorithm}
+% \floatname{algorithm}{Algoritem}
+% \renewcommand{\listalgorithmname}{Kazalo algoritmov}
+
+% deklarirajte vse matematične operatorje, da jih bo LaTeX pravilno stavil
+% \DeclareMathOperator{\...}{...}
+
+% vstavite svoje definicije ...
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+% Lahko se zgodi, da je ukaz \C definiral že paket hyperref,
+% zato dobite napako: Command \C already defined.
+% V tem primeru namesto ukaza \newcommand uporabite \renewcommand
+\newcommand{\C}{\mathbb C}
+\newcommand{\Q}{\mathbb Q}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ZAČETEK VSEBINE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\section{Introduction}
+Write down a short introduction, focusing on historical and mathematical aspects. Introduce the
+motivation for the problem and where and how it has been dealt with. At the end write down how the
+thesis is organised -- what is written in each Section.
+
+Use English environments, the word ``proof'' will be written in English.
+\begin{definition}
+A \emph{\index{lattice}} is an ordered set $(E, \leq)$ such that for any two elements $x,y \in E$,
+the set $\{x,y\}$ has a least upper bound $x \vee y$ and a greatest lower bound $x \wedge y$.
+\end{definition}
+
+\begin{theorem}
+For $X \subseteq E$ if the set of lower bounds of $X$ has a least upper bound, then this is the
+greatest lower bound of $X$.
+\end{theorem}
+
+\begin{proof}
+We prove this in the following way\dots
+\end{proof}
+
+For detailed instructions, see the part in slovenian language. When referencing to sections and
+other items use capital letters, e.g.\ in Figure \dots
+
+\end{document}
