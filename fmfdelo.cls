@@ -181,7 +181,7 @@
 
 \@ifthen{\boolean{@trst}}{
   \newcommand{\titolo}{\@definerequiredfield{@it@title}}
-  \newcommand{\summario}{\@definerequiredfield{@it@abstract}}
+  \newcommand{\sommario}{\@definerequiredfield{@it@abstract}}
   \newcommand{\parolechiave}{\@definerequiredfield{@it@keywords}}
   \newcommand{\it@razsirjenipovzetek}{\protect\input{sintesiestesa.tex}}
 }
@@ -458,7 +458,7 @@
   Ljubljana, \@letnica}
   \cleardoublepage
 }
-\renewcommand{\twocolumn}[3][0.45]{
+\newcommand{\dvastolpca}[3][0.45]{
   \hfill
   \parbox{#1\linewidth}{
     \center #2
@@ -531,11 +531,11 @@
   \begin{center}
   {\large
   \@avtor\\[2mm]
-  \twocolumn
+  \dvastolpca
     {\Large\textbf{\MakeUppercase{\@it@title}}}
     {\Large\textbf{\MakeUppercase{\@naslov}}}
   \\[10mm]
-  \twocolumn
+  \dvastolpca
     {\large\@it@thesistype}
     {\large\@tipdela}
   \\[1cm]
@@ -587,7 +587,7 @@
   \begin{otherlanguage}{italian}
   \begin{center}
     \textbf{\@it@title}\\[3mm]
-    \textsc{Summario}
+    \textsc{Sommario}
   \end{center}
   \@it@abstract
   \end{otherlanguage}
