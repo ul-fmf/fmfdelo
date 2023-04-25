@@ -292,6 +292,17 @@
   \popQED\end{example*}
 }
 }
+\@ifthen{\boolean{@trst}}{
+\newtheorem{assioma}{Assioma}
+\newtheorem{definizione}{Definizione}[section]
+\newtheorem{osservazione}[definition]{Osservazione}
+\newtheorem{esempio*}[definition]{Esempio}
+\newenvironment{esempio}[1][]{
+  \begin{esempio*}[#1]\renewcommand*{\qedsymbol}{$\diamondsuit$}\pushQED{\qed}
+}{
+  \popQED\end{esempio*}
+}
+}
 
  % poševno napisan tekst
 \theoremstyle{plain}
@@ -304,6 +315,12 @@
 \newtheorem{theorem}[definition]{Theorem}
 \newtheorem{proposition}[definition]{Proposition}
 \newtheorem{corollary}[definition]{Corollary}
+}
+\@ifthen{\boolean{@trst}}{
+\newtheorem{teorema}[definition]{Teorema}
+\newtheorem{proposizione}[definition]{Proposizione}
+\newtheorem{corollario}[definition]{Corollario}
+\newenvironment{dimostrazione}[1][Dimostrazione]{\begin{proof}[#1]}{\end{proof}}
 }
 
 \numberwithin{equation}{section}  % števec za enačbe zgleda kot (2.7) in se resetira v vsakem razdelku
