@@ -1,4 +1,4 @@
-name: Pripravi Arhive
+name: Preveri Arhive
 
 on:
   pull_request:
