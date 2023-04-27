@@ -176,14 +176,14 @@
 \newcommand{\literatura}{\@definefield{@literatura}}
 
 \@ifthen{\boolean{@anglescina}}{
-  \newcommand{\razsirjenipovzetek}{\protect\input{razsirjenipovzetek.tex}}
+  \newcommand{\razsirjenipovzetek}{\@definerequiredfield{@razsirjenipovzetek}}
 }
 
 \@ifthen{\boolean{@trst}}{
   \newcommand{\titolo}{\@definerequiredfield{@it@title}}
   \newcommand{\sommario}{\@definerequiredfield{@it@abstract}}
   \newcommand{\parolechiave}{\@definerequiredfield{@it@keywords}}
-  \newcommand{\it@razsirjenipovzetek}{\protect\input{sintesiestesa.tex}}
+  \newcommand{\sintesiestesa}{\@definerequiredfield{@it@razsirjenipovzetek}}
 }
 
 \newcommand{\vnosliterature}[1]{\item[\cite{#1}] \bibentry{#1}}
@@ -643,7 +643,7 @@
     \begin{center}
       \textsc{Razširjeni povzetek v italijanskem jeziku}
     \end{center}
-    \it@razsirjenipovzetek
+    \expandafter\input{\@it@razsirjenipovzetek}
   \end{otherlanguage}
   \setcounter{section}{0}
   \cleardoublepage
@@ -657,7 +657,7 @@
     \begin{center}
       \textsc{Razširjeni povzetek v slovenskem jeziku}
     \end{center}
-    \razsirjenipovzetek
+    \expandafter\input{\@razsirjenipovzetek}
   \end{otherlanguage}
   \setcounter{section}{0}
   \cleardoublepage
