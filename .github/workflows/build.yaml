@@ -15,29 +15,26 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
-          fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
       - name: Pripravi arhive
         run : |
           git config --global --add safe.directory /__w/fmfdelo/fmfdelo
+          mkdir arhivi
           cd predloge
           for dirname in $(ls); do
               if [ -d "$dirname" ]; then
-                  git clean -Xdf
+                  cd $dirname
+                  echo "Compiling $dirname"
+
                   basename="Priimek-Vpisna-Leto"
                   texname=$basename.tex
                   pdfname=$basename.pdf
                   zipname=../../arhivi/$dirname.zip
 
-                  echo "Compiling $dirname"
-                  cd $dirname
                   zip -r $zipname *
                   latexmk -pdf $texname
                   verapdf -f 2b $pdfname
                   zip $zipname $pdfname
 
-                  git clean -Xdf
                   cd ..
               fi
           done
