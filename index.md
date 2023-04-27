@@ -1,3 +1,7 @@
+---
+title: fmfdelo
+---
+
 # Predloge za zaključna dela na oddelku za matematiko [FMF UL](https://www.fmf.uni-lj.si/)
 
 Za uporabo najprej **preberite navodila na vaši spletni učilnici**, nato pa prenesite ustrezen arhiv s predlogo:
