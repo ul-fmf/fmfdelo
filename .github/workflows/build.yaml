@@ -1,0 +1,35 @@
+name: Preveri PDFje
+
+on:
+  pull_request:
+    branches: [ "master" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: lunarstarlight/fmfdelo-texlive:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Preveri PDFje
+        run : |
+          cd predloge
+          for dirname in $(ls); do
+              if [ -d "$dirname" ]; then
+                  cd $dirname
+                  echo "Compiling $dirname"
+
+                  basename="Priimek-Vpisna-Leto"
+                  texname=$basename.tex
+                  pdfname=$basename.pdf
+
+                  latexmk -pdf $texname
+                  verapdf -f 2b $pdfname
+
+                  cd ..
+              fi
+          done
