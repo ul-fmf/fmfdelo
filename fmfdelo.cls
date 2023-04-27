@@ -123,7 +123,7 @@
   {
     % Ker ključne besede vsebujejo nedefinirano ločilo \sep, ga za potrebe
     % preverjanja lokalno definiramo (zato par zavitih oklepajev).
-    \newcommand\sep{\relax}
+    \def\sep{\relax}
     \@ifthen{\equal{\csname #1\endcsname}{}}{
       \PackageError{fmfdelo}{Polje je zahtevano.}{}
     }
@@ -643,7 +643,7 @@
     \begin{center}
       \textsc{Razširjeni povzetek v italijanskem jeziku}
     \end{center}
-    \expandafter\input{\@it@razsirjenipovzetek}
+    \input{\@it@razsirjenipovzetek}
   \end{otherlanguage}
   \setcounter{section}{0}
   \cleardoublepage
@@ -657,7 +657,7 @@
     \begin{center}
       \textsc{Razširjeni povzetek v slovenskem jeziku}
     \end{center}
-    \expandafter\input{\@razsirjenipovzetek}
+    \input{\@razsirjenipovzetek}
   \end{otherlanguage}
   \setcounter{section}{0}
   \cleardoublepage
