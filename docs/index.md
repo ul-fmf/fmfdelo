@@ -8,7 +8,9 @@ Za uporabo najprej **preberite navodila na vaši spletni učilnici**, nato pa pr
 
 - [diploma-prazno.zip](arhivi/diploma-prazno.zip): prazna predloga za delo diplomskega seminarja
 - [diploma-primer.zip](arhivi/diploma-primer.zip): primer dela diplomskega seminarja
+- [diploma-primer-razclenjen.zip](arhivi/diploma-primer-razclenjen.zip): primer dela diplomskega seminarja z razdelki v posameznih datotekah
 - [magisterij-primer-sl.zip](arhivi/magisterij-primer-sl.zip): primer magistrskega dela
+- [magisterij-primer-razclenjen-sl.zip](arhivi/magisterij-primer-razclenjen-sl.zip): primer magistrskega dela z razdelki v posameznih datotekah
 - [magisterij-primer-en.zip](arhivi/magisterij-primer-en.zip): primer magistrskega dela v angleščini
 
 in sledite spodnjim [navodilom za uporabo](#navodila-za-uporabo). Dokument bi se moral prevesti brez posebnosti in dodatnih nastavitev. Nekaj pogostih težav in rešitev je [opisanih spodaj](#odpravljanje-napak).
