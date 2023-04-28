@@ -41,7 +41,7 @@ Vaš PDF pred oddajo (ali pa že kdaj prej) preverite z uporabo spletnega valida
 
 #### `pdfapart undefined`
 
-Če dobite pri prevajanju napako podobno `! Package keyval Error: pdfapart undefined.`, priporočamo, da posodobite svojo distribucijo LaTeX-a na najnovejšo verzijo.
+Če dobite pri prevajanju napako podobno `! Package keyval Error: pdfapart undefined.`, priporočamo, da posodobite svojo distribucijo LaTeX-a na najnovejšo verzijo. Prvi nasvet je torej, da posodobite svojo distribucijo LaTeX-a na najnovejšo verzijo, v kateri omogočite sprotno nalaganje paketov. Ustrezni distribuciji sta MikTeX in TeX Live.
 
 #### `./fmfdelo.cls  ! Undefined control sequence.`
 
@@ -57,7 +57,8 @@ morate posodobiti `.cls` datoteko na najnovejšo verzijo.
 
 #### `The value of the key SMask ...` / `The key S has a value ...`
 
-Napaki `The value of the key SMask is an image but must be None.` ali `The key S has a value Transparency which is prohibited.` pomenita, da imate vključeno kakšno prosojno sliko. Za rastrske slike je ponavadi dovolj, da s primernim programom prosojno barvo spremenite v belo, za slike v vektorskih formatih pa je potrebno ponavadi nastaviti ozadje.
+Napaki `The value of the key SMask is an image but must be None.` ali `The key S has a value Transparency which is prohibited.` pomenita, da imate vključeno kakšno prosojno sliko. Za rastrske slike je ponavadi dovolj, da s primernim programom prosojno barvo spremenite v belo, za slike v vektorskih formatih pa je potrebno ponavadi nastaviti ozadje. Pri paketu TikZ pa je npr. namesto `\draw[fill=yellow]` treba napisati `\filldraw[color=yellow]`.
+
 
 #### Manjkajoče velike začetnice v literaturi
 
