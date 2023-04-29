@@ -635,23 +635,29 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand{\@make@razsirjenipovzetek}[3]{
-  \setcounter{section}{0}
+  % Args: jezik, naslov razš. povzetka (v jeziku), ime datoteke povzetka
+  % V razširjenem povzetku želimo, da razdelki pripadajo nekemu
+  % nad-razdelku "Razširjeni povzetek", zato vse razdelke premaknemo
+  % en nivo nižje in nastavimo številčenje na podrazdelek.
 
+  % shrani stare definicije razdelkov
   \let\oldthesection\thesection
   \let\oldthesubsection\thesubsection
   \let\oldsection\section
   \let\oldsubsection\subsection
 
+  % nastavi številčenje po podrazdelkih
   \def\thesection{}
   \def\thesubsection{\@arabic\c@subsection}
   \numberwithin{equation}{subsection}
 
+  % premakne nivoje razdelkov en nivo nižje, da nivo `\section' spada pod razdelek razširjenega povzetka
   \let\section\subsection
   \let\subsection\subsubsection
 
   \begin{otherlanguage}{#1}
-    \phantomsection
-    \addcontentsline{toc}{section}{#2}
+    \phantomsection % potrebno za pravilno številčenje strani v kazalih
+    \addcontentsline{toc}{section}{#2} % doda razdelek v kazalo in metapodatke
     \begin{center}
       \textsc{#2}
     \end{center}
@@ -659,6 +665,7 @@
   \end{otherlanguage}
   \cleardoublepage
 
+  % obnovi stare definicije razdelkov
   \let\thesection\oldthesection
   \let\thesubsection\oldthesubsection
   \let\section\oldsection
@@ -697,6 +704,7 @@
   \@make@razsirjenipovzetek{italian}{Sintesi estesa}{\@it@razsirjenipovzetek}
 }
 \@ifthen{\boolean{@anglescina}}{
+  % spremeni številčenje definicij, izrekov, ipd. na ustrezen nivo
   \let\definicija\undefined
   \let\c@definicija\undefined
   \theoremstyle{definition}
@@ -704,5 +712,4 @@
 
   \@make@razsirjenipovzetek{slovene}{Razsirjeni povzetek}{\@razsirjenipovzetek}
 }
-
 }
