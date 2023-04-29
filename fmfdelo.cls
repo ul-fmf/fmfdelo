@@ -292,17 +292,6 @@
   \popQED\end{example*}
 }
 }
-\@ifthen{\boolean{@trst}}{
-\newtheorem{assioma}{Assioma}
-\newtheorem{definizione}{Definizione}[section]
-\newtheorem{osservazione}[definition]{Osservazione}
-\newtheorem{esempio*}[definition]{Esempio}
-\newenvironment{esempio}[1][]{
-  \begin{esempio*}[#1]\renewcommand*{\qedsymbol}{$\diamondsuit$}\pushQED{\qed}
-}{
-  \popQED\end{esempio*}
-}
-}
 
  % poševno napisan tekst
 \theoremstyle{plain}
@@ -634,35 +623,6 @@
 \@sloeng{\bibliographystyle{fmf-sl}}{\bibliographystyle{fmf-en}}
 \@frontpages
 
-\@ifthen{\boolean{@trst}}{
-  \theoremstyle{definition}
-  \let\definicija\undefined
-  \let\c@definicija\undefined
-  \newtheorem{definicija}{Definicija}
-  \begin{otherlanguage}{slovene}
-    \begin{center}
-      \textsc{Razširjeni povzetek v italijanskem jeziku}
-    \end{center}
-    \input{\@it@razsirjenipovzetek}
-  \end{otherlanguage}
-  \setcounter{section}{0}
-  \cleardoublepage
-}
-\@ifthen{\boolean{@anglescina}}{
-  \theoremstyle{definition}
-  \let\definicija\undefined
-  \let\c@definicija\undefined
-  \newtheorem{definicija}{Definicija}
-  \begin{otherlanguage}{slovene}
-    \begin{center}
-      \textsc{Razširjeni povzetek v slovenskem jeziku}
-    \end{center}
-    \input{\@razsirjenipovzetek}
-  \end{otherlanguage}
-  \setcounter{section}{0}
-  \cleardoublepage
-}
-
 % vsebino magisterije začnemo z arabskimi številkami od 1 naprej
 \@ifthen{\boolean{@drugastopnja}}{
   \setcounter{page}{1}
@@ -674,6 +634,38 @@
 % IZPIS KONČNIH STRANI
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\newcommand{\@make@razsirjenipovzetek}[3]{
+  \setcounter{section}{0}
+
+  \let\oldthesection\thesection
+  \let\oldthesubsection\thesubsection
+  \let\oldsection\section
+  \let\oldsubsection\subsection
+
+  \def\thesection{}
+  \def\thesubsection{\@arabic\c@subsection}
+  \numberwithin{equation}{subsection}
+
+  \let\section\subsection
+  \let\subsection\subsubsection
+
+  \begin{otherlanguage}{#1}
+    \phantomsection
+    \addcontentsline{toc}{section}{#2}
+    \begin{center}
+      \textsc{#2}
+    \end{center}
+    \input{#3}
+  \end{otherlanguage}
+  \cleardoublepage
+
+  \let\thesection\oldthesection
+  \let\thesubsection\oldthesubsection
+  \let\section\oldsection
+  \let\subsection\oldsubsection
+}
+
+
 \AtEndDocument{%
 \ifdefined\@slovar
 \pdfbookmark[1]{Slovar strokovnih izrazov}{slovar}
@@ -682,8 +674,35 @@
 \fi
 \ifdefined\@literatura
 \cleardoublepage
+\phantomsection
+\@sloeng
+  {\addcontentsline{toc}{section}{Literatura}}
+  {\addcontentsline{toc}{section}{References}}
 \bibliography{\@literatura}
 \fi
 \cleardoublepage
 \printindex
+
+\@ifthen{\boolean{@trst}}{
+  \newtheorem{assioma}{Assioma}
+  \newtheorem{definizione}{Definizione}[subsection]
+  \newtheorem{osservazione}[definition]{Osservazione}
+  \newtheorem{esempio*}[definition]{Esempio}
+  \newenvironment{esempio}[1][]{
+    \begin{esempio*}[#1]\renewcommand*{\qedsymbol}{$\diamondsuit$}\pushQED{\qed}
+  }{
+    \popQED\end{esempio*}
+  }
+
+  \@make@razsirjenipovzetek{italian}{Sintesi estesa}{\@it@razsirjenipovzetek}
+}
+\@ifthen{\boolean{@anglescina}}{
+  \let\definicija\undefined
+  \let\c@definicija\undefined
+  \theoremstyle{definition}
+  \newtheorem{definicija}{Definicija}[subsection]
+
+  \@make@razsirjenipovzetek{slovene}{Razsirjeni povzetek}{\@razsirjenipovzetek}
+}
+
 }
