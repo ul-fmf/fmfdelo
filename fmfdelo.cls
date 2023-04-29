@@ -655,6 +655,7 @@
   \let\section\subsection
   \let\subsection\subsubsection
 
+  \cleardoublepage
   \begin{otherlanguage}{#1}
     \phantomsection % potrebno za pravilno številčenje strani v kazalih
     \addcontentsline{toc}{section}{#2} % doda razdelek v kazalo in metapodatke
@@ -663,7 +664,6 @@
     \end{center}
     \input{#3}
   \end{otherlanguage}
-  \cleardoublepage
 
   % obnovi stare definicije razdelkov
   \let\thesection\oldthesection
