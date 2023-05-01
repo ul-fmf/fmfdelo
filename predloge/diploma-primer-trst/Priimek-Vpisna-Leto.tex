@@ -1,7 +1,4 @@
-\documentclass[mat2, anglescina, tisk]{fmfdelo}
-% \documentclass[fin2, anglescina, tisk]{fmfdelo}
-% \documentclass[isrm2, anglescina, tisk]{fmfdelo}
-% \documentclass[ped, anglescina, tisk]{fmfdelo}
+\documentclass[trst1, tisk]{fmfdelo}
 % Če pobrišete možnost tisk, bodo povezave obarvane,
 % na začetku pa ne bo praznih strani po naslovu, …
 
@@ -17,6 +14,8 @@
 
 % - naslov dela v angleščini
 \title{Angleški prevod slovenskega naslova dela}
+
+\titolo{Italijanski prevod naslova}
 
 % - ime mentorja/mentorice s polnim nazivom:
 %   - doc.~dr.~Ime Priimek
@@ -40,6 +39,11 @@
 % \cosupervisor{...}
 % \supervisors{...}{...}
 % \cosupervisors{...}{...}
+\supervisore{Prof.~Dr.~Janez~Novak}
+% \supervisore{...}
+% \cosupervisore{...}
+% \supervisorsi{...}{...}
+% \cosupervisorsi{...}{...}
 
 % - leto magisterija
 \letnica{2017} 
@@ -53,6 +57,8 @@
 \abstract{An abstract of the work is written here. This includes a short description of
 the content and not the structure of your work.}
 
+\sommario{Povzetek v Italijanščini}
+
 % - klasifikacijske oznake, ločene z vejicami
 %   Oznake, ki opisujejo področje dela, so dostopne na strani https://www.ams.org/msc/
 \klasifikacija{74B05, 65N99}
@@ -63,25 +69,12 @@ the content and not the structure of your work.}
 % - angleški prevod ključnih besed
 \keywords{integration\sep complex} % angleški prevod ključnih besed
 
+\parolechiave{ključne\sep besede} % italijanski prevod ključnih besed
+
 % - neobvezna zahvala
 \zahvala{
   Neobvezno.
   Zahvaljujem se \dots
-}
-
-% - program dela, ki ga napiše mentor z osnovno literaturo
-\programdela{
-  Mentor naj napiše program dela skupaj z osnovno literaturo.
-}
-
-\osnovnaliteratura{
-% Literatura mora biti tukaj posebej samostojno navedena (po pomembnosti) in ne
-% le citirana. V tem razdelku literature ne oštevilčimo po svoje, ampak uporabljamo
-% ukaz \vnosliterature, v katerega vpišemo citat
-  \vnosliterature{lebedev2009introduction}
-  \vnosliterature{gurtin1982introduction}
-  \vnosliterature{zienkiewicz2000finite}
-  \vnosliterature{STtemplate}
 }
 
 % - ime datoteke z viri (vključno s končnico .bib), če uporabljate BibTeX
@@ -89,6 +82,21 @@ the content and not the structure of your work.}
 
 % - ime datoteke z razširjenim povzetkom v slovenskem jeziku
 \razsirjenipovzetek{razsirjenipovzetek.tex}
+
+% - ime datoteke z razširjenim povzetkom v italjanskem jeziku
+\sintesiestesa{sintesiestesa.tex}
+
+% - angleško-slovenski slovar strokovnih izrazov
+\slovar{
+\geslo{continuous}{zvezen}
+\geslo{uniformly continuous}{enakomerno zvezen}
+\geslo{compact}{kompakten -- metrični prostor je kompakten, če ima v njem vsako zaporedje stekališče; podmnožica evklidskega prostora je kompaktna natanko tedaj, ko je omejena in zaprta  }
+\geslo{glide reflection}{zrcalni zdrs ali zrcalni pomik -- tip ravninske evklidske izometrije, ki je kompozitum zrcaljenja in translacije vzdolž iste premice}  
+\geslo{lattice}{mreža}  
+\geslo{link}{splet}
+\geslo{partition}{\textbf{$\sim$ of a set} razdelitev množice; \textbf{$\sim$ of a number} razčlenitev števila}
+}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % DODATNE DEFINICIJE
