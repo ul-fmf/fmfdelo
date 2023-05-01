@@ -19,6 +19,13 @@ Za pomoč pri razvoju se zahvaljujemo Aniti Buckley (za pomoč pri poenotenju in
 
 _Razvijalci_: Luna Strah, Jure Slak, [Matija Pretnar](https://matija.pretnar.info/), Gašper Golob in Katja Berčič.
 
+## Predloge za zaključna dela v sodelovanju z drugimi univerzami
+
+Če zaključno delo opravljate v sodelovanju z drugo univerzo (npr. program dvojne diplome v Trstu), potrebujete posebno predlogo. Če na spodnjem seznamu ni ustreznega arhiva, nas prosimo kontaktirajte.
+
+- [diploma-primer-trst.zip](arhivi/diploma-primer-trst.zip): primer dela programa dvojne diplome na Trstu
+- [magisterij-primer-trst.zip](arhivi/magisterij-primer-trst.zip): primer dela programa dvojnega magisterija na Trstu
+
 ## Navodila za uporabo
 
 Za urejanje dokumentov močno priporočamo [Visual Studio Code](https://code.visualstudio.com) s podaljškom [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) in podaljškom za črkovanje [LTeX](https://marketplace.visualstudio.com/items?itemName=valentjn.vscode-ltex). Za preverjanje črkovanja neodvisno od urejevalnika lahko uporabite [aspell](http://aspell.net/).
