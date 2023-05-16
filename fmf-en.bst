@@ -394,7 +394,7 @@ FUNCTION {format.urldate}
   urldate
   duplicate$ empty$
     { pop$ "" }
-    { "[viewed " swap$ * "], accessible at " * }
+    { "[viewed " swap$ * "], " * }
   if$
 }
 FUNCTION {format.url}
@@ -402,7 +402,7 @@ FUNCTION {format.url}
   url
   duplicate$ empty$
     { pop$ "" }
-    { format.urldate "\url{" * swap$ * "}" * }
+    { format.urldate "accessible at \url{" * swap$ * "}" * }
   if$
 }
 
