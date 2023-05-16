@@ -6,7 +6,7 @@
             "tools": [
                 "pdflatex",
                 "bibtex",
-                "makeindex",
+                "texindy",
                 "pdflatex",
                 "pdflatexfinal"
             ]
@@ -46,10 +46,12 @@
             ]
         },
         {
-            "name": "makeindex",
-            "command": "makeindex",
+            "name": "texindy",
+            "command": "texindy",
             "args": [
-                "%OUTDIR%/%DOCFILE%"
+                "-Lslovenian",
+                "-Cutf8",
+                "%OUTDIR%/%DOCFILE%.idx"
             ]
         }
     ]
