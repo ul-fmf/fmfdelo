@@ -4,10 +4,10 @@
 %%
 %% The original source files were:
 %%
-%% merlin.mbs  (with options: `: (def) Numerical vonx,nm-init,ed-au,nmlm,x3,m1,dt-jnl,yr-com,xmth,tit-it,jttl-rm,vol-bf,vnum-sp,volp-blk,jdt-vs,pp-last,num-xser,ser-vol,jnm-x,pre-pub,doi,edpar,edby-par,edbyx,blk-com,in-col,pp,ed,abr,ednx,mth-bare,xedn,jabr,and-xcom,etal-xc,nfss,')
+%% merlin.mbs  (with options: `: (def) Numerical vonx,nm-init,ed-au,nmlm,x3,m1,dt-jnl,yr-com,xmth,tit-it,jttl-rm,vol-bf,vnum-sp,volp-blk,jdt-vs,pp-last,num-xser,ser-vol,jnm-x,pre-pub,doi,edpar,edby-par,edbyx,blk-com,in-col,pp,ed,abr,ednx,mth-bare,xedn,jabr,and-xcom,etal-xc,url,url-blk,nfss,')
 %% ----------------------------------------
 %% *** FMF Bachelor's and Master's thesis ***
-%%
+%% 
 %% Copyright 1994-2011 Patrick W Daly
  % ===============================================================
  % IMPORTANT NOTICE:
@@ -58,6 +58,8 @@ ENTRY
     series
     title
     type
+    url
+    urldate
     volume
     year
   }
@@ -387,6 +389,23 @@ FUNCTION {bibinfo.warn}
     }
   if$
 }
+FUNCTION {format.urldate}
+{
+  urldate
+  duplicate$ empty$
+    { pop$ "" }
+    { "[viewed " swap$ * "], " * }
+  if$
+}
+FUNCTION {format.url}
+{
+  url
+  duplicate$ empty$
+    { pop$ "" }
+    { format.urldate "accessible at \url{" * swap$ * "}" * }
+  if$
+}
+
 INTEGERS { nameptr namesleft numnames }
 
 
@@ -602,7 +621,7 @@ FUNCTION {format.bvolume}
       "volume" bibinfo.check * *
       series "series" bibinfo.check
       duplicate$ empty$ 'pop$
-        {" " * swap$ * }
+        { " " * swap$ * }
       if$
       "volume and number" number either.or.check
     }
@@ -930,6 +949,7 @@ FUNCTION {article}
     { format.journal.eid }
   if$
   format.doi output
+  format.url output
   format.note output
   fin.entry
 }
@@ -958,6 +978,7 @@ FUNCTION {book}
   format.edition output
   format.date "year" output.check
   format.doi output
+  format.url output
   format.note output
   fin.entry
 }
@@ -969,6 +990,7 @@ FUNCTION {booklet}
   address "address" bibinfo.check output
   format.date output
   format.doi output
+  format.url output
   format.note output
   fin.entry
 }
@@ -1003,6 +1025,7 @@ FUNCTION {inbook}
   date.block
   format.pages "pages" output.check
   format.doi output
+  format.url output
   format.note output
   fin.entry
 }
@@ -1027,6 +1050,7 @@ FUNCTION {incollection}
   date.block
   format.pages "pages" output.check
   format.doi output
+  format.url output
   format.note output
   fin.entry
 }
@@ -1052,6 +1076,7 @@ FUNCTION {inproceedings}
   date.block
   format.pages "pages" output.check
   format.doi output
+  format.url output
   format.note output
   fin.entry
 }
@@ -1085,6 +1110,7 @@ FUNCTION {manual}
   format.edition output
   format.date output
   format.doi output
+  format.url output
   format.note output
   fin.entry
 }
@@ -1099,6 +1125,7 @@ FUNCTION {mastersthesis}
   address "address" bibinfo.check output
   format.date "year" output.check
   format.doi output
+  format.url output
   format.note output
   fin.entry
 }
@@ -1113,6 +1140,7 @@ FUNCTION {bachelorsthesis}
   address "address" bibinfo.check output
   format.date "year" output.check
   format.doi output
+  format.url output
   format.note output
   fin.entry
 }
@@ -1124,6 +1152,7 @@ FUNCTION {misc}
   howpublished "howpublished" bibinfo.check output
   format.date output
   format.doi output
+  format.url output
   format.note output
   fin.entry
   empty.misc.check
@@ -1138,6 +1167,7 @@ FUNCTION {phdthesis}
   address "address" bibinfo.check output
   format.date "year" output.check
   format.doi output
+  format.url output
   format.note output
   fin.entry
 }
@@ -1172,6 +1202,7 @@ FUNCTION {proceedings}
   if$
       format.date "year" output.check
   format.doi output
+  format.url output
   format.note output
   fin.entry
 }
@@ -1186,6 +1217,7 @@ FUNCTION {techreport}
   address "address" bibinfo.check output
   format.date "year" output.check
   format.doi output
+  format.url output
   format.note output
   fin.entry
 }
@@ -1196,6 +1228,7 @@ FUNCTION {unpublished}
   format.title "title" output.check
   format.date output
   format.doi output
+  format.url output
   format.note "note" output.check
   fin.entry
 }
@@ -1374,6 +1407,10 @@ FUNCTION {begin.bib}
     { preamble$ write$ newline$ }
   if$
   "\begin{thebibliography}{"  longest.label  * "}" *
+  write$ newline$
+  "\providecommand{\url}[1]{\texttt{#1}}"
+  write$ newline$
+  "\providecommand{\urlprefix}{URL }"
   write$ newline$
   "\expandafter\ifx\csname urlstyle\endcsname\relax"
   write$ newline$

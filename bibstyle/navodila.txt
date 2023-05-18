@@ -73,6 +73,26 @@ FUNCTION {inproceedings}
 - pri format.booktitle izbriši emphasize, ker to predstavlja naslov proceedingov konference in ne naslovov knjige.
 - skopiraj master thesis in spremeni v bachelor thesis (dodaj nov tip bachelorsthesis)
 
-Potem skoraj celo stvar in prevedi izraze v slovenščino.
+- dodaj entry urldate, pri format.url dodaj funkcijo format.urldate, in popravi funkcijo format.url tako:
+
+FUNCTION {format.urldate}
+{
+  urldate
+  duplicate$ empty$
+    { pop$ "" }
+    { "[viewed " swap$ * "], accessible at " * }
+  if$
+}
+FUNCTION {format.url}
+{
+  url
+  duplicate$ empty$
+    { pop$ "" }
+    { format.urldate "\url{" * swap$ * "}" * }
+  if$
+}
+
+
+Potem skopiraj celo stvar in prevedi izraze v slovenščino.
 
 Shrani datoteko pod drugim imenom, da si je naslednjič ne povoziš.
