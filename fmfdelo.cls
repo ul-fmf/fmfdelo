@@ -8,7 +8,9 @@
 \RequirePackage{amsfonts,amsmath,amssymb,amsthm}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
-\RequirePackage[style=numeric,backend=bibtex]{biblatex}
+\RequirePackage[style=numeric,
+                hyperref=manual,
+                backend=biber]{biblatex}
 \RequirePackage{lmodern}
 \RequirePackage{newfile}
 \RequirePackage{etoolbox}
@@ -249,6 +251,7 @@
   breaklinks=true, psdextra}
 
 \addbibresource{\@literatura}
+\BiblatexManualHyperrefOn
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -334,6 +337,7 @@
   {\end{enumerate}}
   {\item}
 \DeclareBibliographyCategory{keyreferences}
+\BiblatexSplitbibDefernumbersWarningOff
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % IZPIS ZAČETNIH STRANI
@@ -408,7 +412,11 @@
 
   % izvede vsebino osnovne literature
   \@osnovnaliteratura
-  \printbibliography[env=keyrefs,category=keyreferences,title={\@sloeng{\section*{Osnovna literatura}}{\section*{Basic references}}},sorting=none]
+  \newrefcontext[sorting=none]{keyrefctx}
+  \printbibliography[env=keyrefs,category=keyreferences,
+                     title={\@sloeng{\section*{Osnovna literatura}}
+                                    {\section*{Basic references}}}]
+  \endrefcontext
   % \nobibliography*
   % \begin{itemize}
   % \@osnovnaliteratura
@@ -696,7 +704,6 @@
 \@sloeng
   {\addcontentsline{toc}{section}{Literatura}}
   {\addcontentsline{toc}{section}{References}}
-% \bibliography{\@literatura}
 \printbibliography
 \fi
 \cleardoublepage
