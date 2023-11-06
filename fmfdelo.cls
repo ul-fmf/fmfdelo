@@ -187,7 +187,7 @@
   \newcommand{\sintesiestesa}{\@definerequiredfield{@it@razsirjenipovzetek}}
 }
 
-\newcommand{\vnosliterature}[1]{\addtocategory{keyreferences}{#1}}
+\newcommand{\vnosliterature}[1]{\nocite{#1}\addtocategory{keyreferences}{#1}}
 \newcommand{\geslo}[2]{\noindent\textbf{#1}\hspace*{3mm}\hangindent=\parindent\hangafter=1 #2\par}
 
 \newcommand{\mentor}{\@dodajmentorja{Mentor}{mentorja}}
@@ -406,6 +406,8 @@
   \@sloeng{\section*{Program dela}}{\section*{Project plan}}
   \@programdela
 
+  % izvede vsebino osnovne literature
+  \@osnovnaliteratura
   \printbibliography[env=keyrefs,category=keyreferences,title={\@sloeng{\section*{Osnovna literatura}}{\section*{Basic references}}},sorting=none]
   % \nobibliography*
   % \begin{itemize}
