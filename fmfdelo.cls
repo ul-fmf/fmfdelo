@@ -6,9 +6,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage{amsfonts,amsmath,amssymb,amsthm}
-\RequirePackage{bibentry}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
+\RequirePackage[style=numeric,backend=bibtex]{biblatex}
 \RequirePackage{lmodern}
 \RequirePackage{newfile}
 \RequirePackage{etoolbox}
@@ -103,6 +103,7 @@
   \RequirePackage[slovene,english]{babel}
   \selectlanguage{english}
 }
+\RequirePackage{csquotes}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % VNOS METAPODATKOV
@@ -186,7 +187,7 @@
   \newcommand{\sintesiestesa}{\@definerequiredfield{@it@razsirjenipovzetek}}
 }
 
-\newcommand{\vnosliterature}[1]{\item[\cite{#1}] \bibentry{#1}}
+\newcommand{\vnosliterature}[1]{\addtocategory{keyreferences}{#1}}
 \newcommand{\geslo}[2]{\noindent\textbf{#1}\hspace*{3mm}\hangindent=\parindent\hangafter=1 #2\par}
 
 \newcommand{\mentor}{\@dodajmentorja{Mentor}{mentorja}}
@@ -246,6 +247,8 @@
   linkcolor=linkcolor, anchorcolor=linkcolor, citecolor=linkcolor, filecolor=linkcolor,
   menucolor=linkcolor, runcolor=linkcolor, urlcolor=linkcolor, pdfencoding=auto,
   breaklinks=true, psdextra}
+
+\addbibresource{\@literatura}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -326,6 +329,12 @@
 % generiraj vsebinsko kazalo
 \makeindex
 
+\defbibenvironment{keyrefs}
+  {\begin{enumerate}}
+  {\end{enumerate}}
+  {\item}
+\DeclareBibliographyCategory{keyreferences}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % IZPIS ZAČETNIH STRANI
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -397,11 +406,11 @@
   \@sloeng{\section*{Program dela}}{\section*{Project plan}}
   \@programdela
 
-  \@sloeng{\section*{Osnovna literatura}}{\section*{Basic references}}
-  \nobibliography*
-  \begin{itemize}
-  \@osnovnaliteratura
-  \end{itemize}
+  \printbibliography[env=keyrefs,category=keyreferences,title={\@sloeng{\section*{Osnovna literatura}}{\section*{Basic references}}},sorting=none]
+  % \nobibliography*
+  % \begin{itemize}
+  % \@osnovnaliteratura
+  % \end{itemize}
 
   \vspace{2cm}
   \begin{flushright}
@@ -620,7 +629,7 @@
 % magisterije začnemo z rimskimi številkami
 \@ifthen{\boolean{@drugastopnja}}{\pagenumbering{roman}}
 \pagestyle{plain}
-\@sloeng{\bibliographystyle{fmf-sl}}{\bibliographystyle{fmf-en}}
+% \@sloeng{\bibliographystyle{fmf-sl}}{\bibliographystyle{fmf-en}}
 \@frontpages
 
 % vsebino magisterije začnemo z arabskimi številkami od 1 naprej
@@ -685,7 +694,8 @@
 \@sloeng
   {\addcontentsline{toc}{section}{Literatura}}
   {\addcontentsline{toc}{section}{References}}
-\bibliography{\@literatura}
+% \bibliography{\@literatura}
+\printbibliography
 \fi
 \cleardoublepage
 \printindex
