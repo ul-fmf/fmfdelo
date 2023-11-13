@@ -8,9 +8,6 @@
 \RequirePackage{amsfonts,amsmath,amssymb,amsthm}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
-\RequirePackage[style=numeric,
-                hyperref=manual,
-                backend=biber]{biblatex}
 \RequirePackage{lmodern}
 \RequirePackage{newfile}
 \RequirePackage{etoolbox}
@@ -236,10 +233,8 @@
 
 \let\texorpdfstring\oldtexorpdfstring
 
-\makeatletter\let\saved@bibitem\@bibitem\makeatother
 % Nalozimo paket za zagotavljanje PDF/A-2B (ustrezni fonti, barvni profili, UTF-8 zapis simbolov, ...)
 \RequirePackage[a-2b]{pdfx}
-\makeatletter\let\@bibitem\saved@bibitem\makeatother
 \ifthenelse{\boolean{@tisk}}{
   \definecolor{linkcolor}{RGB}{0,0,0}
 }{
@@ -249,9 +244,92 @@
   linkcolor=linkcolor, anchorcolor=linkcolor, citecolor=linkcolor, filecolor=linkcolor,
   menucolor=linkcolor, runcolor=linkcolor, urlcolor=linkcolor, pdfencoding=auto,
   breaklinks=true, psdextra}
+}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BIBLIOGRAFIJA
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\RequirePackage[style=numeric,
+                hyperref=manual,
+                isbn=false,
+                doi=true,
+                url=false,
+                date=year,
+                giveninits=true,
+                maxnames=5,
+                backend=biber]{biblatex}
+
+\AtEndPreamble{%
 \addbibresource{\@literatura}
 \BiblatexManualHyperrefOn
+\DefineBibliographyStrings{slovene}{%
+  bathesis  = {Diplomska naloga},
+  urlfrom   = {dostopno na},
+  urlseen   = {ogled},
+  andothers = {in dr.},
+}
+% fix spacing
+\setlength{\biblabelsep}{\labelsep}
+\setlength{\bibitemsep}{1.5\itemsep}
+% redeclare unit separator from period to comma
+\renewcommand*{\newunitpunct}{\addcomma\space}
+% re-declare field formats (font, brackets ...)
+% omit " around title
+\DeclareFieldFormat*{title}{#1}
+% omit italics
+\DeclareFieldFormat*{journaltitle}{#1}
+\DeclareFieldFormat*{booktitle}{#1}
+% omit the 'pp' for pages
+\DeclareFieldFormat*{pages}{#1}
+% put brackets around number
+\DeclareFieldFormat*{number}{\mkbibparens{#1}}
+\DeclareFieldFormat*{italics}{\textit{#1}}
+% omit the fixed 'in' macro used in bibliography
+% \renewbibmacro{in:}{}
+\renewbibmacro*{title}{%
+  \printfield[italics]{title}%
+}
+% \renewbibmacro*{journal}{%
+%   \printfield{journaltitle}%
+% }
+% print format <vol>(<number>) (year) <pages>
+\renewbibmacro*{volume+number+eid}{%
+  \printfield[bold]{volume}%
+  \printfield{number}%
+  \setunit{\space}%
+  \printfield[number]{year}%
+  \setunit{\space}%
+  \printfield{pages}}
+% do not print the pages in this part (already done before)
+\renewbibmacro*{note+pages}{%
+  \printfield{note}%
+  \newunit}
+  % do not print the year in this part (already done before)
+% \renewbibmacro*{date}{}
+\DeclareFieldFormat*{date}{#1}
+% print format <publisher>, <location>, year
+\renewbibmacro*{publisher+location+date}{%
+  \printlist{publisher}%
+  \setunit{\addcomma\space}%
+  \printlist{location}%
+  \setunit{\addcomma\space}%
+  \printfield{year}}
+% 
+\DeclareFieldFormat*{volume}{}
+\renewbibmacro*{series+number}{%
+  \printfield{series}%
+  \setunit{\space}%
+  \printfield[bold]{volume}}
+
+\DeclareFieldFormat{url}{\bibstring{urlfrom}\space\url{#1}}
+\DeclareFieldFormat{urldate}{\mkbibbrackets{\bibstring{urlseen}\space#1}}
+\renewbibmacro*{url+urldate}{%
+  \usebibmacro{urldate}%
+  \newunit%
+  \printfield{url}}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
