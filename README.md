@@ -12,7 +12,7 @@
 
 - Luna Strah
 - Jure Slak
-- [Matija Pretnar](https://matija.pretnar.info/)
+- Matija Pretnar
 - Gašper Golob
 - Katja Berčič
 
