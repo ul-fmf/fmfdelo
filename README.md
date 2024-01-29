@@ -10,9 +10,9 @@
 
 ## Razvijalci
 
-- Luna Strah
+- [Luna Strah](mailto:strah.luna@gmail.com)
 - Jure Slak
-- [Matija Pretnar](https://matija.pretnar.info/)
+- Matija Pretnar
 - Gašper Golob
 - Katja Berčič
 
