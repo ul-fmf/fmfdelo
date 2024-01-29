@@ -29,6 +29,7 @@
 \newboolean{@anglescina}
 \newboolean{@tisk}
 \newboolean{@trst}
+\newboolean{@index}
 \newcommand{\@sloeng}[2]{\ifthenelse{\boolean{@anglescina}}{#2}{#1}}
 \newcommand{\@iftrst}[2]{\@ifthen{\boolean{@trst}}{#1}}
 
@@ -325,6 +326,13 @@
 
 % generiraj vsebinsko kazalo
 \makeindex
+% override \index to set a boolean that control the printing of the index
+% this fixes empty pages at the end of the document
+\let\@oldindex\index
+\renewcommand{\index}[1]{
+  \setboolean{@index}{true}
+  \@oldindex{#1}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % IZPIS ZAČETNIH STRANI
@@ -687,8 +695,6 @@
   {\addcontentsline{toc}{section}{References}}
 \bibliography{\@literatura}
 \fi
-\cleardoublepage
-\printindex
 
 \@ifthen{\boolean{@trst}}{
   \newtheorem{assioma}{Assioma}
@@ -701,6 +707,7 @@
     \popQED\end{esempio*}
   }
 
+  \cleardoublepage
   \@make@razsirjenipovzetek{italian}{Sintesi estesa}{\@it@razsirjenipovzetek}
 }
 \@ifthen{\boolean{@anglescina}}{
@@ -710,6 +717,13 @@
   \theoremstyle{definition}
   \newtheorem{definicija}{Definicija}[subsection]
 
+  \cleardoublepage
   \@make@razsirjenipovzetek{slovene}{Razsirjeni povzetek}{\@razsirjenipovzetek}
+}
+
+% only print the index (and clear the page) if the \index command has been used
+\@ifthen{\boolean{@index}}{
+  \cleardoublepage
+  \printindex
 }
 }
