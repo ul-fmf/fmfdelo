@@ -30,6 +30,7 @@
 \newboolean{@trst}
 \newcommand{\@sloeng}[2]{\ifthenelse{\boolean{@anglescina}}{#2}{#1}}
 \newcommand{\@iftrst}[2]{\@ifthen{\boolean{@trst}}{#1}}
+\def\@bibbackend{biber}
 
 \DeclareOption{anglescina}{\setboolean{@anglescina}{true}}
 \DeclareOption{mat1}{
@@ -65,6 +66,9 @@
 \DeclareOption{tisk}{
   \setboolean{@tisk}{true}
   \PassOptionsToClass{twoside}{article}
+}
+\DeclareOption{bibtex}{
+  \def\@bibbackend{bibtex}
 }
 \DeclareOption{trst1}{
   \setboolean{@anglescina}{true}
@@ -260,7 +264,7 @@
                 date=year,
                 giveninits=true,
                 maxnames=5,
-                backend=biber]{biblatex}
+                backend=\@bibbackend]{biblatex}
 
 \AtEndPreamble{%
 \addbibresource{\@literatura}
