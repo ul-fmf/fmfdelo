@@ -265,11 +265,17 @@
 \AtEndPreamble{%
 \addbibresource{\@literatura}
 \BiblatexManualHyperrefOn
-\DefineBibliographyStrings{slovene}{%
-  bathesis  = {Diplomska naloga},
-  urlfrom   = {dostopno na},
-  urlseen   = {ogled},
-  andothers = {in dr.},
+\@sloeng{
+  \DefineBibliographyStrings{slovene}{%
+    bathesis  = {Diplomska naloga},
+    urlfrom   = {dostopno na},
+    urlseen   = {ogled},
+    andothers = {in dr.},
+  }
+}{
+  \DefineBibliographyStrings{english}{%
+    bathesis  = {Bachelor's thesis},
+  }
 }
 % fix spacing
 \setlength{\biblabelsep}{\labelsep}
@@ -282,19 +288,18 @@
 % omit italics
 \DeclareFieldFormat*{journaltitle}{#1}
 \DeclareFieldFormat*{booktitle}{#1}
-% omit the 'pp' for pages
-\DeclareFieldFormat*{pages}{#1}
+\@sloeng{
+  \DeclareFieldFormat*{pages}{str.\ #1}
+}{
+  \DeclareFieldFormat*{pages}{#1}
+}
 % put brackets around number
 \DeclareFieldFormat*{number}{\mkbibparens{#1}}
 \DeclareFieldFormat*{italics}{\textit{#1}}
-% omit the fixed 'in' macro used in bibliography
-% \renewbibmacro{in:}{}
 \renewbibmacro*{title}{%
   \printfield[italics]{title}%
 }
-% \renewbibmacro*{journal}{%
-%   \printfield{journaltitle}%
-% }
+
 % print format <vol>(<number>) (year) <pages>
 \renewbibmacro*{volume+number+eid}{%
   \printfield[bold]{volume}%
@@ -307,9 +312,8 @@
 \renewbibmacro*{note+pages}{%
   \printfield{note}%
   \newunit}
-  % do not print the year in this part (already done before)
-% \renewbibmacro*{date}{}
-\DeclareFieldFormat*{date}{#1}
+% do not print the year in this part (already done before)
+\renewbibmacro*{issue+date}{}
 % print format <publisher>, <location>, year
 \renewbibmacro*{publisher+location+date}{%
   \printlist{publisher}%
@@ -317,7 +321,7 @@
   \printlist{location}%
   \setunit{\addcomma\space}%
   \printfield{year}}
-% 
+
 \DeclareFieldFormat*{volume}{}
 \renewbibmacro*{series+number}{%
   \printfield{series}%
