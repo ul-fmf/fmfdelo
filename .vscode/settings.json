@@ -1,8 +1,7 @@
 {
-    "latex-workshop.latex.outDir": "",
     "latex-workshop.latex.recipes": [
         {
-            "name": "pdflatex->bibtex->makeindex->pdflatex",
+            "name": "pdflatex->bib->index->pdflatex",
             "tools": [
                 "pdflatex",
                 "biber",
@@ -22,7 +21,6 @@
                 "-file-line-error",
                 "-shell-escape",
                 // "-draftmode",
-                "-output-directory=%OUTDIR%",
                 "%DOC%"
             ]
         },
@@ -34,7 +32,6 @@
                 "-interaction=nonstopmode",
                 "-file-line-error",
                 "-shell-escape",
-                "-output-directory=%OUTDIR%",
                 "%DOC%"
             ]
         },
@@ -42,21 +39,21 @@
             "name": "bibtex",
             "command": "bibtex",
             "args": [
-                "%OUTDIR%/%DOCFILE%"
+                "%DOCFILE%"
             ]
         },
         {
             "name": "biber",
             "command": "biber",
             "args": [
-                "%OUTDIR%/%DOCFILE%"
+                "%DOCFILE%"
             ]
         },
         {
             "name": "makeindex",
             "command": "makeindex",
             "args": [
-                "%OUTDIR%/%DOCFILE%"
+                "%DOCFILE%"
             ]
         }
     ]
