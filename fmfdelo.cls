@@ -257,7 +257,7 @@
 
 
 \RequirePackage[style=numeric,
-                hyperref=manual,
+                hyperref=auto,
                 isbn=false,
                 doi=true,
                 url=false,
@@ -268,7 +268,6 @@
 
 \AtEndPreamble{%
 \addbibresource{\@literatura}
-\BiblatexManualHyperrefOn
 \@sloeng{
   \DefineBibliographyStrings{slovene}{%
     bathesis  = {Diplomska naloga},
