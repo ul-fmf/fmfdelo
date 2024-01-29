@@ -267,7 +267,9 @@
                 backend=\@bibbackend]{biblatex}
 
 \AtEndPreamble{%
+\ifdefined\@literatura
 \addbibresource{\@literatura}
+\fi
 \@sloeng{
   \DefineBibliographyStrings{slovene}{%
     bathesis  = {Diplomska naloga},
