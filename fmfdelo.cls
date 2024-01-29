@@ -502,10 +502,6 @@
                      title={\@sloeng{\section*{Osnovna literatura}}
                                     {\section*{Basic references}}}]
   \endrefcontext
-  % \nobibliography*
-  % \begin{itemize}
-  % \@osnovnaliteratura
-  % \end{itemize}
 
   \vspace{2cm}
   \begin{flushright}
@@ -724,7 +720,6 @@
 % magisterije začnemo z rimskimi številkami
 \@ifthen{\boolean{@drugastopnja}}{\pagenumbering{roman}}
 \pagestyle{plain}
-% \@sloeng{\bibliographystyle{fmf-sl}}{\bibliographystyle{fmf-en}}
 \@frontpages
 
 % vsebino magisterije začnemo z arabskimi številkami od 1 naprej
