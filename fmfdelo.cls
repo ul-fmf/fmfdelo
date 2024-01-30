@@ -417,6 +417,7 @@
 
 % automatically strip `van` and `von` from start of surname,
 % if `sortname` is not already defined
+% vir: https://tex.stackexchange.com/a/136565
 \DeclareSourcemap{%
   \maps[datatype=bibtex]{
     \map[overwrite=false]{
