@@ -263,7 +263,7 @@
                 url=false,
                 date=year,
                 giveninits=true,
-                maxnames=5,
+                maxnames=3,
                 backend=\@bibbackend]{biblatex}
 
 \AtEndPreamble{%
@@ -272,7 +272,9 @@
 \fi
 \@sloeng{
   \DefineBibliographyStrings{slovene}{%
-    bathesis  = {Diplomska naloga},
+    bathesis  = {diplomsko delo},
+    mathesis  = {magistrsko delo},
+    phdthesis = {doktorska disertacija},
     urlfrom   = {dostopno na},
     urlseen   = {ogled},
     andothers = {in dr.},
@@ -280,6 +282,7 @@
 }{
   \DefineBibliographyStrings{english}{%
     bathesis  = {Bachelor's thesis},
+    mathesis  = {Master's thesis},
   }
 }
 % fix spacing
@@ -296,7 +299,7 @@
 \@sloeng{
   \DeclareFieldFormat*{pages}{str.\ #1}
 }{
-  \DeclareFieldFormat*{pages}{#1}
+  \DeclareFieldFormat*{pages}{pp.\ #1}
 }
 % put brackets around number
 \DeclareFieldFormat*{number}{\mkbibparens{#1}}
@@ -326,6 +329,20 @@
   \printlist{location}%
   \setunit{\addcomma\space}%
   \printfield{year}}
+
+\renewbibmacro*{byeditor+others}{%
+  \ifnameundef{editor}
+    {}
+    {\addspace%
+    \mkbibparens{%
+      \setunit{}%
+      \usebibmacro{byeditor+othersstrg}%
+      \setunit{\addspace}%
+      \printnames[byeditor]{editor}%
+      \clearname{editor}%
+      \newunit}}%
+  \usebibmacro{byeditorx}%
+  \usebibmacro{bytranslator+others}}
 
 \DeclareFieldFormat*{volume}{}
 \renewbibmacro*{series+number}{%
