@@ -295,35 +295,88 @@
 % redeclare unit separator from period to comma
 \renewcommand*{\newunitpunct}{\addcomma\space}
 % re-declare field formats (font, brackets ...)
-% omit " around title
-\DeclareFieldFormat*{title}{#1}
+% omit " around title and make it italic
+\DeclareFieldFormat*{title}{\textit{#1}}
 % omit italics
 \DeclareFieldFormat*{journaltitle}{#1}
 \DeclareFieldFormat*{booktitle}{#1}
-\@sloeng{
-  \DeclareFieldFormat*{pages}{str.\ #1}
-}{
-  \DeclareFieldFormat*{pages}{pp.\ #1}
-}
+\DeclareFieldFormat*{plain}{#1}
 % put brackets around number
 \DeclareFieldFormat*{number}{\mkbibparens{#1}}
-\DeclareFieldFormat*{italics}{\textit{#1}}
+
+\@unless{\boolean{@anglescina}}{
+% capitalise according to slovenian rules
+\DeclareFieldFormat{sentencecase}{\MakeSentenceCase{#1}}
 \renewbibmacro*{title}{%
-  \printfield[italics]{title}%
+  \ifthenelse{\iffieldundef{title}\AND\iffieldundef{subtitle}}
+    {}
+    {\ifthenelse{\ifentrytype{article}\OR\ifentrytype{inbook}%
+      \OR\ifentrytype{incollection}\OR\ifentrytype{inproceedings}%
+      \OR\ifentrytype{inreference}\OR\ifentrytype{book}}
+      {\printtext[title]{%
+        \printfield[sentencecase]{title}%
+        \setunit{\subtitlepunct}%
+        \printfield[sentencecase]{subtitle}}}%
+      {\printtext[title]{%
+        \printfield[titlecase]{title}%
+        \setunit{\subtitlepunct}%
+        \printfield[titlecase]{subtitle}}}%
+     \newunit}%
+  \printfield{titleaddon}}
 }
 
+% remove v:
+\DeclareBibliographyDriver{article}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author/translator+others}%
+  \setunit{\printdelim{nametitledelim}}\newblock
+  \usebibmacro{title}%
+  \newunit
+  \printlist{language}%
+  \newunit\newblock
+  \usebibmacro{byauthor}%
+  \newunit\newblock
+  \usebibmacro{bytranslator+others}%
+  \newunit\newblock
+  \printfield{version}%
+  \newunit\newblock
+  % \usebibmacro{in:}%
+  \usebibmacro{journal+issuetitle}%
+  \newunit
+  \usebibmacro{byeditor+others}%
+  \newunit
+  \usebibmacro{note+pages}%
+  \newunit\newblock
+  \iftoggle{bbx:isbn}
+    {\printfield{issn}}
+    {}%
+  \newunit\newblock
+  \usebibmacro{doi+eprint+url}%
+  \newunit\newblock
+  \usebibmacro{addendum+pubstate}%
+  \setunit{\bibpagerefpunct}\newblock
+  \usebibmacro{pageref}%
+  \newunit\newblock
+  \iftoggle{bbx:related}
+    {\usebibmacro{related:init}%
+     \usebibmacro{related}}
+    {}%
+  \usebibmacro{finentry}}
+
 % print format <vol>(<number>) (year) <pages>
+% remove str. for article (and periodical?)
 \renewbibmacro*{volume+number+eid}{%
   \printfield[bold]{volume}%
   \printfield{number}%
   \setunit{\space}%
   \printfield[number]{year}%
   \setunit{\space}%
-  \printfield{pages}}
+  \printfield[plain]{pages}}
+
 % do not print the pages in this part (already done before)
 \renewbibmacro*{note+pages}{%
-  \printfield{note}%
-  \newunit}
+  \printfield{note}}
 % do not print the year in this part (already done before)
 \renewbibmacro*{issue+date}{}
 % print format <publisher>, <location>, year
