@@ -31,6 +31,7 @@
 \newcommand{\@sloeng}[2]{\ifthenelse{\boolean{@anglescina}}{#2}{#1}}
 \newcommand{\@iftrst}[2]{\@ifthen{\boolean{@trst}}{#1}}
 \def\@bibbackend{biber}
+\def\@citationstyle{numeric}
 
 \DeclareOption{anglescina}{\setboolean{@anglescina}{true}}
 \DeclareOption{mat1}{
@@ -69,6 +70,9 @@
 }
 \DeclareOption{bibtex}{
   \def\@bibbackend{bibtex}
+}
+\DeclareOption{alpha}{
+  \def\@citationstyle{alphabetic}
 }
 \DeclareOption{trst1}{
   \setboolean{@anglescina}{true}
@@ -256,7 +260,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\RequirePackage[style=numeric,
+\RequirePackage[style=\@citationstyle,
                 hyperref=auto,
                 isbn=false,
                 doi=true,
