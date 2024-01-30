@@ -268,6 +268,7 @@
                 date=year,
                 giveninits=true,
                 maxnames=3,
+                useprefix=true,
                 backend=\@bibbackend]{biblatex}
 
 \AtEndPreamble{%
@@ -413,6 +414,24 @@
   \usebibmacro{urldate}%
   \newunit%
   \printfield{url}}
+
+% automatically strip `van` and `von` from start of surname,
+% if `sortname` is not already defined
+\DeclareSourcemap{%
+  \maps[datatype=bibtex]{
+    \map[overwrite=false]{
+      \step[fieldsource=translator]
+      \step[fieldset=sortname, origfieldval]
+      \step[fieldsource=editor]
+      \step[fieldset=sortname, origfieldval]
+      \step[fieldsource=author]
+      \step[fieldset=sortname, origfieldval]
+    }
+    \map[overwrite=false]{
+      \step[fieldsource=sortname, match=\regexp{(^|\s+)\Kv[a|o]n\s+}, replace={$1}]
+    }
+  }
+}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
