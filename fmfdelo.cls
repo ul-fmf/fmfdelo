@@ -264,7 +264,7 @@
                 hyperref=auto,
                 isbn=false,
                 doi=true,
-                url=false,
+                url=true,
                 date=year,
                 giveninits=true,
                 maxnames=3,
@@ -326,15 +326,13 @@
   \printfield{titleaddon}}
 }
 
-% remove v:
+% remove v: and language
 \DeclareBibliographyDriver{article}{%
   \usebibmacro{bibindex}%
   \usebibmacro{begentry}%
   \usebibmacro{author/translator+others}%
   \setunit{\printdelim{nametitledelim}}\newblock
   \usebibmacro{title}%
-  \newunit
-  \printlist{language}%
   \newunit\newblock
   \usebibmacro{byauthor}%
   \newunit\newblock
