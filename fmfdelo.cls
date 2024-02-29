@@ -6,7 +6,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage{amsfonts,amsmath,amssymb,amsthm}
-\RequirePackage{bibentry}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{lmodern}
@@ -32,6 +31,8 @@
 \newboolean{@index}
 \newcommand{\@sloeng}[2]{\ifthenelse{\boolean{@anglescina}}{#2}{#1}}
 \newcommand{\@iftrst}[2]{\@ifthen{\boolean{@trst}}{#1}}
+\def\@bibbackend{biber}
+\def\@citationstyle{numeric}
 
 \DeclareOption{anglescina}{\setboolean{@anglescina}{true}}
 \DeclareOption{mat1}{
@@ -67,6 +68,12 @@
 \DeclareOption{tisk}{
   \setboolean{@tisk}{true}
   \PassOptionsToClass{twoside}{article}
+}
+\DeclareOption{bibtex}{
+  \def\@bibbackend{bibtex}
+}
+\DeclareOption{alpha}{
+  \def\@citationstyle{alphabetic}
 }
 \DeclareOption{trst1}{
   \setboolean{@anglescina}{true}
@@ -104,6 +111,7 @@
   \RequirePackage[slovene,english]{babel}
   \selectlanguage{english}
 }
+\RequirePackage{csquotes}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % VNOS METAPODATKOV
@@ -187,7 +195,7 @@
   \newcommand{\sintesiestesa}{\@definerequiredfield{@it@razsirjenipovzetek}}
 }
 
-\newcommand{\vnosliterature}[1]{\item[\cite{#1}] \bibentry{#1}}
+\newcommand{\vnosliterature}[1]{\nocite{#1}\addtocategory{keyreferences}{#1}}
 \newcommand{\geslo}[2]{\noindent\textbf{#1}\hspace*{3mm}\hangindent=\parindent\hangafter=1 #2\par}
 
 \newcommand{\mentor}{\@dodajmentorja{Mentor}{mentorja}}
@@ -234,10 +242,8 @@
 
 \let\texorpdfstring\oldtexorpdfstring
 
-\makeatletter\let\saved@bibitem\@bibitem\makeatother
 % Nalozimo paket za zagotavljanje PDF/A-2B (ustrezni fonti, barvni profili, UTF-8 zapis simbolov, ...)
 \RequirePackage[a-2b]{pdfx}
-\makeatletter\let\@bibitem\saved@bibitem\makeatother
 \ifthenelse{\boolean{@tisk}}{
   \definecolor{linkcolor}{RGB}{0,0,0}
 }{
@@ -247,6 +253,185 @@
   linkcolor=linkcolor, anchorcolor=linkcolor, citecolor=linkcolor, filecolor=linkcolor,
   menucolor=linkcolor, runcolor=linkcolor, urlcolor=linkcolor, pdfencoding=auto,
   breaklinks=true, psdextra}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BIBLIOGRAFIJA
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\RequirePackage[style=\@citationstyle,
+                hyperref=auto,
+                isbn=false,
+                doi=true,
+                url=true,
+                date=year,
+                giveninits=true,
+                maxnames=3,
+                useprefix=true,
+                backend=\@bibbackend]{biblatex}
+
+\AtEndPreamble{%
+\ifdefined\@literatura
+\addbibresource{\@literatura}
+\fi
+\@sloeng{
+  \DefineBibliographyStrings{slovene}{%
+    bathesis  = {diplomsko delo},
+    mathesis  = {magistrsko delo},
+    phdthesis = {doktorska disertacija},
+    urlfrom   = {dostopno na},
+    urlseen   = {ogled},
+    andothers = {in dr.},
+  }
+}{
+  \DefineBibliographyStrings{english}{%
+    bathesis  = {Bachelor's thesis},
+    mathesis  = {Master's thesis},
+  }
+}
+% fix spacing
+\setlength{\biblabelsep}{\labelsep}
+\setlength{\bibitemsep}{1.5\itemsep}
+% redeclare unit separator from period to comma
+\renewcommand*{\newunitpunct}{\addcomma\space}
+% re-declare field formats (font, brackets ...)
+% omit " around title and make it italic
+\DeclareFieldFormat*{title}{\textit{#1}}
+% omit italics
+\DeclareFieldFormat*{journaltitle}{#1}
+\DeclareFieldFormat*{booktitle}{#1}
+\DeclareFieldFormat*{plain}{#1}
+% put brackets around number
+\DeclareFieldFormat*{number}{\mkbibparens{#1}}
+
+\@unless{\boolean{@anglescina}}{
+% capitalise according to slovenian rules
+\DeclareFieldFormat{sentencecase}{\MakeSentenceCase{#1}}
+\renewbibmacro*{title}{%
+  \ifthenelse{\iffieldundef{title}\AND\iffieldundef{subtitle}}
+    {}
+    {\ifthenelse{\ifentrytype{article}\OR\ifentrytype{inbook}%
+      \OR\ifentrytype{incollection}\OR\ifentrytype{inproceedings}%
+      \OR\ifentrytype{inreference}\OR\ifentrytype{book}}
+      {\printtext[title]{%
+        \printfield[sentencecase]{title}%
+        \setunit{\subtitlepunct}%
+        \printfield[sentencecase]{subtitle}}}%
+      {\printtext[title]{%
+        \printfield[titlecase]{title}%
+        \setunit{\subtitlepunct}%
+        \printfield[titlecase]{subtitle}}}%
+     \newunit}%
+  \printfield{titleaddon}}
+}
+
+% remove v: and language
+\DeclareBibliographyDriver{article}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author/translator+others}%
+  \setunit{\printdelim{nametitledelim}}\newblock
+  \usebibmacro{title}%
+  \newunit\newblock
+  \usebibmacro{byauthor}%
+  \newunit\newblock
+  \usebibmacro{bytranslator+others}%
+  \newunit\newblock
+  \printfield{version}%
+  \newunit\newblock
+  % \usebibmacro{in:}%
+  \usebibmacro{journal+issuetitle}%
+  \newunit
+  \usebibmacro{byeditor+others}%
+  \newunit
+  \usebibmacro{note+pages}%
+  \newunit\newblock
+  \iftoggle{bbx:isbn}
+    {\printfield{issn}}
+    {}%
+  \newunit\newblock
+  \usebibmacro{doi+eprint+url}%
+  \newunit\newblock
+  \usebibmacro{addendum+pubstate}%
+  \setunit{\bibpagerefpunct}\newblock
+  \usebibmacro{pageref}%
+  \newunit\newblock
+  \iftoggle{bbx:related}
+    {\usebibmacro{related:init}%
+     \usebibmacro{related}}
+    {}%
+  \usebibmacro{finentry}}
+
+% print format <vol>(<number>) (year) <pages>
+% remove str. for article (and periodical?)
+\renewbibmacro*{volume+number+eid}{%
+  \printfield[bold]{volume}%
+  \printfield{number}%
+  \setunit{\space}%
+  \printfield[number]{year}%
+  \setunit{\space}%
+  \printfield[plain]{pages}}
+
+% do not print the pages in this part (already done before)
+\renewbibmacro*{note+pages}{%
+  \printfield{note}}
+% do not print the year in this part (already done before)
+\renewbibmacro*{issue+date}{}
+% print format <publisher>, <location>, year
+\renewbibmacro*{publisher+location+date}{%
+  \printlist{publisher}%
+  \setunit{\addcomma\space}%
+  \printlist{location}%
+  \setunit{\addcomma\space}%
+  \printfield{year}}
+
+\renewbibmacro*{byeditor+others}{%
+  \ifnameundef{editor}
+    {}
+    {\addspace%
+    \mkbibparens{%
+      \setunit{}%
+      \usebibmacro{byeditor+othersstrg}%
+      \setunit{\addspace}%
+      \printnames[byeditor]{editor}%
+      \clearname{editor}%
+      \newunit}}%
+  \usebibmacro{byeditorx}%
+  \usebibmacro{bytranslator+others}}
+
+\DeclareFieldFormat*{volume}{}
+\renewbibmacro*{series+number}{%
+  \printfield{series}%
+  \setunit{\space}%
+  \printfield[bold]{volume}}
+
+\DeclareFieldFormat{url}{\bibstring{urlfrom}\space\url{#1}}
+\DeclareFieldFormat{urldate}{\mkbibbrackets{\bibstring{urlseen}\space#1}}
+\renewbibmacro*{url+urldate}{%
+  \usebibmacro{urldate}%
+  \newunit%
+  \printfield{url}}
+
+% automatically strip `van` and `von` from start of surname,
+% if `sortname` is not already defined
+% vir: https://tex.stackexchange.com/a/136565
+\DeclareSourcemap{%
+  \maps[datatype=bibtex]{
+    \map[overwrite=false]{
+      \step[fieldsource=translator]
+      \step[fieldset=sortname, origfieldval]
+      \step[fieldsource=editor]
+      \step[fieldset=sortname, origfieldval]
+      \step[fieldsource=author]
+      \step[fieldset=sortname, origfieldval]
+    }
+    \map[overwrite=false]{
+      \step[fieldsource=sortname, match=\regexp{(^|\s+)\Kv[a|o]n\s+}, replace={$1}]
+    }
+  }
+}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -334,6 +519,13 @@
   \@oldindex{#1}
 }
 
+\defbibenvironment{keyrefs}
+  {\begin{enumerate}}
+  {\end{enumerate}}
+  {\item}
+\DeclareBibliographyCategory{keyreferences}
+\BiblatexSplitbibDefernumbersWarningOff
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % IZPIS ZAČETNIH STRANI
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -405,11 +597,13 @@
   \@sloeng{\section*{Program dela}}{\section*{Project plan}}
   \@programdela
 
-  \@sloeng{\section*{Osnovna literatura}}{\section*{Basic references}}
-  \nobibliography*
-  \begin{itemize}
+  % izvede vsebino osnovne literature
   \@osnovnaliteratura
-  \end{itemize}
+  \newrefcontext[sorting=none]{keyrefctx}
+  \printbibliography[env=keyrefs,category=keyreferences,
+                     title={\@sloeng{\section*{Osnovna literatura}}
+                                    {\section*{Basic references}}}]
+  \endrefcontext
 
   \vspace{2cm}
   \begin{flushright}
@@ -628,7 +822,6 @@
 % magisterije začnemo z rimskimi številkami
 \@ifthen{\boolean{@drugastopnja}}{\pagenumbering{roman}}
 \pagestyle{plain}
-\@sloeng{\bibliographystyle{fmf-sl}}{\bibliographystyle{fmf-en}}
 \@frontpages
 
 % vsebino magisterije začnemo z arabskimi številkami od 1 naprej
@@ -693,7 +886,7 @@
 \@sloeng
   {\addcontentsline{toc}{section}{Literatura}}
   {\addcontentsline{toc}{section}{References}}
-\bibliography{\@literatura}
+\printbibliography
 \fi
 
 \@ifthen{\boolean{@trst}}{
