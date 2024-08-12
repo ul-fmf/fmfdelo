@@ -32,7 +32,7 @@ Za urejanje dokumentov močno priporočamo [Visual Studio Code](https://code.vis
 
 V LaTeX dokumentu pod komentarjem `% naslednje ukaze ustrezno dopolnite` izpolnite ime avtorja, mentorja, morebitnega somentorja, naslov dela in ostalo. Ti ukazi se uporabijo v generiranju naslovnice, izjave, povzetka in PDF metapodatkov.
 
-Predloga podpira arhivski standard [PDF/A-2b](https://en.wikipedia.org/wiki/PDF/A), ki mu mora zadoščati vaše zaključno delo, ko ga boste oddali preko VIS-a. Med prevajanjem se samodejno pripravijo ustrezni metapodatki in zaznamki za poglavja, ki jih lahko vidite v drevesni strukturi v pregledovalniku PDF dokumentov. Na tem mestu lahko včasih nastopijo težave z matematičnimi znaki v naslovu ali poglavjih, če jih pregledovalnik PDF dokumentov ne prebavi. V tem primeru se avtomatsko izpustijo, če pa jih želimo zamenjati z golim besedilom (plain text) ali UTF-8 znaki, pa lahko to storimo z `\texorpdfstring`, kot je prikazano na primeru v predlogi.
+Predloga podpira arhivski standard [PDF/A-2b](https://en.wikipedia.org/wiki/PDF/A), ki mu mora zadoščati vaše zaključno delo, ko ga boste oddali preko VIS-a. Med prevajanjem se samodejno pripravijo ustrezni metapodatki in zaznamki za poglavja, ki jih lahko vidite v drevesni strukturi v pregledovalniku PDF dokumentov.
 
 Vaš PDF pred oddajo (ali pa že kdaj prej) preverite z uporabo spletnega validatorja [PDFForge](https://www.pdfforge.org/pdfcreator-online/en/validate-pdfa) ali pa z validatorjem [veraPDF](https://openpreservation.org/tools/verapdf/), ki ga lahko namestite na svoj računalnik.
 
@@ -45,6 +45,10 @@ Vaš PDF pred oddajo (ali pa že kdaj prej) preverite z uporabo spletnega valida
 3. Če napake na seznamu ne najdete, stopite v stik z razvijalci ali odprite [issue na GitHubu](https://github.com/ul-fmf/fmfdelo/issues/new). **V nobenem primeru ne spreminjajte datoteke `fmfdelo.cls` ali strukture predloge**, saj je šlo zaradi formata PDF/A v predlogo veliko truda in bo spreminjanje bolj kot ne še kaj dodatno pokvarilo.
 
 ### Seznam najpogostejših napak
+
+#### Matematični simboli v naslovih in ključnih besedah
+
+Če v naslovih ali ključnih besedah uporabite matematične znake, jih pregledovalnik mogoče ne bo prikazal, ali pa bo celo prišlo do težav pri prevajanju. V tem primeru lahko z ukazom `\texorpdfstring{$formula$}{golo besedilo}` (kot je prikazano na primeru v predlogi), dodate še se golo besedilo (ki lahko vsebuje UTF-8 znake), ki se bo uporabilo v PDF kazalu ali meta-podatkih PDF dokumenta.
 
 #### `pdfapart undefined`
 
@@ -65,7 +69,6 @@ morate posodobiti `.cls` datoteko na najnovejšo verzijo.
 #### `The value of the key SMask ...` / `The key S has a value ...`
 
 Napaki `The value of the key SMask is an image but must be None.` ali `The key S has a value Transparency which is prohibited.` pomenita, da imate vključeno kakšno prosojno sliko. Za rastrske slike je ponavadi dovolj, da s primernim programom prosojno barvo spremenite v belo, za slike v vektorskih formatih pa je potrebno ponavadi nastaviti ozadje. Pri paketu TikZ pa je npr. namesto `\draw[fill=yellow]` treba napisati `\filldraw[color=yellow]`.
-
 
 #### Manjkajoče velike začetnice v literaturi
 
