@@ -9,22 +9,17 @@ Za uporabo najprej **preberite navodila na vaši spletni učilnici**, nato pa pr
 - [diploma-prazno.zip](arhivi/diploma-prazno.zip): prazna predloga za delo diplomskega seminarja
 - [diploma-primer.zip](arhivi/diploma-primer.zip): primer dela diplomskega seminarja
 - [diploma-primer-razclenjen.zip](arhivi/diploma-primer-razclenjen.zip): primer dela diplomskega seminarja z razdelki v posameznih datotekah
+- [diploma-primer-trst.zip](arhivi/diploma-primer-trst.zip): primer dela programa dvojne diplome na Trstu
 - [magisterij-primer-sl.zip](arhivi/magisterij-primer-sl.zip): primer magistrskega dela
 - [magisterij-primer-razclenjen-sl.zip](arhivi/magisterij-primer-razclenjen-sl.zip): primer magistrskega dela z razdelki v posameznih datotekah
 - [magisterij-primer-en.zip](arhivi/magisterij-primer-en.zip): primer magistrskega dela v angleščini
+- [magisterij-primer-trst.zip](arhivi/magisterij-primer-trst.zip): primer dela programa dvojnega magisterija na Trstu
 
-in sledite spodnjim [navodilom za uporabo](#navodila-za-uporabo). Dokument bi se moral prevesti brez posebnosti in dodatnih nastavitev. Nekaj pogostih težav in rešitev je [opisanih spodaj](#odpravljanje-napak).
+in sledite spodnjim [navodilom za uporabo](#navodila-za-uporabo). Dokument bi se moral prevesti brez posebnosti in dodatnih nastavitev. Nekaj pogostih težav in rešitev je [opisanih spodaj](#odpravljanje-napak). Če na zgornjem seznamu ni ustreznega arhiva za vaš program, nas prosimo kontaktirajte.
 
-Za pomoč pri razvoju se zahvaljujemo Aniti Buckley (za pomoč pri poenotenju in uvedbi PDF/A formata), Maji Klavžar (za natančna navodila glede navajanja literature), Matjažu Konvalinki (kot skrbniku za vse potrebne informacije), Anji Petković (za angleški primer magistrskega dela) in Sašu Strletu (za prvo različico predloge za diplomsko delo).
+Za pomoč pri razvoju se zahvaljujemo Aniti Buckley (za pomoč pri poenotenju in uvedbi PDF/A), Maji Klavžar (za vsa natančna navodila in nasvete glede oblikovanja), Matjažu Konvalinki (kot skrbniku za vse potrebne informacije), Anji Petković (za angleški primer magistrskega dela) in Sašu Strletu (za prvo različico predloge za diplomsko delo).
 
 _Razvijalci_: [Luna Strah](mailto:strah.luna@gmail.com), Jure Slak, Matija Pretnar, Gašper Golob in Katja Berčič.
-
-## Predloge za zaključna dela v sodelovanju z drugimi univerzami
-
-Če zaključno delo opravljate v sodelovanju z drugo univerzo (npr. program dvojne diplome v Trstu), potrebujete posebno predlogo. Če na spodnjem seznamu ni ustreznega arhiva, nas prosimo kontaktirajte.
-
-- [diploma-primer-trst.zip](arhivi/diploma-primer-trst.zip): primer dela programa dvojne diplome na Trstu
-- [magisterij-primer-trst.zip](arhivi/magisterij-primer-trst.zip): primer dela programa dvojnega magisterija na Trstu
 
 ## Navodila za uporabo
 
@@ -34,7 +29,11 @@ V LaTeX dokumentu pod komentarjem `% naslednje ukaze ustrezno dopolnite` izpolni
 
 Predloga podpira arhivski standard [PDF/A-2b](https://en.wikipedia.org/wiki/PDF/A), ki mu mora zadoščati vaše zaključno delo, ko ga boste oddali preko VIS-a. Med prevajanjem se samodejno pripravijo ustrezni metapodatki in zaznamki za poglavja, ki jih lahko vidite v drevesni strukturi v pregledovalniku PDF dokumentov.
 
-Vaš PDF pred oddajo (ali pa že kdaj prej) preverite z uporabo spletnega validatorja [PDFForge](https://www.pdfforge.org/pdfcreator-online/en/validate-pdfa) ali pa z validatorjem [veraPDF](https://openpreservation.org/tools/verapdf/), ki ga lahko namestite na svoj računalnik.
+Pred oddajo (ali pa že kdaj prej) z uporabo spletnega validatorja [PDFForge](https://www.pdfforge.org/pdfcreator-online/en/validate-pdfa) ali pa z validatorjem [veraPDF](https://openpreservation.org/tools/verapdf/), ki ga lahko namestite na svoj računalnik, preverite, če vaš PDF ustreza standadru PDF/A-1b (ki je zajet v PDF/A-2b). Prav tako v pregledovalniku preverite, ali PDF vsebuje prave metapodatke: _File_ > _Properties_ > _Document properties_.
+
+### Pisanje zaključnega dela v Microsoft Wordu
+
+Vse predloge so namenjene za pisanje dela v LaTeX-u. Če slučajno želite uporabljati Microsoft Word, morate za pravilno oblikovanje poskrbeti sami. Za pretvorbo v standard PDF/A morate najprev v dokument vpisati potrebne metapodatke. Pojdite na _File_ > _Info_ > _Show all properties_ (desno spodaj), in vpišite ustrezne podatke v polja _Author_, _Title_, _Company_ (vpišite »Univerza v Ljubljani, Fakulteta za matematiko in fiziko«) in _Tags_ (vpišite ključne besede). Nato dokument shranite kot PDF/A1-b. To storite tako, da izberete _File_ > _Save as_ > _Save as type: PDF_ > _Options_ (spodaj) > _PDF options_ > _ISO 19005-1 compliant PDF/A1-b_.
 
 ## Odpravljanje napak
 
@@ -42,7 +41,7 @@ Vaš PDF pred oddajo (ali pa že kdaj prej) preverite z uporabo spletnega valida
 
 1. Najprej **počistite dodatne datoteke** (`.log`, `.aux` ipd.), v katerih se lahko stare napake zadržujejo dlje, kot je treba. V urejevalniku Visual Studio Code to naredite tako, da v paleti ukazov (Command Palette, <kbd>Ctrl+Shift+P</kbd> oz. <kbd>Cmd+Shift+P</kbd> na macOS) natipkate `Clean Auxiliary Files`. Tam bo pisalo tudi, s katero bližnjico pridete do te funkcije na vašem računalniku. Alternativno lahko v ukazni vrstici poženete ukaz `latexmk -c`.
 2. V [spodnjem seznamu](#seznam-najpogostejših-napak) poiščite napako, ki jo imate, sledite navodilom ter **ponovite 1. korak**.
-3. Če napake na seznamu ne najdete, stopite v stik z razvijalci ali odprite [issue na GitHubu](https://github.com/ul-fmf/fmfdelo/issues/new). **V nobenem primeru ne spreminjajte datoteke `fmfdelo.cls` ali strukture predloge**, saj je šlo zaradi formata PDF/A v predlogo veliko truda in bo spreminjanje bolj kot ne še kaj dodatno pokvarilo.
+3. Če napake na seznamu ne najdete, stopite v stik z razvijalci ali odprite [issue na GitHubu](https://github.com/ul-fmf/fmfdelo/issues/new). **V nobenem primeru ne spreminjajte datoteke `fmfdelo.cls` ali strukture predloge**, saj je šlo zaradi standarda PDF/A v predlogo veliko truda in bo spreminjanje bolj kot ne še kaj dodatno pokvarilo.
 
 ### Seznam najpogostejših napak
 
@@ -83,6 +82,10 @@ se bo lahko odvisno od vrste vira izpisalo kot _Predloge za zaključna dela na F
 #### Neveljaven znak na začetku datoteke
 
 Če vam LaTeX (ali kakšno drugo orodje) javlja napako pred prvim znakom datoteke, tudi če ga pobrišete, gre najverjetneje za [BOM](https://en.wikipedia.org/wiki/Byte_order_mark), poseben neviden znak na začetku datoteke. Znebite se ga tako, da v Visual Studio Code spodaj kliknete na `UTF-8 with BOM` ter izberete `Save with encoding > UTF-8`.
+
+#### Zarnitev oddanega dela v VIS-u
+
+Če delo ne bo zadoščalo standardu PDF/A, vam bo VIS zavrnil oddajo. Če vam kljub vsem zgornjim navodilom ne uspe pripraviti ustrezne datoteke, lahko v skrajnem primeru uporabite program Adobe Acrobat Pro (program je nameščen na računalniku v Matematični knjižnici). Najprej v dokument vnesete metapodatke z izbiro _File_ > _Properties_ > _Document properties_, nato pa izberete _Tools_ > _Print Production_ > _Preflight_ > _Convert to PDF/A-1b_. Naj še enkrat poudarimo, da je to izhod v sili, če se mudi z oddajo in nobena od rešitev ne pomaga.
 
 #### Ostale napake
 
