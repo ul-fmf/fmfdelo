@@ -185,7 +185,6 @@
   \newcommand{\sintesiestesa}{\@definerequiredfield{@it@razsirjenipovzetek}}
 }
 
-\newcommand{\vnosliterature}[1]{\nocite{#1}\addtocategory{keyreferences}{#1}}
 \newcommand{\geslo}[2]{\noindent\textbf{#1}\hspace*{3mm}\hangindent=\parindent\hangafter=1 #2\par}
 
 \newcommand{\mentor}{\@dodajmentorja{Mentor}{mentorja}}
@@ -508,13 +507,6 @@
   \setboolean{@index}{true}
   \@oldindex{#1}
 }
-
-\defbibenvironment{keyrefs}
-  {\begin{enumerate}}
-  {\end{enumerate}}
-  {\item}
-\DeclareBibliographyCategory{keyreferences}
-\BiblatexSplitbibDefernumbersWarningOff
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % IZPIS ZAČETNIH STRANI
