@@ -29,7 +29,7 @@ V LaTeX dokumentu pod komentarjem `% naslednje ukaze ustrezno dopolnite` izpolni
 
 Predloga podpira arhivski standard [PDF/A-2b](https://en.wikipedia.org/wiki/PDF/A), ki mu mora zadoščati vaše zaključno delo, ko ga boste oddali preko VIS-a. Med prevajanjem se samodejno pripravijo ustrezni metapodatki in zaznamki za poglavja, ki jih lahko vidite v drevesni strukturi v pregledovalniku PDF dokumentov.
 
-Pred oddajo (ali pa že kdaj prej) z uporabo spletnega validatorja [PDFForge](https://www.pdfforge.org/pdfcreator-online/en/validate-pdfa) ali pa z validatorjem [veraPDF](https://openpreservation.org/tools/verapdf/), ki ga lahko namestite na svoj računalnik, preverite, če vaš PDF ustreza standadru PDF/A-1b (ki je zajet v PDF/A-2b). Prav tako v pregledovalniku preverite, ali PDF vsebuje prave metapodatke: _File_ > _Properties_ > _Document properties_.
+Pred oddajo (ali pa že kdaj prej) z uporabo spletnega validatorja [PDFForge](https://www.pdfforge.org/pdfcreator-online/en/validate-pdfa) ali pa z validatorjem [veraPDF](https://openpreservation.org/tools/verapdf/), ki ga lahko namestite na svoj računalnik, preverite, če vaš PDF ustreza standardu PDF/A-1b (ki je zajet v PDF/A-2b). Prav tako v pregledovalniku preverite, ali PDF vsebuje prave metapodatke: _File_ > _Properties_ > _Document properties_.
 
 ### Pisanje zaključnega dela v Microsoft Wordu
 
@@ -83,7 +83,7 @@ se bo lahko odvisno od vrste vira izpisalo kot _Predloge za zaključna dela na F
 
 Če vam LaTeX (ali kakšno drugo orodje) javlja napako pred prvim znakom datoteke, tudi če ga pobrišete, gre najverjetneje za [BOM](https://en.wikipedia.org/wiki/Byte_order_mark), poseben neviden znak na začetku datoteke. Znebite se ga tako, da v Visual Studio Code spodaj kliknete na `UTF-8 with BOM` ter izberete `Save with encoding > UTF-8`.
 
-#### Zarnitev oddanega dela v VIS-u
+#### Zavrnitev oddanega dela v VIS-u
 
 Če delo ne bo zadoščalo standardu PDF/A, vam bo VIS zavrnil oddajo. Če vam kljub vsem zgornjim navodilom ne uspe pripraviti ustrezne datoteke, lahko v skrajnem primeru uporabite program Adobe Acrobat Pro (program je nameščen na računalniku v Matematični knjižnici). Najprej v dokument vnesete metapodatke z izbiro _File_ > _Properties_ > _Document properties_, nato pa izberete _Tools_ > _Print Production_ > _Preflight_ > _Convert to PDF/A-1b_. Naj še enkrat poudarimo, da je to izhod v sili, če se mudi z oddajo in nobena od rešitev ne pomaga.
 
