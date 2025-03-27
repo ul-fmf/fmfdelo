@@ -819,16 +819,14 @@
 }
 
 \AfterEndPreamble{%
-% magisterije začnemo z rimskimi številkami
-\@ifthen{\boolean{@drugastopnja}}{\pagenumbering{roman}}
+% začetne strani številčimo z rimskimi številkami
+\pagenumbering{roman}
 \pagestyle{plain}
 \@frontpages
 
-% vsebino magisterije začnemo z arabskimi številkami od 1 naprej
-\@ifthen{\boolean{@drugastopnja}}{
-  \setcounter{page}{1}
-  \pagenumbering{arabic}
-}
+% vsebino številčimo z arabskimi številkami od 1 naprej
+\setcounter{page}{1}
+\pagenumbering{arabic}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
