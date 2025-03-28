@@ -29,11 +29,11 @@ V LaTeX dokumentu pod komentarjem `% naslednje ukaze ustrezno dopolnite` izpolni
 
 Predloga podpira arhivski standard [PDF/A-2b](https://en.wikipedia.org/wiki/PDF/A), ki mu mora zadoščati vaše zaključno delo, ko ga boste oddali preko VIS-a. Med prevajanjem se samodejno pripravijo ustrezni metapodatki in zaznamki za poglavja, ki jih lahko vidite v drevesni strukturi v pregledovalniku PDF dokumentov.
 
-Pred oddajo (ali pa že kdaj prej) z uporabo spletnega validatorja [PDFForge](https://www.pdfforge.org/pdfcreator-online/en/validate-pdfa) ali pa z validatorjem [veraPDF](https://openpreservation.org/tools/verapdf/), ki ga lahko namestite na svoj računalnik, preverite, če vaš PDF ustreza standardu PDF/A-1b (ki je zajet v PDF/A-2b). Prav tako v pregledovalniku preverite, ali PDF vsebuje prave metapodatke: _File_ > _Properties_ > _Document properties_.
+Pred oddajo (ali pa že kdaj prej) z uporabo spletnega validatorja [PDFForge](https://www.pdfforge.org/pdfcreator-online/en/validate-pdfa) ali pa z validatorjem [veraPDF](https://openpreservation.org/tools/verapdf/), ki ga lahko namestite na svoj računalnik, preverite, če vaš PDF ustreza standardu PDF/A. Prav tako v pregledovalniku preverite, ali PDF vsebuje prave metapodatke: _File_ > _Properties_ > _Document properties_.
 
 ### Pisanje zaključnega dela v Microsoft Wordu
 
-Vse predloge so namenjene za pisanje dela v LaTeX-u. Če slučajno želite uporabljati Microsoft Word, morate za pravilno oblikovanje poskrbeti sami. Za pretvorbo v standard PDF/A morate najprev v dokument vpisati potrebne metapodatke. Pojdite na _File_ > _Info_ > _Show all properties_ (desno spodaj), in vpišite ustrezne podatke v polja _Author_, _Title_, _Company_ (vpišite »Univerza v Ljubljani, Fakulteta za matematiko in fiziko«) in _Tags_ (vpišite ključne besede). Nato dokument shranite kot PDF/A1-b. To storite tako, da izberete _File_ > _Save as_ > _Save as type: PDF_ > _Options_ (spodaj) > _PDF options_ > _ISO 19005-1 compliant PDF/A1-b_.
+Vse predloge so namenjene za pisanje dela v LaTeX-u. Če slučajno želite uporabljati Microsoft Word, morate za pravilno oblikovanje poskrbeti sami. Za pretvorbo v standard PDF/A morate najprej v dokument vpisati potrebne metapodatke. Pojdite na _File_ > _Info_ > _Show all properties_ in vpišite ustrezne podatke v polja _Author_, _Title_, _Company_ (vpišite »Univerza v Ljubljani, Fakulteta za matematiko in fiziko«) in _Tags_ (vpišite ključne besede). Nato dokument shranite kot PDF/A tako, da izberete _File_ > _Save as_ > _Save as type: PDF_ > _Options_ (spodaj) > _PDF options_ > _PDF/A compliant_. Slednja možnost deluje le na Wordu za Windowse, ki pa je na voljo na študentskih računalnikih.
 
 ## Odpravljanje napak
 
