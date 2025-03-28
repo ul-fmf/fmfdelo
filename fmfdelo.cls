@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{fmfdelo}[2023/01/20 Zakljucna dela na FMF]
+\ProvidesClass{fmfdelo}[2025/03/12 Zakljucna dela na FMF]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % NALAGANJE PAKETOV
@@ -141,32 +141,23 @@
 \def\@mentorji{}
 \def\@supervisors{}
 \def\@it@supervisors{}
-\def\@podpisi{}
-\def\@signatures{}
-\def\@it@signatures{}
 \newcommand{\@dodajmentorja}[3]{%
   \g@addto@macro\@mentorji{#1: & #3 \\}%
-  \g@addto@macro\@podpisi{Podpis #2: & \phantom{prostor za podpis} \\[2cm]}%
 }
 \newcommand{\@dodajdvamentorja}[4]{%
   \g@addto@macro\@mentorji{#1: & #3 \\ & #4 \\}%
-  \g@addto@macro\@podpisi{Podpisa #2: & \phantom{prostor za podpis} \\[2cm] & \phantom{prostor za podpis} \\[2cm]}
 }
 \newcommand{\@addsupervisor}[3]{%
   \g@addto@macro\@supervisors{#1: & #3 \\}%
-  \g@addto@macro\@signatures{#2 signature: & \phantom{prostor za podpis} \\[2cm]}%
 }
 \newcommand{\@addsupervisors}[4]{%
   \g@addto@macro\@supervisors{#1: & #3 \\ & #4 \\}%
-  \g@addto@macro\@signatures{#2 signature: & \phantom{prostor za podpis} \\[2cm] & \phantom{prostor za podpis} \\[2cm]}
 }
 \newcommand{\@it@addsupervisor}[3]{%
   \g@addto@macro\@it@supervisors{#1: & #3 \\}%
-  \g@addto@macro\@it@signatures{Firma del #2: & \phantom{prostor za podpis} \\[2cm]}%
 }
 \newcommand{\@it@addsupervisors}[4]{%
   \g@addto@macro\@it@supervisors{#1: & #3 \\ & #4 \\}%
-  \g@addto@macro\@it@signatures{Firma dei signature: & \phantom{prostor za podpis} \\[2cm] & \phantom{prostor za podpis} \\[2cm]}
 }
 
 \newcommand{\avtor}{\@definerequiredfield{@avtor}}
@@ -175,7 +166,6 @@
 \newcommand{\letnica}{\@definerequiredfield{@letnica}}
 \newcommand{\zahvala}{\@definefield{@zahvala}}
 \newcommand{\programdela}{\@definefield{@programdela}}
-\newcommand{\osnovnaliteratura}{\@definefield{@osnovnaliteratura}}
 \newcommand{\povzetek}{\@definerequiredfield{@povzetek}}
 \renewcommand{\abstract}{\@definerequiredfield{@abstract}}
 \newcommand{\klasifikacija}{\@definerequiredfield{@klasifikacija}}
@@ -195,7 +185,6 @@
   \newcommand{\sintesiestesa}{\@definerequiredfield{@it@razsirjenipovzetek}}
 }
 
-\newcommand{\vnosliterature}[1]{\nocite{#1}\addtocategory{keyreferences}{#1}}
 \newcommand{\geslo}[2]{\noindent\textbf{#1}\hspace*{3mm}\hangindent=\parindent\hangafter=1 #2\par}
 
 \newcommand{\mentor}{\@dodajmentorja{Mentor}{mentorja}}
@@ -519,16 +508,10 @@
   \@oldindex{#1}
 }
 
-\defbibenvironment{keyrefs}
-  {\begin{enumerate}}
-  {\end{enumerate}}
-  {\item}
-\DeclareBibliographyCategory{keyreferences}
-\BiblatexSplitbibDefernumbersWarningOff
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % IZPIS ZAČETNIH STRANI
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \@sloeng{\def\@frontpages{\@frontpages@sl}}{\def\@frontpages{\@frontpages@en}}
 \@ifthen{\boolean{@trst}}{\def\@frontpages{\@frontpages@trst}}
 
@@ -536,11 +519,7 @@
   \@frontpages@sl@naslovnica
   \@frontpages@sl@zahvala
   \@frontpages@common@toc
-  \@ifthen{\boolean{@drugastopnja}}{
-    \@frontpages@common@program
-  }
 
-  \thispagestyle{empty}
   \pdfbookmark[1]{Povzetek}{povzetek}
   \@frontpages@sl@povzetek
   \@frontpages@en@abstract
@@ -552,11 +531,7 @@
   \@frontpages@sl@naslovnica
   \@frontpages@en@acknowledgements
   \@frontpages@common@toc
-  \@ifthen{\boolean{@drugastopnja}}{
-    \@frontpages@common@program
-  }
 
-  \thispagestyle{empty}
   \pdfbookmark[1]{Abstract}{abstract}
   \@frontpages@en@abstract
   \@frontpages@sl@povzetek
@@ -568,11 +543,7 @@
   \@frontpages@trst@itslo@frontpage
   \@frontpages@en@acknowledgements
   \@frontpages@common@toc
-  \@ifthen{\boolean{@drugastopnja}}{
-    \@frontpages@common@program
-  }
 
-  \thispagestyle{empty}
   \pdfbookmark[1]{Abstract}{abstract}
   \@frontpages@en@abstract
   \@frontpages@trst@abstract
@@ -582,33 +553,8 @@
 }
 
 \def\@frontpages@common@toc{
-  \thispagestyle{empty}
   \pdfbookmark[1]{\contentsname}{kazalo-vsebine}
   \tableofcontents
-  \vfill
-  \cleardoublepage
-}
-\def\@frontpages@common@program{
-  \@sloeng{
-    \pdfbookmark[1]{Program dela}{program}
-  }{
-    \pdfbookmark[1]{Project plan}{program}
-  }
-  \@sloeng{\section*{Program dela}}{\section*{Project plan}}
-  \@programdela
-
-  % izvede vsebino osnovne literature
-  \@osnovnaliteratura
-  \newrefcontext[sorting=none]{keyrefctx}
-  \printbibliography[env=keyrefs,category=keyreferences,
-                     title={\@sloeng{\section*{Osnovna literatura}}
-                                    {\section*{Basic references}}}]
-  \endrefcontext
-
-  \vspace{2cm}
-  \begin{flushright}
-    \begin{tabular}{rp{4cm}} \@sloeng{\@podpisi}{\@signatures} \end{tabular}
-  \end{flushright}
   \vfill
   \cleardoublepage
 }
