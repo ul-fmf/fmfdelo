@@ -409,11 +409,11 @@
 \DeclareSourcemap{%
   \maps[datatype=bibtex]{
     \map[overwrite=false]{
-      \step[fieldsource=translator]
+      \step[fieldsource=author]
       \step[fieldset=sortname, origfieldval]
       \step[fieldsource=editor]
       \step[fieldset=sortname, origfieldval]
-      \step[fieldsource=author]
+      \step[fieldsource=translator]
       \step[fieldset=sortname, origfieldval]
     }
     \map[overwrite=false]{
