@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{fmfdelo}[2025/03/12 Zakljucna dela na FMF]
+\ProvidesClass{fmfdelo}[2025/07/14 Zakljucna dela na FMF]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % NALAGANJE PAKETOV
