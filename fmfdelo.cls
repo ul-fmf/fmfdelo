@@ -793,7 +793,8 @@
 
   % nastavi številčenje po podrazdelkih
   \def\thesection{}
-  \def\thesubsection{1}
+  \def\thesubsection{\@arabic\c@subsection}
+  \setcounter{subsection}{0}
   \numberwithin{equation}{subsection}
 
   % premakne nivoje razdelkov en nivo nižje, da nivo `\section' spada pod razdelek razširjenega povzetka
