@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{fmfdelo}[2025/03/12 Zakljucna dela na FMF]
+\ProvidesClass{fmfdelo}[2025/07/14 Zakljucna dela na FMF]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % NALAGANJE PAKETOV
@@ -794,6 +794,7 @@
   % nastavi številčenje po podrazdelkih
   \def\thesection{}
   \def\thesubsection{\@arabic\c@subsection}
+  \setcounter{subsection}{0}
   \numberwithin{equation}{subsection}
 
   % premakne nivoje razdelkov en nivo nižje, da nivo `\section' spada pod razdelek razširjenega povzetka
@@ -855,7 +856,7 @@
   \newtheorem{definicija}{Definicija}[subsection]
 
   \cleardoublepage
-  \@make@razsirjenipovzetek{slovene}{Razsirjeni povzetek}{\@razsirjenipovzetek}
+  \@make@razsirjenipovzetek{slovene}{Razširjeni povzetek}{\@razsirjenipovzetek}
 }
 
 % only print the index (and clear the page) if the \index command has been used
