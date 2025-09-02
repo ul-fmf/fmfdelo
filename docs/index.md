@@ -35,6 +35,10 @@ Pred oddajo (ali pa že kdaj prej) z uporabo spletnega validatorja [PDFForge](ht
 
 Vse predloge so namenjene za pisanje dela v LaTeX-u. Če slučajno želite uporabljati Microsoft Word, morate za pravilno oblikovanje poskrbeti sami. Za pretvorbo v standard PDF/A morate najprej v dokument vpisati potrebne metapodatke. Pojdite na _File_ > _Info_ > _Show all properties_ in vpišite ustrezne podatke v polja _Author_, _Title_, _Company_ (vpišite »Univerza v Ljubljani, Fakulteta za matematiko in fiziko«) in _Tags_ (vpišite ključne besede). Nato dokument shranite kot PDF/A tako, da izberete _File_ > _Save as_ > _Save as type: PDF_ > _Options_ (spodaj) > _PDF options_ > _PDF/A compliant_. Slednja možnost deluje le na Wordu za Windowse, ki pa je na voljo na študentskih računalnikih.
 
+### Število naštetih avtorjev v literaturi
+
+Dela z več kot tremi avtorji se v literaturi citirajo kot _Ime Prvega in dr._, saj je to uveljavljen standard. Če na področju vašega dela veljajo drugačna pravila, lahko nastavitev spremenite tudi lokalno, tako da v `.bib` datoteki pri posameznem vnosu dodate polje `options = { maxnames = 10 }`.
+
 ## Odpravljanje napak
 
 Če imate težavo s predlogo:
